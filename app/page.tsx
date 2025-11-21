@@ -3,6 +3,9 @@ import Link from "next/link";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
 import ContactUs from "./components/ContactUs";
+import Projects from "./components/Projects";
+import TechNews from "./components/TechNews";
+import Inspirations from "./components/Inspiration";
 
 export default function Home() {
   return (
@@ -105,6 +108,9 @@ export default function Home() {
       </div>
       <Skills />
       <Experience />
+      <Projects />
+      <TechNews />
+      <Inspirations />
       <ContactUs />
     </div>
   );

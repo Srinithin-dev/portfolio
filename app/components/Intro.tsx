@@ -7,7 +7,7 @@ const Intro = () => {
       <div className="flex flex-col gap-6 items-center text-center relative">
         <Image
           alt="profile"
-          src="/profile.png"
+          src="/profiletrans.png"
           width={260}
           height={260}
           className="object-cover cursor-pointer rounded-full z-10 

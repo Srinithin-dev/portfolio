@@ -7,7 +7,16 @@ import "swiper/css/navigation";
 
 import { Autoplay, FreeMode, Pagination, Navigation } from "swiper/modules";
 
-export default function Slider({ content }) {
+type SliderContent = {
+  website: string;
+  title: string;
+  description: string;
+  tags: string[];
+  publishedDate: string;
+  link: string;
+}[];
+
+export default function Slider({ content }: { content: SliderContent }) {
   return (
     <Swiper
       slidesPerView={3}

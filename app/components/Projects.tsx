@@ -6,7 +6,7 @@ export default function Projects() {
       title: "Portfolio Website",
       description:
         "A modern, fast, and fully responsive personal portfolio built with Next.js and Tailwind CSS. Includes GitHub metrics, tech news feed, animations, and a clean UI.",
-      language_Used: ["Next.js", "React", "Tailwind CSS"],
+      language_Used: ["Next.js", "React", "Tailwind CSS", "Rest Api"],
       demoLink: "#",
       repoLink: "#",
       comingSoon: false,
@@ -16,7 +16,7 @@ export default function Projects() {
       title: "Job Tracker Tool",
       description:
         "A simple dashboard to track all job applications with stages, notes, resume uploads, and reminders.",
-      language_Used: ["Next.js", "Node.js"],
+      language_Used: ["Next.js", "Node.js", "Rest Api", "MongoDb"],
       comingSoon: true,
       demoLink: "",
       repoLink: "",
@@ -26,7 +26,7 @@ export default function Projects() {
       title: "Integrations Dashboard",
       description:
         "A private dashboard built for personal tools — integrates GitHub API, Reddit & Dev.to feeds, and other utilities.",
-      language_Used: ["Next.js", "API Integrations"],
+      language_Used: ["Next.js", , "Rest Api", "API Integrations", "MongoDb"],
       comingSoon: true,
       demoLink: "",
       repoLink: "",
@@ -35,8 +35,8 @@ export default function Projects() {
   ];
 
   return (
-    <div className="bg-white text-black w-full flex flex-col items-center py-16 px-4">
-      <h2 className="text-4xl font-bold mb-2">Featured Projects</h2>
+    <div className="bg-white text-black w-full flex flex-col items-center py-12 px-4">
+      <h2 className="text-4xl font-bold mb-2 text-center">Featured Projects</h2>
       <p className="text-lg text-[#627084] mb-10 text-center max-w-2xl">
         A selection of recent work showcasing my development expertise
       </p>
@@ -50,8 +50,8 @@ export default function Projects() {
           >
             <div
               className={`w-full ${
-                !project.coverImage.length && "h-40"
-              } bg-[#f3e8ff] rounded-xl flex items-center justify-center overflow-hidden`}
+                !project.coverImage.length && "h-full"
+              } bg-[#f3e8ff] rounded-xl h-full flex items-center justify-center overflow-hidden`}
             >
               {project.comingSoon ? (
                 <span className="text-[#af47ff] font-semibold text-lg">
@@ -68,9 +68,11 @@ export default function Projects() {
               )}
             </div>
 
-            <h3 className="mt-4 text-xl font-bold">{project.title}</h3>
+            <h3 className="mt-4 text-xl font-bold text-center">
+              {project.title}
+            </h3>
 
-            <p className="text-sm text-[#627084] text-center mt-1">
+            <p className="text-sm text-[#627084] text-center mt-1 h-full">
               {project.description}
             </p>
 
@@ -78,18 +80,22 @@ export default function Projects() {
               {project.language_Used.map((lang, i) => (
                 <span
                   key={i}
-                  className="text-xs text-black px-3 py-1 rounded-full bg-[#af47ff1a] font-medium"
+                  className="text-xs text-black px-3 py-1 rounded-full bg-[#e7eaef] font-medium"
                 >
                   {lang}
                 </span>
               ))}
             </div>
 
-            {!project.comingSoon && (
-              <div className="mt-5 flex gap-3 items-center">
+            {project.comingSoon ? (
+              <div className="px-4 py-2 bg-[#e7eaef] text-[#818181] rounded-xl text-sm cursor-not-allowed w-full text-center mt-5">
+                Under Development
+              </div>
+            ) : (
+              <div className="mt-5 flex gap-3 items-center w-full justify-around">
                 <a
                   href={project.demoLink}
-                  className="px-4 py-2 bg-[#af47ff] text-white rounded-xl text-sm hover:bg-[#9e3fe6]"
+                  className="px-4 py-2 bg-[#e7eaef] text-black rounded-xl text-sm hover:bg-[#9e3fe6] hover:text-white w-full text-center"
                 >
                   Live Demo
                 </a>

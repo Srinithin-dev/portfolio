@@ -87,7 +87,7 @@ export default function Experience() {
         My professional journey in web development
       </div>
 
-      <div className=" w-full max-w-4xl flex flex-col gap-8">
+      <div className="w-full lg:px-16 px-4 flex flex-col gap-8">
         {experiences.map((exp, i) => (
           <div key={i} className="relative group cursor-pointer">
             <span
@@ -128,7 +128,7 @@ export default function Experience() {
               {exp.expirences ? (
                 exp.expirences.map((exps, i) => (
                   <div key={i}>
-                    <div className="flex items-center  justify-between">
+                    <div className="flex max-lg:flex-col max-lg:items-start items-center  justify-between">
                       <div className="font-semibold">{exps.role}</div>
                       <div className="flex text-center gap-2 items-center">
                         <Image
@@ -136,6 +136,7 @@ export default function Experience() {
                           alt="calendar"
                           width={24}
                           height={24}
+                          className="max-lg:hidden"
                         />
                         <div className="text-sm  text-gray-500 ">
                           {exps.period}
@@ -143,7 +144,7 @@ export default function Experience() {
                       </div>
                     </div>
 
-                    <ul className="list-disc pl-5 marker:text-[#af47ff] space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-4">
+                    <ul className="list-disc max-sm:pl-1 pl-5 marker:text-[#af47ff] space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-4">
                       {exps.points.map((p, index) => (
                         <li key={index}>{p}</li>
                       ))}
@@ -163,7 +164,7 @@ export default function Experience() {
                 ))
               ) : (
                 <>
-                  <div className="flex items-center  justify-between">
+                  <div className="flex max-lg:flex-col max-lg:items-start items-center  justify-between">
                     <div className="font-semibold">{exp.role}</div>
                     <div className="flex text-center gap-2 items-center">
                       <Image
@@ -171,6 +172,7 @@ export default function Experience() {
                         alt="calendar"
                         width={24}
                         height={24}
+                        className="max-lg:hidden"
                       />
                       <div className="text-sm  text-gray-500 ">
                         {exp.period}
@@ -178,7 +180,7 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <ul className="list-disc pl-5 marker:text-[#af47ff]  space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-1">
+                  <ul className="list-disc max-sm:pl-1 pl-5 marker:text-[#af47ff]  space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-1">
                     {exp.points.map((p, index) => (
                       <li key={index}>{p}</li>
                     ))}

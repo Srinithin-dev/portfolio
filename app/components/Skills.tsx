@@ -23,7 +23,6 @@ export default function Skills() {
     { src: "/github.gif", label: "GitHub" },
     { src: "/postman.png", label: "Postman" },
     { src: "/jira.png", label: "Jira" },
-    { src: "/teams.png", label: "Microsoft Teams" },
     { src: "/vs-code.png", label: "VS Code" },
   ];
 
@@ -34,24 +33,24 @@ export default function Skills() {
         <span>Technical Arsenal</span>
       </div>
 
-      <div className="text-4xl md:text-5xl font-bold  bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent">
+      <div className="text-4xl md:text-5xl font-bold  bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
         Skills & Technologies
       </div>
 
       <div className="text-lg text-center mb-4 px-4">
         Building modern web applications with cutting-edge tools
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full lg:px-16">
         <div className="flex items-center gap-4">
           <div className="h-1 w-12 rounded-full bg-linear-to-r from-[#af47ff] to-[#af47ff]/30"></div>
           <div className="text-2xl font-bold">Frontend</div>
-          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/30 rounded-full"></div>
+          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/4 rounded-full"></div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 min-w-max mx-auto p-2">
+        <div className="flex flex-wrap max-lg:justify-center gap-6 p-2 w-full">
           {frontend.map((skill, index) => (
             <div
               key={index}
-              className="bg-white w-30 h-30 md:w-36 md:h-36 p-6 border border-[#dadfe7] hover:border-[#af47ff]
+              className="bg-white w-32 h-26 p-6 border border-[#dadfe7] hover:border-[#af47ff]
               flex flex-col items-center justify-center rounded-2xl 
               hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
             >
@@ -69,17 +68,17 @@ export default function Skills() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full lg:px-16">
         <div className="flex items-center gap-4">
           <div className="h-1 w-12 rounded-full bg-linear-to-r from-[#af47ff] to-[#af47ff]/30"></div>
           <div className="text-2xl font-bold">Backend</div>
-          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/30 rounded-full"></div>
+          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/4 rounded-full"></div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 min-w-max mx-auto p-2">
+        <div className="flex flex-wrap max-lg:justify-center gap-6  p-2 w-full">
           {backend.map((skill, index) => (
             <div
               key={index}
-              className="bg-white w-30 h-30 md:w-36 md:h-36 p-6 border border-[#dadfe7] hover:border-[#af47ff]
+              className="bg-white w-32 h-26 p-6 border border-[#dadfe7] hover:border-[#af47ff]
               flex flex-col items-center justify-center rounded-2xl 
               hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
             >
@@ -91,17 +90,17 @@ export default function Skills() {
           ))}
         </div>
       </div>
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full lg:px-16">
         <div className="flex items-center gap-4">
           <div className="h-1 w-12 rounded-full bg-linear-to-r from-[#af47ff] to-[#af47ff]/30"></div>
           <div className="text-2xl font-bold">Tools & Platforms</div>
-          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/30 rounded-full"></div>
+          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/4 rounded-full"></div>
         </div>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 min-w-max mx-auto p-2">
+        <div className="flex flex-wrap max-lg:justify-center gap-6  p-2 w-full">
           {tools.map((tool, index) => (
             <div
               key={index}
-              className="bg-white w-30 h-30 md:w-36 md:h-36 p-6 border border-[#dadfe7] hover:border-[#af47ff]
+              className="bg-white w-32 h-26 p-6 border border-[#dadfe7] hover:border-[#af47ff]
               flex flex-col items-center justify-center rounded-2xl 
               hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
             >

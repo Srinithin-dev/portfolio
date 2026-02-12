@@ -59,6 +59,7 @@ export default function Skills() {
                 alt={skill.label}
                 width={32}
                 height={32}
+                unoptimized={skill.src.split(".")[0] == "gif" ? true : false}
                 className={skill.rotate ? skill.rotate : ""}
               />
               <span className="mt-2 text-sm font-semibold text-gray-700 text-center">
@@ -82,7 +83,13 @@ export default function Skills() {
               flex flex-col items-center justify-center rounded-2xl 
               hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
             >
-              <Image src={skill.src} alt={skill.label} width={32} height={32} />
+              <Image
+                src={skill.src}
+                alt={skill.label}
+                width={32}
+                height={32}
+                unoptimized={skill.src.split(".")[0] == "gif" ? true : false}
+              />
               <span className="mt-2 text-sm font-semibold text-gray-700 text-center">
                 {skill.label}
               </span>

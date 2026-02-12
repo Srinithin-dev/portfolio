@@ -13,7 +13,7 @@ export default function ContactUs() {
       <div className="flex flex-col gap-2 text-black items-center">
         <div className="text-4xl font-bold">Get In Touch</div>
         <div className="text-lg text-[#627084] text-center">
-          I'm always open to discussing new projects and opportunities
+          I&apos;m always open to discussing new projects and opportunities
         </div>
       </div>
 

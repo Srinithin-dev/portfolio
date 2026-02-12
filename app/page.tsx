@@ -4,7 +4,6 @@ import Experience from "./components/Experience";
 import Projects from "./components/Projects";
 import ContactUs from "./components/ContactUs";
 import Education from "./components/Education";
-import Link from "next/link";
 
 export default function Home() {
   return (

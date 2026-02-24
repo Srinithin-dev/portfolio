@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Stack from "../../public/icons/stack";
+import Stack from "../../../public/icons/stack";
 
 export default function Skills() {
   const frontend = [

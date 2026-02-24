@@ -1,4 +1,4 @@
-import Growth from "../../public/icons/growth";
+import Growth from "../../../public/icons/growth";
 import Image from "next/image";
 
 const experiences = [
@@ -78,13 +78,14 @@ export default function Experience() {
         <Growth />
         <span>Career Journey</span>
       </div>
+      <div className="flex flex-col gap-2 justify-center">
+        <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent">
+          Work Experience
+        </div>
 
-      <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent">
-        Work Experience
-      </div>
-
-      <div className="text-lg text-center px-6">
-        My professional journey in web development
+        <div className="text-lg text-center px-6">
+          My professional journey in web development
+        </div>
       </div>
 
       <div className="w-full lg:px-16 px-4 flex flex-col gap-8">

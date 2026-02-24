@@ -22,7 +22,7 @@ export default function Education() {
   ];
 
   return (
-    <div className="bg-white text-black p-6 flex flex-col items-center gap-6 w-full">
+    <div className="bg-white text-black p-6 flex flex-col items-center gap-6 w-full lg:px-20 px-4">
       <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
         <span>Education</span>
       </div>

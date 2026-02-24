@@ -35,13 +35,15 @@ export default function Projects() {
   ];
 
   return (
-    <div className="bg-white text-black w-full flex flex-col items-center py-12 px-4">
-      <h2 className="text-4xl font-bold mb-2 text-center">Featured Projects</h2>
+    <div className="bg-white text-black w-full flex flex-col items-center py-12">
+      <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
+        Featured Projects
+      </div>
       <p className="text-lg text-[#627084] mb-10 text-center max-w-2xl">
         A selection of recent work showcasing my development expertise
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full max-w-4xl">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full lg:px-20 px-4">
         {projectObj.map((project, index) => (
           <div
             key={index}

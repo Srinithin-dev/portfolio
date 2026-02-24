@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -22,6 +23,15 @@ export default function Intro() {
       href: "/github.png",
     },
   ];
+
+  const downloadResume = () => {
+    const link = document.createElement("a");
+    const href = "./resume.pdf";
+    const downloadName = "srinithin's-Resume.pdf";
+    link.href = href;
+    link.download = downloadName;
+    link.click();
+  };
 
   return (
     <div className="py-28 bg-[#f2f4f7] text-black p-6 flex flex-col gap-6 items-center justify-center">
@@ -81,6 +91,7 @@ export default function Intro() {
           className="hover:scale-105 transition-transform  text-black border border-[#dadfe7]
                                    rounded-2xl px-6 py-3 cursor-pointer flex items-center justify-center gap-2 
                                    w-fit"
+          onClick={downloadResume}
         >
           <span>Download Resume</span>
           <Image src="/download.png" alt="download" width={26} height={26} />

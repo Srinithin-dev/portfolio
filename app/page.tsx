@@ -1,9 +1,9 @@
-import Intro from "./components/Intro";
-import Skills from "./components/Skills";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import ContactUs from "./components/ContactUs";
-import Education from "./components/Education";
+import Intro from "./components/essential/Intro";
+import Skills from "./components/essential/Skills";
+import Experience from "./components/essential/Experience";
+import Projects from "./components/essential/Projects";
+import ContactUs from "./components/essential/ContactUs";
+import Education from "./components/essential/Education";
 
 export default function Home() {
   return (

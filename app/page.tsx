@@ -4,6 +4,7 @@ import Experience from "./components/essential/Experience";
 import Projects from "./components/essential/Projects";
 import ContactUs from "./components/essential/ContactUs";
 import Education from "./components/essential/Education";
+import { ToastContainer } from "react-toastify";
 
 export default function Home() {
   return (
@@ -43,6 +44,7 @@ export default function Home() {
       <section id="Contact" className="pt-8 border-b-[0.25px] border-[#e0e0e0]">
         <ContactUs />
       </section>
+      <ToastContainer />
     </div>
   );
 }

@@ -78,7 +78,7 @@ export default function Experience() {
         <Growth />
         <span>Career Journey</span>
       </div>
-      <div className="flex flex-col gap-2 justify-center">
+      <div className="flex flex-col gap-2 justify-center text-center">
         <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent">
           Work Experience
         </div>

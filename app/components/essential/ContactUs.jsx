@@ -2,7 +2,6 @@
 import Image from "next/image";
 import Footer from "./Footer";
 import Link from "next/link";
-import { useState } from "react";
 import FormSubmission from "./FormSubmission";
 
 export default function ContactUs() {

@@ -6,27 +6,33 @@ export default function Projects() {
       title: "Portfolio Website",
       description:
         "A modern, fast, and fully responsive personal portfolio built with Next.js and Tailwind CSS. Includes GitHub metrics, tech news feed, animations, and a clean UI.",
-      language_Used: ["Next.js", "React", "Tailwind CSS", "Rest Api"],
+      language_Used: ["Next.js", "Tailwind Css", "Typescript"],
       demoLink: "#",
       repoLink: "#",
       comingSoon: false,
-      coverImage: "/coverImage.png",
+      coverImage: "/portfolioBanner.png",
     },
     {
-      title: "Job Tracker Tool",
+      title: "Reusable Authentication Microservice",
       description:
-        "A simple dashboard to track all job applications with stages, notes, resume uploads, and reminders.",
-      language_Used: ["Next.js", "Node.js", "Rest Api", "MongoDb"],
+        "A centralized authentication service implementing JWT-based access & refresh tokens, role-based access control, token rotation, and secure password hashing. Designed to integrate across multiple backend systems.",
+      language_Used: ["Node.js", "Express.js", "MongoDB", "JWT", "REST APIs"],
       comingSoon: true,
       demoLink: "",
       repoLink: "",
       coverImage: "",
     },
     {
-      title: "Integrations Dashboard",
+      title: "Developer Tools Platform",
       description:
-        "A private dashboard built for personal tools — integrates GitHub API, Reddit & Dev.to feeds, and other utilities.",
-      language_Used: ["Next.js", , "Rest Api", "API Integrations", "MongoDb"],
+        "A backend-driven developer utility platform featuring JSON processing, Regex testing, API simulation, encoding tools, per-user rate limiting, and persistent usage analytics.",
+      language_Used: [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "JWT",
+        "Aggregation Pipelines",
+      ],
       comingSoon: true,
       demoLink: "",
       repoLink: "",
@@ -43,7 +49,7 @@ export default function Projects() {
         A selection of recent work showcasing my development expertise
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 w-full lg:px-20 px-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full lg:px-20 px-4">
         {projectObj.map((project, index) => (
           <div
             key={index}
@@ -53,19 +59,29 @@ export default function Projects() {
             <div
               className={`w-full ${
                 !project.coverImage.length && "h-full"
-              } bg-[#f3e8ff] rounded-xl h-full flex items-center justify-center overflow-hidden`}
+              } bg-[#f3e8ff] rounded-xl h-full flex items-center justify-center`}
             >
               {project.comingSoon ? (
-                <span className="text-[#af47ff] font-semibold text-lg">
-                  Coming Soon
-                </span>
+                <Image
+                  src={"/comingSoon.png"}
+                  alt={project.title}
+                  width={300}
+                  height={200}
+                  className="object-cover rounded-xl w-full"
+                />
               ) : (
+                // <div className="flex flex-col justify-center items-center gap-2">
+
+                //   <span className="text-[#af47ff] font-semibold text-lg">
+                //     Coming Soon
+                //   </span>
+                // </div>
                 <Image
                   src={project.coverImage}
                   alt={project.title}
                   width={300}
                   height={200}
-                  className="object-cover rounded-xl"
+                  className="object-cover rounded-xl w-full"
                 />
               )}
             </div>

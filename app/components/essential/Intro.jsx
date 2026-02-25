@@ -34,16 +34,16 @@ export default function Intro() {
   };
 
   return (
-    <div className="py-28 bg-[#f2f4f7] text-black p-6 flex flex-col gap-6 items-center justify-center">
+    <div className="pt-28 pb-12 bg-[#f2f4f7] text-black flex flex-col gap-6 items-center justify-center">
       <div className="flex flex-col gap-4 items-center text-center relative">
         <Image
           alt="profile"
-          src="/profile.png"
-          width={180}
-          height={180}
+          src="/profilePhoto.png"
+          width={300}
+          height={300}
           preload
           className="object-cover cursor-pointer rounded-full z-10 
-                             hover:ring-4 hover:ring-[#af47ff] hover:scale-105 
+                             hover:scale-105 
                              transition-all duration-300"
         />
 

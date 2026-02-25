@@ -7,23 +7,32 @@ import Education from "./components/essential/Education";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white">
       <section id="Home">
         <Intro />
       </section>
 
-      <section id="Skills">
+      <section id="Skills" className="py-8 border-b-[0.25px] border-[#e0e0e0]">
         <Skills />
       </section>
-      <section id="Experience">
+      <section
+        id="Experience"
+        className="py-8 border-b-[0.25px] border-[#e0e0e0]"
+      >
         <Experience />
       </section>
 
-      <section id="Academics">
+      <section
+        id="Academics"
+        className="py-8 border-b-[0.25px] border-[#e0e0e0]"
+      >
         <Education />
       </section>
 
-      <section id="Projects">
+      <section
+        id="Projects"
+        className="py-8 border-b-[0.25px] border-[#e0e0e0]"
+      >
         <Projects />
       </section>
 
@@ -31,7 +40,7 @@ export default function Home() {
       <GithubMetrics />
       <TechNews /> 
       <Inspirations /> */}
-      <section id="Contact">
+      <section id="Contact" className="pt-8 border-b-[0.25px] border-[#e0e0e0]">
         <ContactUs />
       </section>
     </div>

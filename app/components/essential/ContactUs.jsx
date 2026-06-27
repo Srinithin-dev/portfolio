@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Footer from "./Footer";
 import Link from "next/link";
-import FormSubmission from "./FormSubmission";
+import FormSubmission from "../FormSubmission";
 
 export default function ContactUs() {
   const contactLinks = [
@@ -63,54 +63,6 @@ export default function ContactUs() {
           </Link>
         ))}
       </div>
-      {/* <div
-        className="flex flex-col gap-2 justify-center items-center bg-white p-8 border border-[#dadfe7] hover:border-[#af47ff] max-w-4xl
-                   rounded-2xl hover:scale-105 transition-all duration-300 shadow-sm  w-full"
-      >
-        <Image src="/calendar.gif" alt="calendar" width={26} height={26} />
-        <div className="text-xl font-semibold text-black text-center">
-          Schedule a Meeting
-        </div>
-        <div className="text-sm text-[#627084] text-center">
-          Book a time slot for a quick call or meeting
-        </div>
-        <button
-          className="px-6 py-2 bg-[#af47ff] text-white rounded-md w-fit cursor-pointer"
-          onClick={() => setRenderCalendar(true)}
-        >
-          Book a meeting
-        </button>
-      </div> 
-      {renderCalendar && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-center justify-center">
-          <div
-            className="
-        relative bg-white w-full h-full 
-        sm:w-[90%] sm:max-w-4xl sm:h-[90vh] 
-        sm:rounded-2xl
-      "
-          >
-            <button
-              onClick={() => setRenderCalendar(false)}
-              className="
-          absolute top-4 right-4 z-10 
-          bg-white rounded-full p-2 shadow-md
-          hover:scale-110 transition
-        "
-            >
-              <Image src="/cancel.png" alt="Close" width={20} height={20} />
-            </button>
-
-            <iframe
-              src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2CxGaHfVqRjfEdklvBsYk_ksVqDUc0TWLFvO-FS0LRQtOZBRhFGkgK0t3wXS5rBpU7DquixOE6?gv=true"
-              className="w-full h-full sm:rounded-2xl"
-              title="Google Calendar"
-              loading="lazy"
-            />
-          </div>
-        </div>
-      )}
-      */}
       <FormSubmission />
       <Footer />
     </div>

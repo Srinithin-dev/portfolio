@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import NavItems from "./NavItems";
+import NavItems from "../NavItems";
 
 export default function NavBar() {
   const SECTIONS = [
@@ -10,10 +10,10 @@ export default function NavBar() {
     "Experience",
     "Academics",
     "Projects",
+    "Inspirations",
     "Contact",
     "Tools",
   ];
-  const [activeSections, setActiveSections] = useState(SECTIONS[0]);
   const [toggle, setToggle] = useState(false);
 
   return (
@@ -31,8 +31,6 @@ export default function NavBar() {
         <div className="max-lg:hidden">
           <NavItems
             direction={false}
-            setActiveSections={setActiveSections}
-            activeSections={activeSections}
             SECTIONS={SECTIONS}
             setToggle={setToggle}
           />
@@ -43,8 +41,6 @@ export default function NavBar() {
         <div className="flex flex-col border-t-2 border-[#dadfe7] py-6 shadow-[#dadfe7] shadow-lg p-4 w-full lg:hidden">
           <NavItems
             direction={true}
-            setActiveSections={setActiveSections}
-            activeSections={activeSections}
             SECTIONS={SECTIONS}
             setToggle={setToggle}
           />

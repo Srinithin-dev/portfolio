@@ -1,6 +1,6 @@
-import Growth from "../../public/icons/growth";
+import Growth from "../../../public/icons/growth";
 import Image from "next/image";
-import Slider from "./Slider";
+import Slider from "../Slider";
 export default function TechNews() {
   const content = [
     {

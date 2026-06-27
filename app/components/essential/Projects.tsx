@@ -10,38 +10,27 @@ export default function Projects() {
       demoLink: "#",
       repoLink: "#",
       comingSoon: false,
-      coverImage: "/portfolioBanner.png",
+      coverImage: "/portfolio.png",
     },
     {
-      title: "Reusable Authentication Microservice",
+      title: "DSA Visualizers",
       description:
-        "A centralized authentication service implementing JWT-based access & refresh tokens, role-based access control, token rotation, and secure password hashing. Designed to integrate across multiple backend systems.",
-      language_Used: ["Node.js", "Express.js", "MongoDB", "JWT", "REST APIs"],
-      comingSoon: true,
-      demoLink: "",
-      repoLink: "",
-      coverImage: "",
-    },
-    {
-      title: "Developer Tools Platform",
-      description:
-        "A backend-driven developer utility platform featuring JSON processing, Regex testing, API simulation, encoding tools, per-user rate limiting, and persistent usage analytics.",
+        "A series of interactive educational micro-sites teaching Stacks, Queues, Linked Lists and Binary Trees with live visualizers — built to strengthen my JavaScript and DSA fundamentals.",
       language_Used: [
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "JWT",
-        "Aggregation Pipelines",
+        "Next.js",
+        "Tailwind Css",
+        "Typescript",
+        "Data Structures",
       ],
-      comingSoon: true,
-      demoLink: "",
-      repoLink: "",
-      coverImage: "",
+      demoLink: "#",
+      repoLink: "https://github.com/Srinithin-dev/stack-visualizer",
+      comingSoon: false,
+      coverImage: "/dsa.png",
     },
   ];
 
   return (
-    <div className="bg-white text-black w-full flex flex-col items-center py-12">
+    <div className="bg-white text-black w-full flex flex-col items-center ">
       <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
         Featured Projects
       </div>
@@ -59,7 +48,7 @@ export default function Projects() {
             <div
               className={`w-full ${
                 !project.coverImage.length && "h-full"
-              } bg-[#f3e8ff] rounded-xl h-full flex items-center justify-center`}
+              } rounded-xl h-full flex items-center justify-center`}
             >
               {project.comingSoon ? (
                 <Image
@@ -113,12 +102,13 @@ export default function Projects() {
               <div className="mt-5 flex gap-3 items-center w-full justify-around">
                 <a
                   href={project.demoLink}
+                  target="_blank"
                   className="px-4 py-2 bg-[#e7eaef] text-black rounded-xl text-sm hover:bg-[#9e3fe6] hover:text-white w-full text-center"
                 >
                   Live Demo
                 </a>
 
-                <a href={project.repoLink}>
+                <a href={project.repoLink} target="_blank">
                   <Image
                     src="/github.gif"
                     alt="github"

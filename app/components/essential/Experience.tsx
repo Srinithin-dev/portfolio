@@ -181,7 +181,7 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  <ul className="list-disc max-sm:pl-1 pl-5 marker:text-[#af47ff]  space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-1">
+                  <ul className="list-disc max-sm:pl-1 pl-5 marker:text-[#af47ff]  space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-1 max-md:text-sm">
                     {exp.points.map((p, index) => (
                       <li key={index}>{p}</li>
                     ))}

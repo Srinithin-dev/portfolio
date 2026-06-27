@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function Intro() {
+  const router = useRouter();
   const socialMedia = [
     {
       name: "Linkedin",
@@ -12,7 +14,7 @@ export default function Intro() {
     },
     {
       name: "Mail",
-      imageUrl: "",
+      imageUrl: "mailto:nithinsri53@gmail.com",
       alt: "mail",
       href: "/mail.png",
     },
@@ -38,11 +40,11 @@ export default function Intro() {
       <div className="flex flex-col gap-4 items-center text-center relative">
         <Image
           alt="profile"
-          src="/profilePhoto.png"
+          src="/profile.png"
           width={300}
-          height={300}
+          height={200}
           preload
-          className="object-cover cursor-pointer rounded-full z-10 
+          className="object-cover cursor-pointer rounded-2xl z-10 
                              hover:scale-105 
                              transition-all duration-300"
         />
@@ -71,7 +73,12 @@ export default function Intro() {
           className="hover:scale-105 transition-transform bg-[#af47ff] lg:rounded-2xl rounded-lg px-6 py-2 
                                    text-white cursor-pointer flex items-center justify-center gap-2 w-fit"
         >
-          <span className="max-lg:text-sm">View My Work</span>
+          <span
+            className="max-lg:text-sm"
+            onClick={() => router.push("/#Projects", { scroll: true })}
+          >
+            View My Work
+          </span>
           <Image
             src="/icons8-arrow-64.webp"
             alt="arrow"
@@ -83,6 +90,7 @@ export default function Intro() {
         <button
           className="hover:scale-105 transition-transform border border-[#dadfe7] 
                                    rounded-2xl px-6 py-3  text-black cursor-pointer w-fit"
+          onClick={() => router.push("/#Contact", { scroll: true })}
         >
           Get In Touch
         </button>

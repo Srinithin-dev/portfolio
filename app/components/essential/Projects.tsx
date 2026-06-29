@@ -7,7 +7,7 @@ export default function Projects() {
       description:
         "A modern, fast, and fully responsive personal portfolio built with Next.js and Tailwind CSS. Includes GitHub metrics, tech news feed, animations, and a clean UI.",
       language_Used: ["Next.js", "Tailwind Css", "Typescript"],
-      demoLink: "#",
+      demoLink: "/dsa-visualizer",
       repoLink: "#",
       comingSoon: false,
       coverImage: "/portfolio.png",
@@ -22,7 +22,8 @@ export default function Projects() {
         "Typescript",
         "Data Structures",
       ],
-      demoLink: "#",
+      // demoLink: "https://stack-visualizer-js.vercel.app",
+      demoLink: "dsa-visualizer",
       repoLink: "https://github.com/Srinithin-dev/stack-visualizer",
       comingSoon: false,
       coverImage: "/dsa.png",

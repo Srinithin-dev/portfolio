@@ -40,7 +40,7 @@ export default function Intro() {
       <div className="flex flex-col gap-4 items-center text-center relative">
         <Image
           alt="profile"
-          src="/profile.png"
+          src="/image.png"
           width={300}
           height={200}
           preload

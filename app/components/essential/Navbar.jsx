@@ -10,7 +10,7 @@ const SECTIONS = [
   "Experience",
   "Academics",
   "Projects",
-  "Inspirations",
+  "Achievements",
   "Contact",
   "Tools",
 ];

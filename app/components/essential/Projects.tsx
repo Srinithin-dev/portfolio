@@ -3,16 +3,6 @@ import Image from "next/image";
 export default function Projects() {
   const projectObj = [
     {
-      title: "Portfolio Website",
-      description:
-        "A modern, fast, and fully responsive personal portfolio built with Next.js and Tailwind CSS. Includes GitHub metrics, tech news feed, animations, and a clean UI.",
-      language_Used: ["Next.js", "Tailwind Css", "Typescript"],
-      demoLink: "/dsa-visualizer",
-      repoLink: "#",
-      comingSoon: false,
-      coverImage: "/portfolio.png",
-    },
-    {
       title: "DSA Visualizers",
       description:
         "A series of interactive educational micro-sites teaching Stacks, Queues, Linked Lists and Binary Trees with live visualizers — built to strengthen my JavaScript and DSA fundamentals.",

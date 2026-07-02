@@ -23,12 +23,12 @@ export default function AchievementCard({ achievement }) {
     >
       <div className="flex items-start justify-between">
         <div className="flex flex-col items-left gap-4">
-          <div className="rounded-2xl w-fit bg-[#af47ff14] p-3">
+          <div className="rounded-2xl w-fit p-3">
             <Image
               src={achievement.icon}
               alt={achievement.title}
-              width={100}
-              height={100}
+              width={125}
+              height={125}
             />
           </div>
 

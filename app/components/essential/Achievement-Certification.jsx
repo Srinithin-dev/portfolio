@@ -9,7 +9,7 @@ const ACHIEVEMENTS = [
     description:
       "Selected to compete in India's largest national hackathon, collaborating on innovative software solutions for real-world problems.",
     status: "Participant",
-    icon: "/image.png",
+    icon: "/image11.png",
     certificate: "/certificates/sih.pdf",
     color: "purple",
   },
@@ -21,7 +21,7 @@ const ACHIEVEMENTS = [
     description:
       "Built an innovative software solution under time pressure and secured First Place among participating teams.",
     status: "1st Place Winner",
-    icon: "/icons/trophy.png",
+    icon: "/image2.png",
     certificate: "/certificates/nehru-hackathon.pdf",
     color: "yellow",
   },
@@ -33,7 +33,7 @@ const ACHIEVEMENTS = [
     description:
       "Completed a software development internship, contributing to web applications using HTML, CSS, JavaScript and Bootstrap.",
     status: "Completed",
-    icon: "/icons/internship.png",
+    icon: "/image3.png",
     certificate: "/certificates/pumo.pdf",
     color: "green",
   },
@@ -45,7 +45,7 @@ const ACHIEVEMENTS = [
     description:
       "Successfully completed the JavaScript deep-dive course covering execution context, closures, async JavaScript and advanced concepts.",
     status: "Certified",
-    icon: "/icons/javascript.png",
+    icon: "/image4.png",
     certificate: "/certificates/namaste-js.pdf",
     color: "blue",
   },

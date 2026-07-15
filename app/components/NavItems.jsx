@@ -5,7 +5,11 @@ export default function NavItems({ direction, SECTIONS, setToggle }) {
   const router = useRouter();
   const { activeSection, setActiveSection } = useActiveSection();
   const scrollToSection = (items) => {
-    router.push("/#" + items, { scroll: true });
+    if (items == "Tools") {
+      router.push("/tools");
+    } else {
+      router.push("/#" + items, { scroll: true });
+    }
   };
 
   return (

@@ -9,9 +9,9 @@ const ACHIEVEMENTS = [
     description:
       "Selected to compete in India's largest national hackathon, collaborating on innovative software solutions for real-world problems.",
     status: "Participant",
-    icon: "/image11.png",
+    icon: "/sih_Logo.png",
     certificate:
-      "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Hackathon%20Certificate",
+      "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/SIH_Finalist",
     color: "purple",
   },
   {
@@ -22,7 +22,7 @@ const ACHIEVEMENTS = [
     description:
       "Built an innovative software solution under time pressure and secured First Place among participating teams.",
     status: "1st Place Winner",
-    icon: "/image2.png",
+    icon: "/bio-Ideathon_logo.png",
     certificate:
       "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Bio-Ideathon%20Certificate",
     color: "yellow",
@@ -35,7 +35,7 @@ const ACHIEVEMENTS = [
     description:
       "Completed a software development internship, contributing to web applications using HTML, CSS, JavaScript and Bootstrap.",
     status: "Completed",
-    icon: "/image3.png",
+    icon: "/pumo_Logo.png",
     certificate:
       "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Pumo%20Technovation%20Certificate",
     color: "green",
@@ -48,7 +48,7 @@ const ACHIEVEMENTS = [
     description:
       "Successfully completed the JavaScript deep-dive course covering execution context, closures, async JavaScript and advanced concepts.",
     status: "Certified",
-    icon: "/image4.png",
+    icon: "/namasteDev_Logo.png",
     certificate:
       "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/namaste-javascript.webp",
     color: "blue",

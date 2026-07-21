@@ -7,7 +7,7 @@ import ContactUs from "./components/essential/ContactUs";
 import Education from "./components/essential/Education";
 import { useEffect, useRef } from "react";
 import { useActiveSection } from "./context/ActiveSectionContext";
-import Inspirations from "./components/essential/Inspiration";
+import AchievementAndCertifications from "./components/essential/Achievement-Certification";
 import { useRouter } from "next/navigation";
 
 export default function Home() {
@@ -72,18 +72,24 @@ export default function Home() {
       >
         <Projects />
       </section>
-      {/*<section id="Github" className="py-8 border-b-[0.25px] border-[#e0e0e0]">
+
+      <section id="Achievements">
+        <AchievementAndCertifications />
+      </section>
+      {/*  Upcoming Features 
+      
+      <section id="Github" className="py-8 border-b-[0.25px] border-[#e0e0e0]">
         <GitHubMetrics />
       </section>
-       Upcoming Features 
+      
       <TechNews /> 
-       */}
-      <section
+           <section
         id="Inspirations"
         className="py-12 border-b-[0.25px] border-[#e0e0e0]"
       >
         <Inspirations />
       </section>
+       */}
 
       <section
         id="Contact"

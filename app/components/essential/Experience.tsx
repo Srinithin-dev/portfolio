@@ -7,7 +7,7 @@ const experiences = [
     location: "Gandhipuram, Coimbatore",
     role: "Full Stack Developer",
     period: "Aug 2024 – Present",
-    current: true,
+    present: true,
     link: "https://www.linkedin.com/company/fountain-hills-technologies/",
     points: [
       "Developed and optimized the company's main website and blog using Next.js, Tailwind CSS, and Cosmos DB, boosting SEO traffic by 30%.",
@@ -110,9 +110,9 @@ export default function Experience() {
                   {exp.company}
                 </div>
 
-                {exp.current && (
+                {exp.present && (
                   <div className="text-xs p-2 px-4 rounded-full font-bold text-white bg-[#af47ff]">
-                    Current
+                    Present
                   </div>
                 )}
               </div>

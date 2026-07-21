@@ -50,7 +50,8 @@ export default function Intro() {
         />
 
         <h1 className="text-3xl lg:text-5xl font-bold z-10 leading-tight">
-          Hi, I'm <span className="text-[#af47ff]">Srinithin Thangadurai</span>
+          Hi, I&apos;m{" "}
+          <span className="text-[#af47ff]">Srinithin Thangadurai</span>
         </h1>
 
         <p className="text-lg lg:text-2xl text-gray-600 z-10 font-semibold">

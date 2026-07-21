@@ -27,13 +27,13 @@ export default function Skills() {
   ];
 
   return (
-    <div className="bg-white text-black p-6 flex flex-col justify-center items-center gap-4 w-full">
+    <div className="bg-transparent text-black p-6 flex flex-col justify-center items-center gap-4 w-full">
       <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 w-fit rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
         <Stack />
         <span>Technical Arsenal</span>
       </div>
 
-      <div className="text-4xl md:text-5xl font-bold  bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
+      <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
         Skills & Technologies
       </div>
 

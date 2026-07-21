@@ -1,128 +1,131 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
 
 export default function Intro() {
   const router = useRouter();
   const socialMedia = [
     {
-      name: "Linkedin",
-      imageUrl: "https://www.linkedin.com/in/srinithin-thangadurai-1b237a23b/",
-      alt: "linkedin",
-      href: "/linkedin.png",
+      name: "LinkedIn",
+      href: "https://www.linkedin.com/in/srinithin-thangadurai-1b237a23b/",
+      image: "/linkedin.png",
     },
+    { name: "Email", href: "mailto:nithinsri53@gmail.com", image: "/mail.png" },
     {
-      name: "Mail",
-      imageUrl: "mailto:nithinsri53@gmail.com",
-      alt: "mail",
-      href: "/mail.png",
-    },
-    {
-      name: "Github",
-      imageUrl: "https://github.com/Srinithin-dev",
-      alt: "github",
-      href: "/github.png",
+      name: "GitHub",
+      href: "https://github.com/Srinithin-dev",
+      image: "/github.png",
     },
   ];
 
   const downloadResume = () => {
     const link = document.createElement("a");
-    const href = "./resume.pdf";
-    const downloadName = "srinithin's-Resume.pdf";
-    link.href = href;
-    link.download = downloadName;
+    link.href = "/resume.pdf";
+    link.download = "srinithin-resume.pdf";
     link.click();
   };
 
   return (
-    <div className="pt-28 pb-12 bg-[#f2f4f7] text-black flex flex-col gap-6 items-center justify-center">
-      <div className="flex flex-col gap-4 items-center text-center relative">
-        <Image
-          alt="profile"
-          src="/profile.png"
-          width={300}
-          height={200}
-          preload
-          className="object-cover cursor-pointer rounded-2xl z-10 
-                             hover:scale-105 
-                             transition-all duration-300"
-        />
+    <div className="relative isolate overflow-hidden bg-[#f5f6fa] px-5 pb-16 pt-28 text-[#1d2530] sm:px-8 sm:pb-24 sm:pt-32">
+      <div className="absolute left-[-10rem] top-24 -z-10 h-80 w-80 rounded-full bg-violet-300/30 blur-3xl" />
+      <div className="absolute right-[-7rem] top-12 -z-10 h-96 w-96 rounded-full bg-sky-200/50 blur-3xl" />
+      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
+        <div className="order-2 text-center lg:order-1 lg:text-left">
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white/80 px-4 py-2 text-sm font-semibold text-violet-700 shadow-sm">
+            <span className="h-2 w-2 rounded-full bg-emerald-500" /> Available
+            for opportunities
+          </div>
+          <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
+            Building thoughtful{" "}
+            <span className="text-[#af47ff]">web experiences</span> that
+            perform.
+          </h1>
+          <p className="mt-6 text-lg font-semibold text-slate-600 sm:text-xl">
+            Hi, I&apos;m Srinithin Thangadurai — Full-Stack Web Developer.
+          </p>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 lg:mx-0">
+            I create responsive, scalable web applications with React, Next.js,
+            TypeScript, Node.js, and MongoDB. I care about clean interfaces,
+            reliable systems, and the small details that make products feel
+            effortless.
+          </p>
 
-        <h1 className="text-3xl lg:text-5xl font-bold z-10 leading-tight">
-          Hi, I&apos;m{" "}
-          <span className="text-[#af47ff]">Srinithin Thangadurai</span>
-        </h1>
+          <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
+            <button
+              onClick={() => router.push("/#Projects", { scroll: true })}
+              className="inline-flex items-center gap-2 rounded-xl bg-[#1d2530] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-slate-300 transition hover:-translate-y-0.5 hover:bg-[#af47ff]"
+            >
+              View my work <ArrowRight size={17} />
+            </button>
+            <button
+              onClick={() => router.push("/#Contact", { scroll: true })}
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-violet-300 hover:text-violet-700"
+            >
+              <Mail size={17} /> Get in touch
+            </button>
+            <button
+              onClick={downloadResume}
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-bold text-slate-600 transition hover:bg-white hover:text-slate-900"
+            >
+              <Download size={17} /> Resume
+            </button>
+          </div>
 
-        <p className="text-lg lg:text-2xl text-gray-600 z-10 font-semibold">
-          Full-Stack Web Developer
-        </p>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-sm font-medium text-slate-500 lg:justify-start">
+            <span className="inline-flex items-center gap-2">
+              <MapPin size={16} className="text-[#af47ff]" /> Coimbatore, India
+            </span>
+            <span className="hidden h-4 w-px bg-slate-300 sm:block" />
+            <span>3+ years building for the web</span>
+          </div>
 
-        <p className="text-base lg:text-lg max-w-3xl text-gray-700 leading-relaxed z-10 px-2">
-          3+ years of experience delivering responsive, scalable, and
-          high-performance web applications. Built dynamic UIs using React.js,
-          Next.js, TypeScript, and Tailwind CSS, and developed robust backends
-          with Node.js, Express.js, and MongoDB. Experienced in API
-          integrations, authentication flows, dashboard development, and
-          real-time features. Skilled in optimizing performance, accessibility,
-          and cross-browser compatibility in Agile teams.
-        </p>
-      </div>
+          <div className="mt-6 flex justify-center gap-3 lg:justify-start">
+            {socialMedia.map((media) => (
+              <Link
+                key={media.name}
+                href={media.href}
+                target="_blank"
+                aria-label={media.name}
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md"
+              >
+                <Image
+                  src={media.image}
+                  alt=""
+                  width={20}
+                  height={20}
+                  className="object-contain"
+                />
+              </Link>
+            ))}
+          </div>
+        </div>
 
-      <div className="flex flex-wrap lg:flex-row justify-center gap-4 lg:gap-8 z-10">
-        <button
-          className="hover:scale-105 transition-transform bg-[#af47ff] lg:rounded-2xl rounded-lg px-6 py-2 
-                                   text-white cursor-pointer flex items-center justify-center gap-2 w-fit"
-        >
-          <span
-            className="max-lg:text-sm"
-            onClick={() => router.push("/#Projects", { scroll: true })}
-          >
-            View My Work
-          </span>
-          <Image
-            src="/icons8-arrow-64.webp"
-            alt="arrow"
-            width={26}
-            height={26}
-          />
-        </button>
-
-        <button
-          className="hover:scale-105 transition-transform border border-[#dadfe7] 
-                                   rounded-2xl px-6 py-3  text-black cursor-pointer w-fit"
-          onClick={() => router.push("/#Contact", { scroll: true })}
-        >
-          Get In Touch
-        </button>
-
-        <button
-          className="hover:scale-105 transition-transform  text-black border border-[#dadfe7]
-                                   rounded-2xl px-6 py-3 cursor-pointer flex items-center justify-center gap-2 
-                                   w-fit"
-          onClick={downloadResume}
-        >
-          <span>Download Resume</span>
-          <Image src="/download.png" alt="download" width={26} height={26} />
-        </button>
-      </div>
-
-      <div className="flex gap-4">
-        {socialMedia.map((media, i) => (
-          <Link
-            href={media.imageUrl}
-            target="noopener noreferrer"
-            key={media.alt}
-          >
-            <Image
-              src={media.href}
-              alt={media.alt}
-              width={26}
-              height={26}
-              className="cursor-pointer"
-            />
-          </Link>
-        ))}
+        <div className="order-1 mx-auto w-full max-w-sm lg:order-2 lg:max-w-md">
+          <div className="relative">
+            <div className="absolute -inset-4 rounded-[2.25rem] bg-linear-to-br from-violet-300/60 via-transparent to-sky-200/70 blur-xl" />
+            <div className="relative rounded-[2rem] border border-white/80 bg-white p-3 shadow-2xl shadow-slate-300/60">
+              <div className="relative overflow-hidden rounded-[1.45rem] bg-slate-200">
+                <Image
+                  alt="Srinithin Thangadurai"
+                  src="/profile.png"
+                  width={520}
+                  height={430}
+                  priority
+                  className="aspect-[1.08] w-full object-cover object-top"
+                />
+                <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-slate-950/70 to-transparent px-5 pb-5 pt-16 text-white">
+                  <p className="text-sm font-semibold">Full-stack developer</p>
+                  <p className="mt-1 text-xs text-white/75">
+                    React · Next.js · Node.js · TypeScript
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

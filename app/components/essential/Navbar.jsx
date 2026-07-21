@@ -18,7 +18,7 @@ const SECTIONS = [
 export default function NavBar() {
   const pathName = usePathname();
   const [toggle, setToggle] = useState(false);
-  if (pathName === "/dsa-visualizer" || pathName === "/Tools") return null;
+  if (pathName === "/dsa-visualizer" || pathName === "/tools") return null;
 
   return (
     <div className="flex max-lg:flex-col max-lg:gap-4 justify-between bg-[#f2f4f7] text-black  shadow-2xl fixed z-40 w-full items-center">

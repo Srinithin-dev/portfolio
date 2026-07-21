@@ -35,9 +35,9 @@ export default function ContactUs() {
     },
   ];
   return (
-    <div className="bg-white flex flex-col gap-12 items-center justify-center">
+    <div className="bg-transparent flex flex-col gap-12 items-center justify-center">
       <div className="flex flex-col gap-2 text-black items-center">
-        <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
+        <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
           Get In Touch
         </div>
         <div className="text-lg text-[#627084] text-center">

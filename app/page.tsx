@@ -43,37 +43,37 @@ export default function Home() {
   }, []);
 
   return (
-    <div ref={ref} className="min-h-screen bg-white">
+    <div ref={ref} className="min-h-screen bg-[#f7f8fc]">
       <section id="Home">
         <Intro />
       </section>
 
-      <section id="Skills" className="py-12 border-b-[0.25px] border-[#e0e0e0]">
+      <section id="Skills" className="border-b border-[#e7e9f0] bg-linear-to-br from-white via-[#fbfaff] to-[#f4f1ff] py-14">
         <Skills />
       </section>
 
       <section
         id="Experience"
-        className="py-12 border-b-[0.25px] border-[#e0e0e0]"
+        className="border-b border-[#e7e9f0] bg-linear-to-b from-[#f9fbff] via-white to-[#f5f8ff] py-14"
       >
         <Experience />
       </section>
 
       <section
         id="Academics"
-        className="py-12 border-b-[0.25px] border-[#e0e0e0]"
+        className="border-b border-[#e7e9f0] bg-linear-to-br from-white via-[#fcfbff] to-[#f4f2ff] py-14"
       >
         <Education />
       </section>
 
       <section
         id="Projects"
-        className="py-12 border-b-[0.25px] border-[#e0e0e0]"
+        className="border-b border-[#e7e9f0] bg-linear-to-b from-[#f7faff] via-white to-[#faf8ff] py-14"
       >
         <Projects />
       </section>
 
-      <section id="Achievements">
+      <section id="Achievements" className="border-b border-[#e7e9f0] bg-linear-to-br from-white via-[#fbfaff] to-[#f3f7ff] py-14">
         <AchievementAndCertifications />
       </section>
       {/*  Upcoming Features 
@@ -93,7 +93,7 @@ export default function Home() {
 
       <section
         id="Contact"
-        className="pt-10 border-b-[0.25px] border-[#e0e0e0]"
+        className="bg-linear-to-b from-[#f8faff] via-white to-[#f3f0ff] pt-14"
       >
         <ContactUs />
       </section>

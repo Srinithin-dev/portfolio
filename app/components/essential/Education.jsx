@@ -22,12 +22,12 @@ export default function Education() {
   ];
 
   return (
-    <div className="bg-white text-black p-6 flex flex-col items-center gap-6 w-full lg:px-20 px-4">
+    <div className="bg-transparent text-black p-6 flex flex-col items-center gap-6 w-full lg:px-20 px-4">
       <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
         <span>Education</span>
       </div>
 
-      <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
+      <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
         Academic Background
       </div>
       <div className="flex gap-6 max-md:flex-col">

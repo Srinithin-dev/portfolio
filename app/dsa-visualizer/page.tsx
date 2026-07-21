@@ -1,297 +1,112 @@
-import Button from "../components/Button";
-import Image from "next/image";
+import Link from "next/link";
+import {
+  ArrowLeft,
+  BellRing,
+  Blocks,
+  Clock3,
+  Construction,
+  Layers3,
+  Sparkles,
+} from "lucide-react";
 
-export default function index() {
+export default function StackVisualizerPage() {
   return (
-    <div className="bg-white  text-black py-4">
-      <div className="flex justify-around">
-        <div className="flex gap-4">
-          <Image
-            src="/left.png"
-            alt="left arrow"
-            width={18}
-            height={18}
-            className="invert-[0.4] hover:invert-0 transition"
-          />
-          <div className="text-[#627084] text-sm">Back to portfolio</div>
+    <main className="min-h-screen overflow-hidden bg-[#f8fafc] text-slate-800">
+      <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
+          <Link
+            href="/tools"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900"
+          >
+            <ArrowLeft size={17} /> Back to tools
+          </Link>
+          <Link href="/" className="font-black tracking-tight">
+            &lt;ST /&gt;
+          </Link>
         </div>
-        <div className="font-bold text-sm">Understanding Stack</div>
-      </div>
-      <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-4">
-          <div className="justify-center flex font-bold text-6xl">
-            Understanding Stacks
+      </header>
+      <section className="relative mx-auto grid min-h-[calc(100vh-73px)] max-w-6xl items-center gap-12 px-5 py-16 sm:px-8 lg:grid-cols-[1.1fr_.9fr]">
+        <div className="absolute -left-40 top-16 h-80 w-80 rounded-full bg-violet-200/40 blur-3xl" />
+        <div className="relative">
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+            <Construction size={16} /> Under development
           </div>
-          <div className="justify-center flex text-[#627084]">
-            Learn the Stack Data Structure through interactive visualizations
-            and real-world examples.
+          <h1 className="mt-6 text-5xl font-black tracking-[-0.05em] text-slate-900 sm:text-6xl">
+            Stack Visualizer is on its way.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-500">
+            I&apos;m building an interactive way to explore stacks: push, pop,
+            peek, and see the LIFO principle come to life step by step.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/tools"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-800 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-700"
+            >
+              <Blocks size={17} /> Explore other tools
+            </Link>
+            <a
+              href="mailto:srinithin@example.com?subject=Stack%20Visualizer%20updates"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+            >
+              <BellRing size={17} /> Request an update
+            </a>
           </div>
-          <div className="flex gap-4 justify-center">
-            <Button
-              icons={""}
-              customClass={"bg-[#af47ff] text-white"}
-              text={"Try the stack"}
-            ></Button>
-            <Button
-              icons={""}
-              customClass={"bg-[#e7eaef] text-black"}
-              text={"Start Learning"}
-            ></Button>
-          </div>
-        </div>
-        {/* information */}
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-              <span className="text-xs font-semibold">THE BASICS</span>
-            </div>
-            <div className="font-bold text-3xl">What is a Stack ?</div>
-            <div className="text-[#627084]">
-              A linear data structure that follows the LIFO principle.
-            </div>
-          </div>
-
-          <div className="flex">
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span>
-                A stack is a <strong>last linear data structure .</strong>
-              </span>
-              <span>
-                It follows <strong>LIFO </strong>— Last In, First Out.{" "}
-              </span>
-              <span>
-                The <strong>last item added </strong>is the first item removed.
-              </span>
-            </div>
-            <div className="">
-              <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-                <div>
-                  <span className="shadow-2xl rounded-lg p-4">Item 4</span>
-                  <span>Last In ← removed first</span>
-                </div>
-                <span className="shadow-2xl rounded-lg p-4">Item 3</span>
-                <span className="shadow-2xl rounded-lg p-4">Item 2</span>
-                <div className="flex flex-col">
-                  <div>
-                    <span className="shadow-2xl rounded-lg p-4">Item 1</span>
-                    <span>First In</span>
-                  </div>
-                  <span>Items leave from the top — the newest first.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* THE BASICS */}
-        <section className="py-24 px-6 lg:px-20">
-          <div className="max-w-7xl mx-auto">
-            {/* Heading */}
-            <div className="flex flex-col items-center gap-3 mb-14">
-              <div className="px-5 py-2 rounded-full bg-[#af47ff1a] text-[#af47ff] text-xs font-semibold tracking-widest">
-                THE BASICS
-              </div>
-
-              <h2 className="text-4xl font-bold text-center">
-                What is a Stack?
-              </h2>
-
-              <p className="text-[#627084] text-lg text-center">
-                A linear data structure that follows the LIFO principle.
-              </p>
-            </div>
-
-            {/* Cards */}
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Left Card */}
-              <div className="rounded-2xl border border-[#dbe2ea] bg-white shadow-sm p-10">
-                <ul className="space-y-8">
-                  <li className="flex items-start gap-4">
-                    <div className="w-3 h-3 rounded-full bg-[#af47ff] mt-2" />
-
-                    <p className="text-lg text-[#627084] leading-8">
-                      A stack is a{" "}
-                      <span className="font-bold text-black">
-                        linear data structure
-                      </span>
-                      .
-                    </p>
-                  </li>
-
-                  <li className="flex items-start gap-4">
-                    <div className="w-3 h-3 rounded-full bg-[#af47ff] mt-2" />
-
-                    <p className="text-lg text-[#627084] leading-8">
-                      It follows{" "}
-                      <span className="font-bold text-black">LIFO</span> — Last
-                      In, First Out.
-                    </p>
-                  </li>
-
-                  <li className="flex items-start gap-4">
-                    <div className="w-3 h-3 rounded-full bg-[#af47ff] mt-2" />
-
-                    <p className="text-lg text-[#627084] leading-8">
-                      The{" "}
-                      <span className="font-bold text-black">
-                        last item added
-                      </span>{" "}
-                      is the first item removed.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Right Card */}
-
-              <div className="rounded-2xl border border-[#dbe2ea] bg-white shadow-sm p-8">
-                <div className="space-y-4">
-                  {/* Item 4 */}
-
-                  <div className="border-2 border-[#af47ff] rounded-xl px-5 py-4 flex justify-between bg-[#faf4ff]">
-                    <span className="font-medium">Item 4</span>
-
-                    <span className="text-[#af47ff] text-sm font-medium">
-                      Last In ← removed first
-                    </span>
-                  </div>
-
-                  {/* Item 3 */}
-
-                  <div className="rounded-xl px-5 py-4 bg-[#edf1f7] text-[#627084]">
-                    Item 3
-                  </div>
-
-                  {/* Item 2 */}
-
-                  <div className="rounded-xl px-5 py-4 bg-[#edf1f7] text-[#627084]">
-                    Item 2
-                  </div>
-
-                  {/* Item 1 */}
-
-                  <div className="rounded-xl px-5 py-4 bg-[#edf1f7] flex justify-between text-[#627084]">
-                    <span>Item 1</span>
-
-                    <span className="text-[#af47ff]">First In</span>
-                  </div>
-                </div>
-
-                <p className="mt-8 text-center text-[#627084]">
-                  Items leave from the top — the newest first.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Examples */}
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-              <span className="text-xs font-semibold">IN THE REAL WORLD</span>
-            </div>
-            <div className="font-bold text-3xl">
-              Where You&apos;ll Find Stacks
-            </div>
-          </div>
-          <div className="flex px-32 gap-2 justify-center items-center">
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-          </div>
-        </div>
-        {/* Interactive */}
-        {/* Core Operations */}
-        {/* performance */}
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-              <span className="text-xs font-semibold">PERFORMANCE</span>
-            </div>
-            <div className="font-bold text-3xl">Time Complexity</div>
-          </div>
-          <div className="flex gap-2 justify-center items-center">
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-              <span className="text-sm text-[#627084]">Push()</span>
-              <span className="font-bold text-lg">O(1)</span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-              <span className="text-sm text-[#627084]">Pop()</span>
-              <span className="font-bold text-lg">O(1)</span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-              <span className="text-sm text-[#627084]">Peek()</span>
-              <span className="font-bold text-lg">O(1)</span>
-            </div>
-          </div>
-          <span>
-            Each operation works only on the top of the stack, so it never
-            depends on how many items are stored. That constant-time access is
-            what makes stacks so efficient.
-          </span>
-        </div>
-        {/* For Developers */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-            <span className="text-xs font-semibold">FOR DEVELOPERS</span>
-          </div>
-          <div className="text-3xl">Behind the Scenes</div>
-
-          <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-            <span className="text-lg font-bold  text-[#627084]">
-              Concepts Demonstrated
+          <div className="mt-10 flex flex-wrap gap-5 text-sm font-medium text-slate-500">
+            <span className="inline-flex items-center gap-2">
+              <Layers3 size={17} className="text-violet-600" /> Interactive
+              operations
             </span>
-            <span className="text-sm">
-              Arrays Event Listeners DOM Manipulation State Management Input
-              Validation Data Structures
+            <span className="inline-flex items-center gap-2">
+              <Clock3 size={17} className="text-violet-600" /> Step-by-step
+              learning
             </span>
           </div>
-
-          <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-            <span className="text-lg font-bold  text-[#627084]">
-              Technology Stack
+        </div>
+        <div className="relative mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200/70">
+          <div className="mb-6 flex items-center justify-between">
+            <span className="text-sm font-bold text-slate-700">Preview</span>
+            <span className="flex items-center gap-1 text-xs font-bold text-violet-600">
+              <Sparkles size={14} /> Coming soon
             </span>
-            <span className=" text-sm">HTML CSS Tailwind CSS JavaScript</span>
+          </div>
+          <div className="space-y-3 rounded-2xl bg-slate-50 p-5">
+            <div className="rounded-xl border-2 border-violet-300 bg-violet-50 px-4 py-4 font-semibold text-violet-800">
+              42{" "}
+              <span className="float-right text-xs text-violet-500">TOP</span>
+            </div>
+            <div className="rounded-xl bg-white px-4 py-4 font-semibold text-slate-500 shadow-sm">
+              17
+            </div>
+            <div className="rounded-xl bg-white px-4 py-4 font-semibold text-slate-500 shadow-sm">
+              8
+            </div>
+            <div className="mt-5 border-t-2 border-slate-400 pt-3 text-center text-xs font-bold uppercase tracking-widest text-slate-400">
+              Stack base
+            </div>
+          </div>
+          <div className="mt-6 grid grid-cols-3 gap-2">
+            <button
+              disabled
+              className="rounded-lg bg-slate-100 py-2 text-xs font-bold text-slate-400"
+            >
+              Push
+            </button>
+            <button
+              disabled
+              className="rounded-lg bg-slate-100 py-2 text-xs font-bold text-slate-400"
+            >
+              Pop
+            </button>
+            <button
+              disabled
+              className="rounded-lg bg-slate-100 py-2 text-xs font-bold text-slate-400"
+            >
+              Peek
+            </button>
           </div>
         </div>
-
-        {/* Learning Journey */}
-        <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-          <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-            <span className="text-xs font-semibold">LEARNING JOURNEY</span>
-          </div>
-          <span className="text-sm">
-            This project was built to strengthen my understanding of JavaScript
-            fundamentals and data structures. It demonstrates how arrays can be
-            used to implement a Stack and how UI can be synchronized with
-            application state.
-          </span>
-        </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 }

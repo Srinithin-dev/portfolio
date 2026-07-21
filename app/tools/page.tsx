@@ -1,297 +1,107 @@
-import Button from "../components/Button";
-import Image from "next/image";
+"use client";
 
-export default function index() {
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import {
+  ArrowUpRight,
+  BarChart3,
+  Blocks,
+  Braces,
+  CheckCircle2,
+  Code2,
+  Compass,
+  ExternalLink,
+  FileCode2,
+  Globe2,
+  ImageIcon,
+  Link2,
+  LockKeyhole,
+  Palette,
+  Search,
+  Sparkles,
+  Wrench,
+} from "lucide-react";
+
+type Tool = {
+  name: string;
+  description: string;
+  category: string;
+  icon: React.ElementType;
+  status?: "Coming soon";
+  href?: string;
+};
+
+const tools: Tool[] = [
+  { name: "Stack Visualizer", description: "Learn LIFO operations through an interactive visual guide.", category: "Dev Tools", icon: Blocks, status: "Coming soon", href: "/dsa-visualizer" },
+  { name: "URL Shortener", description: "Create tidy, shareable links for your portfolio and projects.", category: "Link Tools", icon: Link2, status: "Coming soon" },
+  { name: "URL Metadata Preview", description: "See how a link will appear when shared on social media.", category: "Link Tools", icon: Globe2, status: "Coming soon" },
+  { name: "Color Picker", description: "Pick, copy, and convert colours for your next interface.", category: "Design", icon: Palette, status: "Coming soon" },
+  { name: "Gradient Generator", description: "Create polished CSS gradients with a simple visual editor.", category: "Design", icon: Sparkles, status: "Coming soon" },
+  { name: "Box Shadow Generator", description: "Build soft, layered CSS shadows without guesswork.", category: "Design", icon: Compass, status: "Coming soon" },
+  { name: "Image Converter", description: "Convert images between common web-friendly formats.", category: "Images", icon: ImageIcon, status: "Coming soon" },
+  { name: "JSON Formatter", description: "Format, validate, and read JSON data more clearly.", category: "Dev Tools", icon: Braces, status: "Coming soon" },
+  { name: "Code Snippet Cleaner", description: "Quickly tidy snippets before sharing them with your team.", category: "Text", icon: FileCode2, status: "Coming soon" },
+];
+
+const categories = ["All", ...Array.from(new Set(tools.map((tool) => tool.category)))];
+
+export default function ToolsPage() {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const [query, setQuery] = useState("");
+
+  const filteredTools = useMemo(
+    () => tools.filter((tool) =>
+      (activeCategory === "All" || tool.category === activeCategory) &&
+      `${tool.name} ${tool.description} ${tool.category}`.toLowerCase().includes(query.toLowerCase()),
+    ),
+    [activeCategory, query],
+  );
+
   return (
-    <div className="bg-white  text-black py-4">
-      <div className="flex justify-around">
-        <div className="flex gap-4">
-          <Image
-            src="/left.png"
-            alt="left arrow"
-            width={18}
-            height={18}
-            className="invert-[0.4] hover:invert-0 transition"
-          />
-          <div className="text-[#627084] text-sm">Back to portfolio</div>
+    <main className="min-h-screen bg-[#f8fafc] pt-16 text-[#1d2939]">
+      <header className="border-y border-slate-200 bg-white/90 backdrop-blur">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
+          <Link href="/" className="text-xl font-black tracking-tight text-slate-800">&lt;ST /&gt;</Link>
+          <Link href="/" className="rounded-xl px-4 py-2 text-sm font-semibold text-slate-500 transition hover:bg-slate-100 hover:text-slate-900">Portfolio</Link>
         </div>
-        <div className="font-bold text-sm">Understanding Stack</div>
-      </div>
-      <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-4">
-          <div className="justify-center flex font-bold text-6xl">
-            Understanding Stacks
-          </div>
-          <div className="justify-center flex text-[#627084]">
-            Learn the Stack Data Structure through interactive visualizations
-            and real-world examples.
-          </div>
-          <div className="flex gap-4 justify-center">
-            <Button
-              icons={""}
-              customClass={"bg-[#af47ff] text-white"}
-              text={"Try the stack"}
-            ></Button>
-            <Button
-              icons={""}
-              customClass={"bg-[#e7eaef] text-black"}
-              text={"Start Learning"}
-            ></Button>
+      </header>
+
+      <section className="border-b border-slate-200 bg-[radial-gradient(circle_at_top,#eef2ff,transparent_55%)] px-5 py-20 text-center sm:px-8 sm:py-28">
+        <div className="mx-auto max-w-3xl">
+          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm"><Compass size={16} /> Personal developer toolkit</div>
+          <h1 className="text-4xl font-black tracking-[-0.04em] text-slate-900 sm:text-6xl">Small tools for sharper workflows.</h1>
+          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-slate-500">A growing collection of practical utilities for developers, designers, and builders. Each one is made to remove a little friction from everyday work.</p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3 text-sm font-semibold text-slate-600">
+            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm"><Code2 size={16} /> Developer-first</span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm"><LockKeyhole size={16} /> Privacy-minded</span>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm"><Wrench size={16} /> Always improving</span>
           </div>
         </div>
-        {/* information */}
-        <div className="flex flex-col items-center justify-center">
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-              <span className="text-xs font-semibold">THE BASICS</span>
-            </div>
-            <div className="font-bold text-3xl">What is a Stack ?</div>
-            <div className="text-[#627084]">
-              A linear data structure that follows the LIFO principle.
-            </div>
-          </div>
+      </section>
 
-          <div className="flex">
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span>
-                A stack is a <strong>last linear data structure .</strong>
-              </span>
-              <span>
-                It follows <strong>LIFO </strong>— Last In, First Out.{" "}
-              </span>
-              <span>
-                The <strong>last item added </strong>is the first item removed.
-              </span>
-            </div>
-            <div className="">
-              <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-                <div>
-                  <span className="shadow-2xl rounded-lg p-4">Item 4</span>
-                  <span>Last In ← removed first</span>
-                </div>
-                <span className="shadow-2xl rounded-lg p-4">Item 3</span>
-                <span className="shadow-2xl rounded-lg p-4">Item 2</span>
-                <div className="flex flex-col">
-                  <div>
-                    <span className="shadow-2xl rounded-lg p-4">Item 1</span>
-                    <span>First In</span>
-                  </div>
-                  <span>Items leave from the top — the newest first.</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* THE BASICS */}
-        <section className="py-24 px-6 lg:px-20">
-          <div className="max-w-7xl mx-auto">
-            {/* Heading */}
-            <div className="flex flex-col items-center gap-3 mb-14">
-              <div className="px-5 py-2 rounded-full bg-[#af47ff1a] text-[#af47ff] text-xs font-semibold tracking-widest">
-                THE BASICS
-              </div>
-
-              <h2 className="text-4xl font-bold text-center">
-                What is a Stack?
-              </h2>
-
-              <p className="text-[#627084] text-lg text-center">
-                A linear data structure that follows the LIFO principle.
-              </p>
-            </div>
-
-            {/* Cards */}
-            <div className="grid lg:grid-cols-2 gap-8">
-              {/* Left Card */}
-              <div className="rounded-2xl border border-[#dbe2ea] bg-white shadow-sm p-10">
-                <ul className="space-y-8">
-                  <li className="flex items-start gap-4">
-                    <div className="w-3 h-3 rounded-full bg-[#af47ff] mt-2" />
-
-                    <p className="text-lg text-[#627084] leading-8">
-                      A stack is a{" "}
-                      <span className="font-bold text-black">
-                        linear data structure
-                      </span>
-                      .
-                    </p>
-                  </li>
-
-                  <li className="flex items-start gap-4">
-                    <div className="w-3 h-3 rounded-full bg-[#af47ff] mt-2" />
-
-                    <p className="text-lg text-[#627084] leading-8">
-                      It follows{" "}
-                      <span className="font-bold text-black">LIFO</span> — Last
-                      In, First Out.
-                    </p>
-                  </li>
-
-                  <li className="flex items-start gap-4">
-                    <div className="w-3 h-3 rounded-full bg-[#af47ff] mt-2" />
-
-                    <p className="text-lg text-[#627084] leading-8">
-                      The{" "}
-                      <span className="font-bold text-black">
-                        last item added
-                      </span>{" "}
-                      is the first item removed.
-                    </p>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Right Card */}
-
-              <div className="rounded-2xl border border-[#dbe2ea] bg-white shadow-sm p-8">
-                <div className="space-y-4">
-                  {/* Item 4 */}
-
-                  <div className="border-2 border-[#af47ff] rounded-xl px-5 py-4 flex justify-between bg-[#faf4ff]">
-                    <span className="font-medium">Item 4</span>
-
-                    <span className="text-[#af47ff] text-sm font-medium">
-                      Last In ← removed first
-                    </span>
-                  </div>
-
-                  {/* Item 3 */}
-
-                  <div className="rounded-xl px-5 py-4 bg-[#edf1f7] text-[#627084]">
-                    Item 3
-                  </div>
-
-                  {/* Item 2 */}
-
-                  <div className="rounded-xl px-5 py-4 bg-[#edf1f7] text-[#627084]">
-                    Item 2
-                  </div>
-
-                  {/* Item 1 */}
-
-                  <div className="rounded-xl px-5 py-4 bg-[#edf1f7] flex justify-between text-[#627084]">
-                    <span>Item 1</span>
-
-                    <span className="text-[#af47ff]">First In</span>
-                  </div>
-                </div>
-
-                <p className="mt-8 text-center text-[#627084]">
-                  Items leave from the top — the newest first.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-        {/* Examples */}
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-              <span className="text-xs font-semibold">IN THE REAL WORLD</span>
-            </div>
-            <div className="font-bold text-3xl">
-              Where You&apos;ll Find Stacks
-            </div>
-          </div>
-          <div className="flex px-32 gap-2 justify-center items-center">
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg p-4 border-[#627084] border">
-              <span className="font-bold">Stack of Plates</span>
-              <span className="text-sm">
-                You add plates on top and take from the top. The last plate
-                placed is the first one used.
-              </span>
-            </div>
-          </div>
-        </div>
-        {/* Interactive */}
-        {/* Core Operations */}
-        {/* performance */}
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col items-center gap-2">
-            <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-              <span className="text-xs font-semibold">PERFORMANCE</span>
-            </div>
-            <div className="font-bold text-3xl">Time Complexity</div>
-          </div>
-          <div className="flex gap-2 justify-center items-center">
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-              <span className="text-sm text-[#627084]">Push()</span>
-              <span className="font-bold text-lg">O(1)</span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-              <span className="text-sm text-[#627084]">Pop()</span>
-              <span className="font-bold text-lg">O(1)</span>
-            </div>
-            <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-              <span className="text-sm text-[#627084]">Peek()</span>
-              <span className="font-bold text-lg">O(1)</span>
-            </div>
-          </div>
-          <span>
-            Each operation works only on the top of the stack, so it never
-            depends on how many items are stored. That constant-time access is
-            what makes stacks so efficient.
-          </span>
-        </div>
-        {/* For Developers */}
-        <div className="flex flex-col items-center gap-2">
-          <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-            <span className="text-xs font-semibold">FOR DEVELOPERS</span>
-          </div>
-          <div className="text-3xl">Behind the Scenes</div>
-
-          <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-            <span className="text-lg font-bold  text-[#627084]">
-              Concepts Demonstrated
-            </span>
-            <span className="text-sm">
-              Arrays Event Listeners DOM Manipulation State Management Input
-              Validation Data Structures
-            </span>
-          </div>
-
-          <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-            <span className="text-lg font-bold  text-[#627084]">
-              Technology Stack
-            </span>
-            <span className=" text-sm">HTML CSS Tailwind CSS JavaScript</span>
-          </div>
+      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
+        <div className="mb-10 rounded-2xl border border-violet-200 bg-violet-50 px-5 py-5 sm:flex sm:items-center sm:justify-between">
+          <div className="flex items-start gap-4"><span className="rounded-xl bg-violet-100 p-3 text-violet-600"><Sparkles size={22} /></span><div><h2 className="font-bold text-slate-900">Tools are actively being built</h2><p className="mt-1 text-sm text-slate-500">The Stack Visualizer is next in line. Browse the roadmap and check back for new releases.</p></div></div>
+          <a href="#tool-directory" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-violet-700 hover:text-violet-900 sm:mt-0">Explore the directory <ArrowUpRight size={16} /></a>
         </div>
 
-        {/* Learning Journey */}
-        <div className="flex flex-col bg-white shadow-2xl rounded-lg px-12 py-8 border-[#627084] border">
-          <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff] w-fit">
-            <span className="text-xs font-semibold">LEARNING JOURNEY</span>
-          </div>
-          <span className="text-sm">
-            This project was built to strengthen my understanding of JavaScript
-            fundamentals and data structures. It demonstrates how arrays can be
-            used to implement a Stack and how UI can be synchronized with
-            application state.
-          </span>
+        <div id="tool-directory" className="flex flex-col justify-between gap-5 border-b border-slate-200 pb-8 lg:flex-row lg:items-center">
+          <div className="flex flex-wrap gap-2">{categories.map((category) => <button key={category} onClick={() => setActiveCategory(category)} className={`rounded-lg px-4 py-2 text-sm font-semibold transition ${activeCategory === category ? "bg-slate-800 text-white shadow-sm" : "bg-white text-slate-500 hover:bg-slate-100"}`}>{category}</button>)}</div>
+          <label className="flex min-w-0 items-center gap-3 rounded-xl border border-slate-200 bg-white px-4 py-3 text-slate-400 lg:w-80"><Search size={19} /><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search for any tool..." className="min-w-0 flex-1 bg-transparent text-sm text-slate-800 outline-none" /></label>
         </div>
-      </div>
-    </div>
+
+        <div className="mt-8 flex items-center gap-2 text-sm font-medium text-slate-500"><Wrench size={17} /> {filteredTools.length} tools in this collection <span className="text-slate-300">•</span> all currently in development</div>
+        <div className="mt-6 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          {filteredTools.map((tool) => {
+            const Icon = tool.icon;
+            const content = <><div className="flex items-start justify-between"><span className="rounded-2xl bg-slate-100 p-3 text-slate-700"><Icon size={24} /></span><span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-bold text-amber-700">{tool.status}</span></div><h3 className="mt-6 text-lg font-bold text-slate-900">{tool.name}</h3><p className="mt-2 min-h-12 text-sm leading-6 text-slate-500">{tool.description}</p><div className="mt-6 flex items-center gap-2 text-sm font-bold text-slate-600">{tool.href ? <>View progress <ExternalLink size={16} /></> : <>In the workshop <CheckCircle2 size={16} /></>}</div></>;
+            return tool.href ? <Link key={tool.name} href={tool.href} className="group rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg">{content}</Link> : <article key={tool.name} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">{content}</article>;
+          })}
+        </div>
+        {!filteredTools.length && <div className="py-20 text-center text-slate-500"><BarChart3 className="mx-auto mb-3" />No tools match that search yet.</div>}
+      </section>
+
+      <footer className="border-t border-slate-200 px-5 py-10 text-center text-sm text-slate-500"><p>Built by Srinithin Thangadurai — small tools, thoughtfully made.</p></footer>
+    </main>
   );
 }

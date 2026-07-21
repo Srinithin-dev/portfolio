@@ -21,11 +21,11 @@ export default function Projects() {
   ];
 
   return (
-    <div className="bg-white text-black w-full flex flex-col items-center ">
-      <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
+    <div className="bg-transparent text-black w-full flex flex-col items-center ">
+      <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
         Featured Projects
       </div>
-      <p className="text-lg text-[#627084] mb-10 text-center max-w-2xl">
+      <p className="text-base sm:text-lg leading-7 text-[#627084] mb-10 text-center max-w-2xl">
         A selection of recent work showcasing my development expertise
       </p>
 

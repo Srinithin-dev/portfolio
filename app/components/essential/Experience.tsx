@@ -73,13 +73,13 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <div className="bg-white text-black p-6 flex flex-col items-center gap-6 w-full">
+    <div className="bg-transparent text-black p-6 flex flex-col items-center gap-6 w-full">
       <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
         <Growth />
         <span>Career Journey</span>
       </div>
       <div className="flex flex-col gap-2 justify-center text-center">
-        <div className="text-4xl md:text-5xl font-bold bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent">
+        <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent">
           Work Experience
         </div>
 

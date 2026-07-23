@@ -30,8 +30,8 @@ export default function Intro() {
 
   return (
     <div className="relative isolate overflow-hidden bg-[#f5f6fa] px-5 pb-16 pt-28 text-[#1d2530] sm:px-8 sm:pb-24 sm:pt-32">
-      <div className="absolute left-[-10rem] top-24 -z-10 h-80 w-80 rounded-full bg-violet-300/30 blur-3xl" />
-      <div className="absolute right-[-7rem] top-12 -z-10 h-96 w-96 rounded-full bg-sky-200/50 blur-3xl" />
+      <div className="absolute -left-40 top-24 -z-10 h-80 w-80 rounded-full bg-violet-300/30 blur-3xl" />
+      <div className="absolute -right-28 top-12 -z-10 h-96 w-96 rounded-full bg-sky-200/50 blur-3xl" />
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
         <div className="order-2 text-center lg:order-1 lg:text-left">
           <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white/80 px-4 py-2 text-sm font-semibold text-violet-700 shadow-sm">
@@ -44,7 +44,7 @@ export default function Intro() {
             perform.
           </h1>
           <p className="mt-6 text-lg font-semibold text-slate-600 sm:text-xl">
-            Hi, I&apos;m Srinithin Thangadurai — Full-Stack Web Developer.
+            Hi, I&apos;m Srinithin — Full-Stack Web Developer.
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 lg:mx-0">
             I create responsive, scalable web applications with React, Next.js,
@@ -106,11 +106,11 @@ export default function Intro() {
         <div className="order-1 mx-auto w-full max-w-sm lg:order-2 lg:max-w-md">
           <div className="relative">
             <div className="absolute -inset-4 rounded-[2.25rem] bg-linear-to-br from-violet-300/60 via-transparent to-sky-200/70 blur-xl" />
-            <div className="relative rounded-[2rem] border border-white/80 bg-white p-3 shadow-2xl shadow-slate-300/60">
+            <div className="relative rounded-4xl border border-white/80 bg-white p-3 shadow-2xl shadow-slate-300/60">
               <div className="relative overflow-hidden rounded-[1.45rem] bg-slate-200">
                 <Image
                   alt="Srinithin Thangadurai"
-                  src="/profile.png"
+                  src="/ada.png"
                   width={520}
                   height={430}
                   priority

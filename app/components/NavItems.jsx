@@ -1,34 +1,51 @@
-import { useRouter } from "next/navigation";
+"use client";
+
 import { useActiveSection } from "../context/ActiveSectionContext";
 
-export default function NavItems({ direction, SECTIONS, setToggle }) {
-  const router = useRouter();
+/**
+ * Real <a href="#id"> elements, not <span onClick>.
+ *
+ * The previous version used spans with onClick + router.push, which meant:
+ * keyboard users couldn't tab to or activate them, screen readers didn't
+ * announce them as links, and cmd-click / middle-click did nothing. Native
+ * anchors get all of that for free, and the browser handles the smooth
+ * scroll via `scroll-behavior` in globals.css — no router involved.
+ */
+export default function NavItems({ sections, stacked = false, onNavigate }) {
   const { activeSection, setActiveSection } = useActiveSection();
-  const scrollToSection = (items) => {
-    if (items == "Tools") {
-      router.push("/tools");
-    } else {
-      router.push("/#" + items, { scroll: true });
-    }
-  };
 
   return (
-    <div
-      className={`flex ${direction ? "flex-col block" : "items-center"} gap-4 text-[#627084] text-base cursor-pointer`}
+    <ul
+      className={
+        stacked ? "flex flex-col gap-1" : "flex items-center gap-0.5"
+      }
     >
-      {SECTIONS.map((items, i) => (
-        <span
-          key={i}
-          onClick={() => {
-            setActiveSection(items);
-            scrollToSection(items);
-            setToggle(false);
-          }}
-          className={`${activeSection == items && "bg-[#1d25301a] text-black rounded-lg font-semibold"} px-2 py-1`}
-        >
-          {items}
-        </span>
-      ))}
-    </div>
+      {sections.map(({ id, label }) => {
+        const active = activeSection === id;
+        return (
+          <li key={id}>
+            <a
+              href={`#${id}`}
+              aria-current={active ? "true" : undefined}
+              onClick={() => {
+                // Optimistic highlight so the nav responds instantly instead
+                // of waiting for the observer to catch up mid-scroll.
+                setActiveSection(id);
+                onNavigate?.();
+              }}
+              className={[
+                "block rounded-lg px-3 py-1.5 text-[13.5px] transition",
+                stacked ? "text-[15px]" : "",
+                active
+                  ? "bg-surface-2 font-medium text-ink"
+                  : "text-ink-2 hover:bg-surface-2 hover:text-ink",
+              ].join(" ")}
+            >
+              {label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
   );
 }

@@ -1,41 +1,196 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ *
+ *  Design tokens
+ *
+ *  One place for the palette and type scale. Components reference these
+ *  instead of repeating hex codes, so changing the accent is a one-line
+ *  edit rather than a find-and-replace across 12 files.
+ * ------------------------------------------------------------------ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Surfaces */
+  --page: #fbfbfd;
+  --surface: #ffffff;
+  --surface-2: #f5f6fa;
+  --line: #e6e8ee;
+  --line-strong: #d7dae4;
+
+  /* Ink — three levels is enough. More than that and hierarchy blurs. */
+  --ink: #16181d;
+  --ink-2: #545a6b;
+  --ink-3: #878da0;
+
+  /* Accent.
+     #af47ff sits at ~3.2:1 on white, which fails WCAG AA (4.5:1) for
+     body-size text — it was being used for labels all over the site.
+     --accent-text is the darker, accessible variant; keep the bright one
+     for fills, borders and decoration where contrast doesn't apply. */
+  --accent: #af47ff;
+  --accent-text: #7c3aed;
+  --accent-wash: #f4ecff;
+
+  --background: var(--page);
+  --foreground: var(--ink);
 }
-::placeholder {
-  @apply text-[#9aa3b5] opacity-100;
-}
+
 @theme inline {
+  --color-page: var(--page);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-accent: var(--accent);
+  --color-accent-text: var(--accent-text);
+  --color-accent-wash: var(--accent-wash);
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* NOTE: the `@media (prefers-color-scheme: dark)` block that used to live
+   here flipped --background to #0a0a0a while every section still hardcoded
+   white cards and near-black text. On a machine set to dark mode the page
+   rendered black-on-black at the edges. Removed rather than patched — this
+   is a light-theme site. Add a real dark theme later by overriding the
+   tokens above, not just the two background vars. */
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background: var(--page);
+    color: var(--ink);
+    /* Was `font-family: Arial, Helvetica, sans-serif` — which overrode the
+       Geist font the layout loads, so the webfont downloaded and was never
+       used. */
+    font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Anchor links land underneath the fixed header without this. */
+  section[id] {
+    scroll-margin-top: 5.5rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  ::placeholder {
+    color: var(--ink-3);
+    opacity: 1;
+  }
+
+  ::selection {
+    background: var(--accent-wash);
+    color: var(--ink);
+  }
+
+  /* Visible focus for keyboard users, invisible for mouse users. */
+  :focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* Respect the OS "reduce motion" setting. Every hover-lift and
+     transition on the site currently ignores it. */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  text-rendering: optimizeLegibility;
-  scroll-behavior: smooth;
-}
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-html {
-  scroll-behavior: smooth;
+@layer components {
+  /* Section shell — consistent max width and gutters everywhere. Sections
+     were each declaring their own px-4/lg:px-16/lg:px-20, so content edges
+     didn't line up between them. */
+  .shell {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+
+  @media (min-width: 640px) {
+    .shell {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* Section heading, replacing the pill-badge + gradient-text pattern. */
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+
+  .section-title {
+    font-size: clamp(1.6rem, 3.2vw, 2.1rem);
+    font-weight: 600;
+    line-height: 1.15;
+    margin-top: 0.5rem;
+  }
+
+  .section-lead {
+    margin-top: 0.75rem;
+    max-width: 42rem;
+    color: var(--ink-2);
+    font-size: 1rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 1rem;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid var(--line);
+    background: var(--surface-2);
+    padding: 0.2rem 0.6rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--ink-2);
+  }
 }

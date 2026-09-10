@@ -1,130 +1,108 @@
 import Image from "next/image";
-import Stack from "../../../public/icons/stack";
+
+/* Grouped to match the resume so the two documents agree. `src` is optional —
+   a skill with no logo renders as a text chip instead of a broken image. */
+const GROUPS = [
+  {
+    name: "Frontend",
+    items: [
+      { label: "React.js", src: "/react.gif" },
+      { label: "Next.js", src: "/next.gif", rotate: "-rotate-90" },
+      { label: "TypeScript", src: "/typescript.png" },
+      { label: "JavaScript", src: "/javascript.gif" },
+      { label: "Redux Toolkit", src: "/redux.png" },
+      { label: "Tailwind CSS", src: "/tailwind.png" },
+      { label: "HTML5", src: "/html.gif" },
+      { label: "CSS", src: "/css.png" },
+    ],
+  },
+  {
+    name: "Backend & APIs",
+    items: [
+      { label: "Node.js", src: "/node.png" },
+      { label: "Express.js", src: "/express.png" },
+      { label: "REST APIs", src: "/rest.png" },
+      { label: "OAuth 2.0" },
+      { label: "Webhooks" },
+    ],
+  },
+  {
+    name: "Data",
+    items: [{ label: "MongoDB", src: "/mongodb.png" }, { label: "Cosmos DB" }],
+  },
+  {
+    name: "Tooling & Cloud",
+    items: [
+      { label: "Azure App Service" },
+      { label: "Git", src: "/git.png" },
+      { label: "GitHub", src: "/github.png" },
+      { label: "Postman", src: "/postman.png" },
+      { label: "Jira", src: "/jira.png" },
+      { label: "VS Code", src: "/vs-code.png" },
+    ],
+  },
+];
+
+/* BUG THIS REPLACES:
+     unoptimized={skill.src.split(".")[0] == "gif"}
+   For "/react.gif", split(".")[0] is "/react" — never the string "gif". So
+   the condition was always false, every .gif went through the Next image
+   optimizer, and animated GIFs came out as a single static frame. */
+const isGif = (src = "") => src.toLowerCase().endsWith(".gif");
+
+function SkillChip({ item }) {
+  return (
+    /* No cursor-pointer and no hover:scale. These aren't interactive — a
+       pointer cursor on a non-clickable card teaches people to distrust
+       every other cursor on the page. */
+    <li className="flex items-center gap-2.5 rounded-xl border border-line bg-surface px-3 py-2.5 transition-colors hover:border-line-strong">
+      {item.src ? (
+        <Image
+          src={item.src}
+          alt=""
+          width={20}
+          height={20}
+          unoptimized={isGif(item.src)}
+          className={`h-5 w-5 shrink-0 object-contain ${item.rotate ?? ""}`}
+        />
+      ) : (
+        <span
+          aria-hidden
+          className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+        />
+      )}
+      <span className="text-[13.5px] font-medium text-ink">{item.label}</span>
+    </li>
+  );
+}
 
 export default function Skills() {
-  const frontend = [
-    { src: "/react.gif", label: "React.js" },
-    { src: "/next.gif", label: "Next.js", rotate: "-rotate-90" },
-    { src: "/typescript.png", label: "Typescript" },
-    { src: "/javascript.gif", label: "Javascript" },
-    { src: "/tailwind.png", label: "Tailwind CSS" },
-    { src: "/html.gif", label: "HTML5" },
-    { src: "/css.png", label: "CSS" },
-    { src: "/redux.png", label: "Redux" },
-  ];
-  const backend = [
-    { src: "/node.png", label: "Node.js" },
-    { src: "/express.png", label: "Express.js" },
-    { src: "/mongodb.png", label: "MongoDB" },
-    { src: "/rest.png", label: "Rest Api" },
-  ];
-  const tools = [
-    { src: "/git.png", label: "Git" },
-    { src: "/github.gif", label: "GitHub" },
-    { src: "/postman.png", label: "Postman" },
-    { src: "/jira.png", label: "Jira" },
-    { src: "/vs-code.png", label: "VS Code" },
-  ];
-
   return (
-    <div className="bg-transparent text-black p-6 flex flex-col justify-center items-center gap-4 w-full">
-      <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 w-fit rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
-        <Stack />
-        <span>Technical Arsenal</span>
-      </div>
+    <div className="shell">
+      <p className="eyebrow">Stack</p>
+      <h2 className="section-title">What I work with</h2>
+      <p className="section-lead">
+        Day-to-day tools on the left of each row. I&apos;m strongest in the
+        React/Node half of this list — the cloud and tooling side I know well
+        enough to ship with, not to architect from scratch.
+      </p>
 
-      <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
-        Skills & Technologies
-      </div>
-
-      <div className="text-lg text-center mb-4 px-4">
-        Building modern web applications with cutting-edge tools
-      </div>
-      <div className="flex flex-col gap-4 w-full lg:px-16">
-        <div className="flex items-center gap-4">
-          <div className="h-1 w-12 rounded-full bg-linear-to-r from-[#af47ff] to-[#af47ff]/30"></div>
-          <div className="text-2xl font-bold">Frontend</div>
-          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/4 rounded-full"></div>
-        </div>
-        <div className="flex flex-wrap max-lg:justify-center gap-6 p-2 w-full">
-          {frontend.map((skill, index) => (
-            <div
-              key={index}
-              className="bg-white w-32 h-26 p-6 border border-[#dadfe7] hover:border-[#af47ff]
-              flex flex-col items-center justify-center rounded-2xl 
-              hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
-            >
-              <Image
-                src={skill.src}
-                alt={skill.label}
-                width={32}
-                height={32}
-                unoptimized={skill.src.split(".")[0] == "gif" ? true : false}
-                className={skill.rotate ? skill.rotate : ""}
-              />
-              <span className="mt-2 text-sm font-semibold text-gray-700 text-center">
-                {skill.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 w-full lg:px-16">
-        <div className="flex items-center gap-4">
-          <div className="h-1 w-12 rounded-full bg-linear-to-r from-[#af47ff] to-[#af47ff]/30"></div>
-          <div className="text-2xl font-bold">Backend</div>
-          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/4 rounded-full"></div>
-        </div>
-        <div className="flex flex-wrap max-lg:justify-center gap-6  p-2 w-full">
-          {backend.map((skill, index) => (
-            <div
-              key={index}
-              className="bg-white w-32 h-26 p-6 border border-[#dadfe7] hover:border-[#af47ff]
-              flex flex-col items-center justify-center rounded-2xl 
-              hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
-            >
-              <Image
-                src={skill.src}
-                alt={skill.label}
-                width={32}
-                height={32}
-                unoptimized={skill.src.split(".")[0] == "gif" ? true : false}
-              />
-              <span className="mt-2 text-sm font-semibold text-gray-700 text-center">
-                {skill.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-      <div className="flex flex-col gap-4 w-full lg:px-16">
-        <div className="flex items-center gap-4">
-          <div className="h-1 w-12 rounded-full bg-linear-to-r from-[#af47ff] to-[#af47ff]/30"></div>
-          <div className="text-2xl font-bold">Tools & Platforms</div>
-          <div className="h-1 flex-1 bg-linear-to-r from-[#af47ff] to-[#af47ff]/4 rounded-full"></div>
-        </div>
-        <div className="flex flex-wrap max-lg:justify-center gap-6  p-2 w-full">
-          {tools.map((tool, index) => (
-            <div
-              key={index}
-              className="bg-white w-32 h-26 p-6 border border-[#dadfe7] hover:border-[#af47ff]
-              flex flex-col items-center justify-center rounded-2xl 
-              hover:scale-105 transition-all duration-300 shadow-sm cursor-pointer"
-            >
-              <Image src={tool.src} alt={tool.label} width={32} height={32} />
-              <span className="mt-2 text-sm font-semibold text-gray-700 text-center">
-                {tool.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex gap-2 justify-center items-center p-2 px-4 w-fit rounded-2xl bg-[#af47ff1a]">
-        <Image src={"/dev.png"} alt={"code"} width={16} height={16} />
-        <span className="text-sm font-medium text-[#627084]">
-          Continuously learning ands exploring new technologies
-        </span>
+      {/* Four labelled columns instead of three full-width bands of 32px
+          icons in 128px boxes. Same information, a third of the height, and
+          the groups can be compared side by side. */}
+      <div className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
+        {GROUPS.map((group) => (
+          <div key={group.name}>
+            <h3 className="border-b border-line pb-2.5 text-[13px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+              {group.name}
+            </h3>
+            <ul className="mt-4 flex flex-col gap-2">
+              {group.items.map((item) => (
+                <SkillChip key={item.label} item={item} />
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </div>
   );

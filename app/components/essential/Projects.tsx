@@ -1,116 +1,192 @@
 import Image from "next/image";
+import { ExternalLink, Github, Lock } from "lucide-react";
+
+type Project = {
+  title: string;
+  blurb: string;
+  detail?: string;
+  stack: string[];
+  cover?: string;
+  demoLink?: string;
+  repoLink?: string;
+  /* Work built inside a company — no public link, and saying so is better
+     than a dead "Live Demo" button. */
+  internal?: boolean;
+  context?: string;
+};
+
+const FEATURED: Project = {
+  title: "CineGPT",
+  blurb: "AI-powered movie discovery, for the searches genre filters can't do.",
+  detail:
+    "A Netflix-style browse experience with a second search mode on top: describe a mood, a genre mashup, or a scene you half-remember, and Gemini resolves it into real titles via TMDB. Firebase auth with protected routes, Redux Toolkit for state, and a multi-language UI (English, Hindi, Tamil).",
+  stack: [
+    "React.js",
+    "Redux Toolkit",
+    "Firebase Auth",
+    "Firestore",
+    "TMDB API",
+    "Gemini API",
+    "Tailwind CSS",
+  ],
+  cover: "/cinegpt.png",
+  demoLink: "https://cine-gpt-srinithin.vercel.app",
+  repoLink: "https://github.com/Srinithin-dev/netflix-GPT",
+};
+
+const WORK: Project[] = [
+  {
+    title: "Security & Support Reporting Dashboard",
+    blurb:
+      "Aggregates monthly metrics across five security platforms and emails client reports on a schedule.",
+    stack: ["Next.js", "Node.js", "Cosmos DB", "REST APIs", "Azure"],
+    internal: true,
+    context: "Fountain Hills Technologies",
+  },
+  {
+    title: "Quote Builder",
+    blurb:
+      "Procurement module with dynamic quote fields and a quote-generation workflow, built for vendor approvals.",
+    stack: ["React.js", "Node.js", "Express.js", "MongoDB"],
+    internal: true,
+    context: "Fountain Hills Technologies",
+  },
+  {
+    title: "Freshworks Marketplace Apps",
+    blurb:
+      "Two published integrations — Parent Child & Grandchild, and ZoomInfo Sales — plus eight more across the Freshworks suite.",
+    stack: ["JavaScript", "Freshworks SDK", "REST APIs"],
+    demoLink: "https://www.freshworks.com/apps/",
+    context: "Konnectify",
+  },
+];
+
+function StackList({ stack }: { stack: string[] }) {
+  return (
+    <ul className="mt-4 flex flex-wrap gap-1.5">
+      {stack.map((item) => (
+        <li key={item} className="tag">
+          {item}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export default function Projects() {
-  const projectObj = [
-    {
-      title: "DSA Visualizers",
-      description:
-        "A series of interactive educational micro-sites teaching Stacks, Queues, Linked Lists and Binary Trees with live visualizers — built to strengthen my JavaScript and DSA fundamentals.",
-      language_Used: [
-        "Next.js",
-        "Tailwind Css",
-        "Typescript",
-        "Data Structures",
-      ],
-      // demoLink: "https://stack-visualizer-js.vercel.app",
-      demoLink: "dsa-visualizer",
-      repoLink: "https://github.com/Srinithin-dev/stack-visualizer",
-      comingSoon: false,
-      coverImage: "/dsa.png",
-    },
-  ];
-
   return (
-    <div className="bg-transparent text-black w-full flex flex-col items-center ">
-      <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
-        Featured Projects
-      </div>
-      <p className="text-base sm:text-lg leading-7 text-[#627084] mb-10 text-center max-w-2xl">
-        A selection of recent work showcasing my development expertise
+    <div className="shell">
+      <p className="eyebrow">Projects</p>
+      <h2 className="section-title">Things I&apos;ve built</h2>
+      <p className="section-lead">
+        One side project I keep extending, and a few pieces of work from the
+        day job. The company work is closed-source, so those are descriptions
+        rather than links.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 w-full lg:px-20 px-4">
-        {projectObj.map((project, index) => (
-          <div
-            key={index}
-            className="bg-white p-6 rounded-2xl border border-[#dadfe7] hover:border-[#af47ff]
-                       shadow-sm hover:shadow-md transition-all duration-300 flex flex-col items-center"
-          >
-            <div
-              className={`w-full ${
-                !project.coverImage.length && "h-full"
-              } rounded-xl h-full flex items-center justify-center`}
-            >
-              {project.comingSoon ? (
-                <Image
-                  src={"/comingSoon.png"}
-                  alt={project.title}
-                  width={300}
-                  height={200}
-                  className="object-cover rounded-xl w-full"
-                />
-              ) : (
-                // <div className="flex flex-col justify-center items-center gap-2">
-
-                //   <span className="text-[#af47ff] font-semibold text-lg">
-                //     Coming Soon
-                //   </span>
-                // </div>
-                <Image
-                  src={project.coverImage}
-                  alt={project.title}
-                  width={300}
-                  height={200}
-                  className="object-cover rounded-xl w-full"
-                />
-              )}
+      {/* Featured: two-column so CineGPT gets room to be explained rather
+          than compressed into a 300px card. The old grid was
+          `lg:grid-cols-3` holding a single item, which left two empty
+          columns and made the section look unfinished. */}
+      <article className="card mt-10 overflow-hidden lg:grid lg:grid-cols-[1.05fr_1fr]">
+        <div className="relative aspect-[16/10] w-full border-b border-line bg-surface-2 lg:aspect-auto lg:border-b-0 lg:border-r">
+          {FEATURED.cover ? (
+            <Image
+              src={FEATURED.cover}
+              alt={`${FEATURED.title} screenshot`}
+              fill
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover object-left-top"
+            />
+          ) : (
+            <div className="grid h-full place-items-center text-[13px] text-ink-3">
+              Screenshot coming
             </div>
+          )}
+        </div>
 
-            <h3 className="mt-4 text-xl font-bold text-center">
+        <div className="p-6 sm:p-8">
+          <div className="flex items-center gap-2">
+            <span className="rounded-full bg-accent-wash px-2.5 py-1 text-[11.5px] font-semibold text-accent-text">
+              Featured
+            </span>
+            <span className="text-[12.5px] text-ink-3">Side project</span>
+          </div>
+
+          <h3 className="mt-4 text-[22px] font-semibold text-ink">
+            {FEATURED.title}
+          </h3>
+          <p className="mt-1.5 text-[15px] font-medium text-ink-2">
+            {FEATURED.blurb}
+          </p>
+          <p className="mt-4 text-[14.5px] leading-relaxed text-ink-2">
+            {FEATURED.detail}
+          </p>
+
+          <StackList stack={FEATURED.stack} />
+
+          <div className="mt-7 flex flex-wrap gap-2.5">
+            <a
+              href={FEATURED.demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-[13.5px] font-semibold text-white transition hover:bg-accent-text"
+            >
+              Live demo <ExternalLink size={14} />
+            </a>
+            <a
+              href={FEATURED.repoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-lg border border-line-strong bg-surface px-4 py-2.5 text-[13.5px] font-semibold text-ink-2 transition hover:border-accent-text hover:text-accent-text"
+            >
+              <Github size={14} /> Source
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <h3 className="mt-14 border-b border-line pb-2.5 text-[13px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+        Professional work
+      </h3>
+
+      <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {WORK.map((project) => (
+          <article
+            key={project.title}
+            className="card flex flex-col p-6 transition-colors hover:border-line-strong"
+          >
+            {project.context && (
+              <p className="text-[11.5px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+                {project.context}
+              </p>
+            )}
+            <h4 className="mt-2 text-[16px] font-semibold leading-snug text-ink">
               {project.title}
-            </h3>
-
-            <p className="text-sm text-[#627084] text-center mt-1 h-full">
-              {project.description}
+            </h4>
+            <p className="mt-2 flex-1 text-[14px] leading-relaxed text-ink-2">
+              {project.blurb}
             </p>
 
-            <div className="flex gap-2 flex-wrap mt-4">
-              {project.language_Used.map((lang, i) => (
-                <span
-                  key={i}
-                  className="text-xs text-black px-3 py-1 rounded-full bg-[#e7eaef] font-medium"
-                >
-                  {lang}
-                </span>
-              ))}
-            </div>
+            <StackList stack={project.stack} />
 
-            {project.comingSoon ? (
-              <div className="px-4 py-2 bg-[#e7eaef] text-[#818181] rounded-xl text-sm cursor-not-allowed w-full text-center mt-5">
-                Under Development
-              </div>
-            ) : (
-              <div className="mt-5 flex gap-3 items-center w-full justify-around">
+            <div className="mt-5">
+              {project.internal ? (
+                <p className="inline-flex items-center gap-1.5 text-[12.5px] text-ink-3">
+                  <Lock size={12} /> Internal — not publicly available
+                </p>
+              ) : (
                 <a
                   href={project.demoLink}
                   target="_blank"
-                  className="px-4 py-2 bg-[#e7eaef] text-black rounded-xl text-sm hover:bg-[#9e3fe6] hover:text-white w-full text-center"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent-text hover:underline"
                 >
-                  Live Demo
+                  View on Marketplace <ExternalLink size={13} />
                 </a>
-
-                <a href={project.repoLink} target="_blank">
-                  <Image
-                    src="/github.gif"
-                    alt="github"
-                    width={28}
-                    height={28}
-                    className="cursor-pointer hover:scale-110 transition"
-                  />
-                </a>
-              </div>
-            )}
-          </div>
+              )}
+            </div>
+          </article>
         ))}
       </div>
     </div>

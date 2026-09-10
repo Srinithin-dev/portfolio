@@ -1,286 +1,190 @@
-// "use client";
-// import { useState } from "react";
-// export default function FormSubmission() {
-//   const [email, setEmail] = useState("");
-//   const [name, setName] = useState("");
-//   const [message, setMessage] = useState("");
-//   const handleFormSubmission = async () => {
-//     await fetch("/api/sendMail", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify({ name, email, message }),
-//     });
-//   };
-//   return (
-//     <div className="w-full lg:px-20 px-4">
-//       <div
-//         className="flex flex-col gap-4 bg-white p-8 border border-[#dadfe7]
-//                    rounded-2xl transition-all duration-300 shadow-sm w-full"
-//       >
-//         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-//           <div className="flex flex-col gap-2">
-//             <label className="text-black font-semibold">Name</label>
-//             <input
-//               type="text"
-//               className="rounded-xl border border-gray-300 px-3 py-2 bg-[#f9fafb] text-black"
-//               placeholder="John Doe"
-//               value={name}
-//               onChange={(e) => setName(e.target.value)}
-//             />
-//           </div>
-
-//           <div className="flex flex-col gap-2">
-//             <label className="text-black font-semibold">Email</label>
-//             <input
-//               type="email"
-//               className="rounded-xl bg-[#f9fafb] border border-gray-300 px-3 py-2 text-black"
-//               placeholder="abc@gmail.com"
-//               value={email}
-//               onChange={(e) => setEmail(e.target.value)}
-//             />
-//           </div>
-//         </div>
-
-//         <div className="flex flex-col gap-2">
-//           <label className="text-black font-semibold">Message</label>
-//           <textarea
-//             className="rounded-xl border border-gray-300 px-3 py-2 h-28 resize-none bg-[#f9fafb] text-black"
-//             placeholder="Type something here..."
-//             value={message}
-//             onChange={(e) => setMessage(e.target.value)}
-//           />
-//         </div>
-
-//         <button
-//           className="px-6 py-2 bg-[#af47ff] text-white rounded-md w-fit"
-//           onClick={() => handleFormSubmission()}
-//         >
-//           Send Message
-//         </button>
-//       </div>
-//     </div>
-//   );
-// }
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 import toast from "react-hot-toast";
+import { Loader2, Send } from "lucide-react";
+
+const MAX_MESSAGE_LENGTH = 1000;
+const EMPTY = { name: "", email: "", message: "" };
 
 export default function FormSubmission() {
-  const MAX_MESSAGE_LENGTH = 1000;
+  /* useId gives stable, unique ids for the label/input/error wiring so the
+     <label htmlFor> actually points at its input. Previously the labels
+     weren't associated with anything — clicking a label didn't focus its
+     field, and screen readers read the inputs as unlabelled. */
+  const uid = useId();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
-
+  const [values, setValues] = useState(EMPTY);
+  const [errors, setErrors] = useState(EMPTY);
   const [loading, setLoading] = useState(false);
 
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    message: "",
-  });
-
-  const validate = () => {
-    const newErrors = {
-      name: "",
-      email: "",
-      message: "",
-    };
-
-    if (!name.trim()) {
-      newErrors.name = "Name is required.";
-    } else if (name.trim().length < 2) {
-      newErrors.name = "Name must contain at least 2 characters.";
-    }
-
-    if (!email.trim()) {
-      newErrors.email = "Email is required.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      newErrors.email = "Please enter a valid email address.";
-    }
-
-    if (!message.trim()) {
-      newErrors.message = "Message is required.";
-    } else if (message.trim().length < 10) {
-      newErrors.message = "Message should be at least 10 characters.";
-    }
-
-    setErrors(newErrors);
-    return !Object.values(newErrors).some(Boolean);
+  const setField = (field) => (event) => {
+    const { value } = event.target;
+    setValues((prev) => ({ ...prev, [field]: value }));
+    if (errors[field]) setErrors((prev) => ({ ...prev, [field]: "" }));
   };
 
-  const handleFormSubmission = async (e) => {
-    e.preventDefault();
+  const validate = () => {
+    const next = { ...EMPTY };
 
+    if (!values.name.trim()) next.name = "Name is required.";
+    else if (values.name.trim().length < 2)
+      next.name = "Name must be at least 2 characters.";
+
+    if (!values.email.trim()) next.email = "Email is required.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim()))
+      next.email = "Enter a valid email address.";
+
+    if (!values.message.trim()) next.message = "Message is required.";
+    else if (values.message.trim().length < 10)
+      next.message = "Message should be at least 10 characters.";
+
+    setErrors(next);
+    return !Object.values(next).some(Boolean);
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     if (!validate()) return;
 
     try {
       setLoading(true);
-
       const response = await fetch("/api/sendMail", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: name.trim(),
-          email: email.trim(),
-          message: message.trim(),
+          name: values.name.trim(),
+          email: values.email.trim(),
+          message: values.message.trim(),
         }),
       });
-      if (!response.ok) {
-        throw new Error();
-      }
-      console.log(response, "response");
-      toast.success("Message sent successfully! I'll get back to you soon.");
 
-      setName("");
-      setEmail("");
-      setMessage("");
+      if (!response.ok) throw new Error("Request failed");
 
-      setErrors({
-        name: "",
-        email: "",
-        message: "",
-      });
+      toast.success("Message sent. I'll get back to you soon.");
+      setValues(EMPTY);
+      setErrors(EMPTY);
     } catch {
-      toast.error("Something went wrong. Please try again later.");
+      toast.error("Something went wrong. Try emailing me directly.");
     } finally {
       setLoading(false);
     }
   };
 
+  const inputClass = (hasError) =>
+    [
+      "w-full rounded-xl border bg-surface-2 px-4 py-3 text-[14.5px] text-ink outline-none transition",
+      hasError
+        ? "border-red-400 focus:border-red-500"
+        : "border-line-strong focus:border-accent-text",
+    ].join(" ");
+
   return (
-    <form onSubmit={handleFormSubmission} className="w-full lg:px-20 px-4">
-      <div
-        className="
-        flex flex-col gap-5
-        bg-white
-        p-8
-        border border-[#dadfe7]
-        rounded-2xl
-        shadow-sm
-      "
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div className="flex flex-col gap-2">
-            <label className="font-semibold text-black">Name</label>
-
-            <input
-              type="text"
-              placeholder="Your Name"
-              value={name}
-              onChange={(e) => {
-                setName(e.target.value);
-                if (errors.name)
-                  setErrors((prev) => ({
-                    ...prev,
-                    name: "",
-                  }));
-              }}
-              className={`rounded-xl px-4 py-3 bg-[#f9fafb] border text-black outline-none transition
-              ${
-                errors.name
-                  ? "border-red-500"
-                  : "border-gray-300 focus:border-[#af47ff]"
-              }`}
-            />
-
-            {errors.name && (
-              <span className="text-red-500 text-sm">{errors.name}</span>
-            )}
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <label className="font-semibold text-black">Email</label>
-
-            <input
-              type="email"
-              placeholder="you@example.com"
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                if (errors.email)
-                  setErrors((prev) => ({
-                    ...prev,
-                    email: "",
-                  }));
-              }}
-              className={`rounded-xl px-4 py-3 bg-[#f9fafb] border text-black outline-none transition
-              ${
-                errors.email
-                  ? "border-red-500"
-                  : "border-gray-300 focus:border-[#af47ff]"
-              }`}
-            />
-
-            {errors.email && (
-              <span className="text-red-500 text-sm">{errors.email}</span>
-            )}
-          </div>
+    <form onSubmit={handleSubmit} noValidate className="card p-6 sm:p-7">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div className="flex flex-col gap-2">
+          <label
+            htmlFor={`${uid}-name`}
+            className="text-[13.5px] font-semibold text-ink"
+          >
+            Name
+          </label>
+          <input
+            id={`${uid}-name`}
+            name="name"
+            type="text"
+            autoComplete="name"
+            placeholder="Your name"
+            value={values.name}
+            onChange={setField("name")}
+            aria-invalid={Boolean(errors.name)}
+            aria-describedby={errors.name ? `${uid}-name-error` : undefined}
+            className={inputClass(Boolean(errors.name))}
+          />
+          {errors.name && (
+            <span
+              id={`${uid}-name-error`}
+              className="text-[12.5px] text-red-600"
+            >
+              {errors.name}
+            </span>
+          )}
         </div>
 
         <div className="flex flex-col gap-2">
-          <label className="font-semibold text-black">Message</label>
-
-          <textarea
-            rows={6}
-            maxLength={MAX_MESSAGE_LENGTH}
-            placeholder="Tell me about your project or opportunity..."
-            value={message}
-            onChange={(e) => {
-              setMessage(e.target.value);
-
-              if (errors.message)
-                setErrors((prev) => ({
-                  ...prev,
-                  message: "",
-                }));
-            }}
-            className={`rounded-xl px-4 py-3 resize-none bg-[#f9fafb] border text-black outline-none transition
-            ${
-              errors.message
-                ? "border-red-500"
-                : "border-gray-300 focus:border-[#af47ff]"
-            }`}
+          <label
+            htmlFor={`${uid}-email`}
+            className="text-[13.5px] font-semibold text-ink"
+          >
+            Email
+          </label>
+          <input
+            id={`${uid}-email`}
+            name="email"
+            type="email"
+            autoComplete="email"
+            placeholder="you@example.com"
+            value={values.email}
+            onChange={setField("email")}
+            aria-invalid={Boolean(errors.email)}
+            aria-describedby={errors.email ? `${uid}-email-error` : undefined}
+            className={inputClass(Boolean(errors.email))}
           />
-
-          <div className="flex justify-between items-center">
-            {errors.message ? (
-              <span className="text-red-500 text-sm">{errors.message}</span>
-            ) : (
-              <span />
-            )}
-
-            <span className="text-xs text-gray-400">
-              {message.length}/{MAX_MESSAGE_LENGTH}
+          {errors.email && (
+            <span
+              id={`${uid}-email-error`}
+              className="text-[12.5px] text-red-600"
+            >
+              {errors.email}
             </span>
-          </div>
+          )}
         </div>
-
-        <button
-          type="submit"
-          disabled={loading}
-          className="
-          w-fit
-          px-8
-          py-3
-          rounded-xl
-          bg-[#af47ff]
-          text-white
-          font-medium
-          transition
-          hover:bg-[#9738e7]
-          disabled:opacity-50
-          disabled:cursor-not-allowed
-        "
-        >
-          {loading ? "Sending..." : "Send Message"}
-        </button>
       </div>
+
+      <div className="mt-5 flex flex-col gap-2">
+        <label
+          htmlFor={`${uid}-message`}
+          className="text-[13.5px] font-semibold text-ink"
+        >
+          Message
+        </label>
+        <textarea
+          id={`${uid}-message`}
+          name="message"
+          rows={6}
+          maxLength={MAX_MESSAGE_LENGTH}
+          placeholder="What are you working on?"
+          value={values.message}
+          onChange={setField("message")}
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? `${uid}-message-error` : undefined}
+          className={`${inputClass(Boolean(errors.message))} resize-none`}
+        />
+        <div className="flex items-start justify-between gap-3">
+          <span
+            id={`${uid}-message-error`}
+            className="text-[12.5px] text-red-600"
+          >
+            {errors.message}
+          </span>
+          <span className="shrink-0 font-mono text-[11.5px] text-ink-3">
+            {values.message.length}/{MAX_MESSAGE_LENGTH}
+          </span>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className="mt-6 inline-flex items-center gap-2 rounded-xl bg-ink px-6 py-3 text-[14px] font-semibold text-white transition hover:bg-accent-text disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        {loading ? (
+          <Loader2 size={15} className="animate-spin" />
+        ) : (
+          <Send size={15} />
+        )}
+        {loading ? "Sending…" : "Send message"}
+      </button>
     </form>
   );
 }

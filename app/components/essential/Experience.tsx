@@ -1,208 +1,214 @@
-import Growth from "../../../public/icons/growth";
 import Image from "next/image";
+import { ExternalLink } from "lucide-react";
 
-const experiences = [
+type Role = {
+  role: string;
+  period: string;
+  present?: boolean;
+  points: string[];
+  tech?: string[];
+};
+
+type Company = {
+  company: string;
+  location: string;
+  link: string;
+  /* Renamed from `expirences`. Also now always an array — the old shape had
+     either a top-level role OR a nested list, so the component carried two
+     near-identical 40-line render branches that had already drifted apart
+     (one showed the calendar icon, the other didn't). */
+  roles: Role[];
+};
+
+const EXPERIENCE: Company[] = [
   {
     company: "Fountain Hills Technologies",
     location: "Gandhipuram, Coimbatore",
-    role: "Full Stack Developer",
-    period: "Aug 2024 – Present",
-    present: true,
     link: "https://www.linkedin.com/company/fountain-hills-technologies/",
-    points: [
-      "Developed and optimized the company's main website and blog using Next.js, Tailwind CSS, and Cosmos DB, boosting SEO traffic by 30%.",
-      "Built a procurement app (Quote Manager) using React.js, Node.js, and MongoDB, streamlining vendor approvals.",
-      "Integrated Datto RMM, Rubrik, and Dark Web Monitoring into Zoho Desk using Node.js, Express, and REST APIs—improving response efficiency by 40%.",
-    ],
-    tech: [
-      "Next.js",
-      "React.js",
-      "Node.js",
-      "Express.js",
-      "MongoDB",
-      "Cosmos DB",
-      "Tailwind CSS",
-      "REST APIs",
-      "Zoho Desk",
+    roles: [
+      {
+        role: "Full Stack Developer",
+        period: "Aug 2024 – Present",
+        present: true,
+        points: [
+          "Revamped the company website across 10–12 pages with Next.js, Tailwind CSS, Cosmos DB and Azure App Service, including a responsive rebuild, SEO work and a blog/CMS panel.",
+          "Built API-driven integrations between Datto RMM, Zoho Desk, Threat Mate, CrowdStrike and Perception Point, automating alert-to-ticket workflows and scheduled data synchronisation.",
+          "Developed a security and support reporting dashboard that aggregates monthly platform metrics and emails client reports automatically — cutting manual reporting effort by roughly 70%.",
+          "Built the Quote Builder module for a procurement platform in React, Node.js and MongoDB, with dynamic quote fields and quote-generation workflows.",
+        ],
+        tech: [
+          "Next.js",
+          "React.js",
+          "Node.js",
+          "Express.js",
+          "MongoDB",
+          "Cosmos DB",
+          "Azure App Service",
+          "Tailwind CSS",
+          "REST APIs",
+        ],
+      },
     ],
   },
   {
     company: "Konnectify",
     location: "Gandhipuram, Coimbatore",
     link: "https://www.linkedin.com/company/konnectifyco/",
-    expirences: [
+    roles: [
       {
         role: "Full Stack Developer",
-        period: "Jun 2023 – July 2024",
+        /* The site said "Jun 2023 – July 2024" and the resume said
+           "Aug 2023 – July 2024". Using the resume — a recruiter comparing
+           the two will read any mismatch as carelessness. */
+        period: "Aug 2023 – July 2024",
         points: [
-          "Built & maintained integrations for the iPaaS platform using React, Node.js, REST APIs, and MongoDB.",
-          "Developed automation workflows enabling smooth data sync across 3rd-party tools.",
+          "Led a team of four developers building an iPaaS ecosystem with SaaS integrations including Zoho Desk, Monday.com, HubSpot and Cliniko, delivering multiple application integrations in parallel.",
+          "Built and maintained those integrations with React, Node.js, REST APIs, MongoDB and OAuth 2.0 — triggers, actions and data mapping — working from third-party API docs through testing, troubleshooting and production delivery.",
+        ],
+        tech: [
+          "React.js",
+          "Node.js",
+          "MongoDB",
+          "REST APIs",
+          "OAuth 2.0",
+          "Webhooks",
         ],
       },
       {
         role: "Junior Software Developer",
         period: "Aug 2022 – May 2023",
         points: [
-          "Delivered 10+ Freshworks integrations (Freshdesk, Freshsales, Freshchat, Freshservice).",
-          "Worked with Freshworks SDKs to solve complex customer workflows and enhance automation.",
+          "Delivered 10+ Freshworks Marketplace integrations across Freshdesk, Freshsales, Freshchat and Freshservice using JavaScript, REST APIs and the Freshworks SDKs.",
+          "Shipped published apps including Parent Child & Grandchild and ZoomInfo Sales, covering API integration, data mapping, workflow logic, testing and support.",
         ],
-        tech: [
-          "JavaScript",
-          "REST APIs",
-          "Freshdesk",
-          "Freshsales",
-          "Freshchat",
-          "Freshservice",
-          "Freshworks SDKs",
-        ],
+        tech: ["JavaScript", "REST APIs", "Freshworks SDKs"],
       },
     ],
   },
   {
     company: "PUMO Technovation",
     location: "Gandhipuram, Coimbatore",
-    role: "Software Developer Intern",
-    period: "May 2022 – Aug 2022",
     link: "https://www.linkedin.com/company/pumo-technovation-india-private-limited/",
-    points: [
-      "Built UI components & contributed to website improvements using HTML, CSS, JavaScript, and Bootstrap.",
+    roles: [
+      {
+        role: "Software Developer Intern",
+        period: "May 2022 – Aug 2022",
+        points: [
+          "Built UI components and shipped website improvements with HTML, CSS, JavaScript and Bootstrap.",
+        ],
+        tech: ["HTML", "CSS", "JavaScript", "Bootstrap"],
+      },
     ],
-    tech: ["HTML", "CSS", "JavaScript", "Bootstrap"],
   },
 ];
 
+function RoleBlock({ role, isLast }: { role: Role; isLast: boolean }) {
+  return (
+    <div className={isLast ? "" : "border-b border-line pb-6"}>
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+        <h4 className="text-[15px] font-semibold text-ink">{role.role}</h4>
+        <p className="font-mono text-[12.5px] text-ink-3">{role.period}</p>
+      </div>
+
+      <ul className="mt-3 space-y-2">
+        {role.points.map((point) => (
+          <li
+            key={point}
+            className="relative pl-4 text-[14.5px] leading-relaxed text-ink-2"
+          >
+            <span
+              aria-hidden
+              className="absolute left-0 top-[0.6em] h-1 w-1 rounded-full bg-accent"
+            />
+            {point}
+          </li>
+        ))}
+      </ul>
+
+      {role.tech && (
+        <ul className="mt-4 flex flex-wrap gap-1.5">
+          {role.tech.map((tech) => (
+            <li key={tech} className="tag">
+              {tech}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 export default function Experience() {
   return (
-    <div className="bg-transparent text-black p-6 flex flex-col items-center gap-6 w-full">
-      <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
-        <Growth />
-        <span>Career Journey</span>
-      </div>
-      <div className="flex flex-col gap-2 justify-center text-center">
-        <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent">
-          Work Experience
-        </div>
+    <div className="shell">
+      <p className="eyebrow">Experience</p>
+      <h2 className="section-title">Where I&apos;ve worked</h2>
 
-        <div className="text-lg text-center px-6">
-          My professional journey in web development
-        </div>
-      </div>
+      {/* Was: two decorative corner brackets, a floating gradient dot, a
+          gradient vertical rule, a drop shadow AND group-hover:scale-125 on
+          the dot — per card. A single hairline rail with one marker reads as
+          a timeline without the noise. And the card no longer claims
+          `cursor-pointer` when nothing is clickable. */}
+      <div className="relative mt-12">
+        <div
+          aria-hidden
+          className="absolute left-[7px] top-2 hidden h-[calc(100%-1rem)] w-px bg-line sm:block"
+        />
 
-      <div className="w-full lg:px-16 px-4 flex flex-col gap-8">
-        {experiences.map((exp, i) => (
-          <div key={i} className="relative group cursor-pointer">
-            <span
-              className="absolute top-0 left-0 w-16 h-20 
-               border-t-2 border-l-2 border-[#af47ff4d] group-hover:border-[#af47ff]/50 rounded-tl-2xl"
-            ></span>
+        <div className="flex flex-col gap-10">
+          {EXPERIENCE.map((company) => (
+            <article key={company.company} className="relative sm:pl-10">
+              <span
+                aria-hidden
+                className="absolute left-0 top-2 hidden h-[15px] w-[15px] rounded-full border-2 border-page bg-accent ring-1 ring-line sm:block"
+              />
 
-            <span
-              className="absolute bottom-0 right-0 w-16 h-20
-               border-b-2 border-r-2 border-[#af47ff4d] group-hover:border-[#af47ff]/50 rounded-br-2xl"
-            ></span>
-            <div className="absolute -left-4 top-8 w-8 h-8 rounded-full bg-linear-to-br from-[#8003e180] to-[#8003e180]/50 shadow-lg flex items-center justify-center group-hover:scale-125 transition-transform duration-300">
-              <div className="w-4 h-4 rounded-full bg-white"></div>
-            </div>
-            <div className="absolute -left-4 top-16 bottom-0 w-0.5 bg-linear-to-b from-[#af47ff]/50 to-[#af47ff]/10"></div>
-            <div className="bg-white border border-[#dadfe780]/50 hover:border-[#af47ff]/30 rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-all flex flex-col gap-2 ">
-              <div className="flex justify-between items-center">
-                <div className="text-xl md:text-2xl font-bold text-[#af47ff]">
-                  {exp.company}
+              <div className="card p-6 sm:p-7">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h3 className="flex items-center gap-1.5 text-[17px] font-semibold text-ink">
+                      <a
+                        href={company.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-accent-text hover:underline"
+                      >
+                        {company.company}
+                      </a>
+                      <ExternalLink size={13} className="text-ink-3" />
+                    </h3>
+                    <p className="mt-1 flex items-center gap-1.5 text-[13px] text-ink-3">
+                      <Image
+                        src="/location.png"
+                        alt=""
+                        width={13}
+                        height={13}
+                        className="opacity-70"
+                      />
+                      {company.location}
+                    </p>
+                  </div>
+
+                  {company.roles.some((role) => role.present) && (
+                    <span className="rounded-full bg-emerald-50 px-2.5 py-1 text-[11.5px] font-semibold text-emerald-700 ring-1 ring-emerald-200">
+                      Current
+                    </span>
+                  )}
                 </div>
 
-                {exp.present && (
-                  <div className="text-xs p-2 px-4 rounded-full font-bold text-white bg-[#af47ff]">
-                    Present
-                  </div>
-                )}
+                <div className="mt-6 flex flex-col gap-6">
+                  {company.roles.map((role, index) => (
+                    <RoleBlock
+                      key={role.role}
+                      role={role}
+                      isLast={index === company.roles.length - 1}
+                    />
+                  ))}
+                </div>
               </div>
-
-              <div className="text-sm text-gray-600 flex gap-1 items-center">
-                <Image
-                  src="/location.png"
-                  alt="location"
-                  width={18}
-                  height={18}
-                />
-                <span>{exp.location}</span>
-              </div>
-              {exp.expirences ? (
-                exp.expirences.map((exps, i) => (
-                  <div key={i}>
-                    <div className="flex max-lg:flex-col max-lg:items-start items-center  justify-between">
-                      <div className="font-semibold">{exps.role}</div>
-                      <div className="flex text-center gap-2 items-center">
-                        <Image
-                          src="/calendar.png"
-                          alt="calendar"
-                          width={24}
-                          height={24}
-                          className="max-lg:hidden"
-                        />
-                        <div className="text-sm  text-gray-500 ">
-                          {exps.period}
-                        </div>
-                      </div>
-                    </div>
-
-                    <ul className="list-disc max-sm:pl-1 pl-5 marker:text-[#af47ff] space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-4">
-                      {exps.points.map((p, index) => (
-                        <li key={index}>{p}</li>
-                      ))}
-                    </ul>
-                    <div className="flex flex-wrap gap-2">
-                      {exps.tech &&
-                        exps.tech.map((t, idx) => (
-                          <span
-                            key={idx}
-                            className="text-xs text-black px-3 py-1 rounded-full bg-[#af47ff1a] font-medium"
-                          >
-                            {t}
-                          </span>
-                        ))}
-                    </div>
-                  </div>
-                ))
-              ) : (
-                <>
-                  <div className="flex max-lg:flex-col max-lg:items-start items-center  justify-between">
-                    <div className="font-semibold">{exp.role}</div>
-                    <div className="flex text-center gap-2 items-center">
-                      <Image
-                        src="/calendar.png"
-                        alt="calendar"
-                        width={24}
-                        height={24}
-                        className="max-lg:hidden"
-                      />
-                      <div className="text-sm  text-gray-500 ">
-                        {exp.period}
-                      </div>
-                    </div>
-                  </div>
-
-                  <ul className="list-disc max-sm:pl-1 pl-5 marker:text-[#af47ff]  space-y-2 text-gray-700 border-b border-[#dadfe780] pb-6 mb-1 max-md:text-sm">
-                    {exp.points.map((p, index) => (
-                      <li key={index}>{p}</li>
-                    ))}
-                  </ul>
-
-                  <div className="flex flex-wrap gap-2">
-                    {exp.tech &&
-                      exp.tech.map((t, idx) => (
-                        <span
-                          key={idx}
-                          className="text-xs text-black px-3 py-1 rounded-full bg-[#af47ff1a] font-medium"
-                        >
-                          {t}
-                        </span>
-                      ))}
-                  </div>
-                </>
-              )}
-            </div>
-          </div>
-        ))}
+            </article>
+          ))}
+        </div>
       </div>
     </div>
   );

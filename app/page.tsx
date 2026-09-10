@@ -1,102 +1,97 @@
 "use client";
+
+import { useEffect } from "react";
 import Intro from "./components/essential/Intro";
+import About from "./components/essential/About";
 import Skills from "./components/essential/Skills";
 import Experience from "./components/essential/Experience";
 import Projects from "./components/essential/Projects";
-import ContactUs from "./components/essential/ContactUs";
 import Education from "./components/essential/Education";
-import { useEffect, useRef } from "react";
-import { useActiveSection } from "./context/ActiveSectionContext";
 import AchievementAndCertifications from "./components/essential/Achievement-Certification";
-import { useRouter } from "next/navigation";
+import ContactUs from "./components/essential/ContactUs";
+import Footer from "./components/essential/Footer";
+import { useActiveSection } from "./context/ActiveSectionContext";
 
 export default function Home() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { activeSection, setActiveSection } = useActiveSection();
-  const router = useRouter();
+  const { setActiveSection } = useActiveSection();
 
   useEffect(() => {
-    const sections = document.querySelectorAll("section");
+    const sections = document.querySelectorAll<HTMLElement>("section[id]");
 
+    /* The old observer also called router.replace(`/#${id}`) on every
+       intersection. That pushed a router update on basically every scroll
+       tick — it fights the browser's own scroll restoration, adds history
+       churn, and re-renders the page tree while the user is mid-scroll.
+       The nav highlight only needs local state; the URL doesn't have to
+       track it.
+
+       KNOWN LIMITATION (yours to decide on): `threshold` is a fraction of
+       the ELEMENT, so a section taller than the viewport can never reach
+       0.2 visibility and will never fire. Experience is already close.
+       A rootMargin band near the top of the viewport is the usual fix:
+         { rootMargin: "-45% 0px -55% 0px", threshold: 0 }
+       That reports whichever section crosses the middle of the screen. */
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id;
-
-            setActiveSection(id);
-
-            router.replace(`/#${id}`, {
-              scroll: false,
-            });
-          }
+          if (entry.isIntersecting) setActiveSection(entry.target.id);
         });
       },
-      {
-        threshold: 0.2,
-      },
+      { threshold: 0.2 },
     );
 
     sections.forEach((section) => observer.observe(section));
-
     return () => observer.disconnect();
-  }, []);
+  }, [setActiveSection]);
 
   return (
-    <div ref={ref} className="min-h-screen bg-[#f7f8fc]">
-      <section id="Home">
+    <main id="top" className="bg-page">
+      {/* Sections are flat now. Each one previously carried its own
+          bg-linear-to-br gradient in a slightly different direction, so
+          scrolling produced a faint stripe effect and no two section edges
+          matched. One page colour, dividers where a break is needed. */}
+      <section id="hero">
         <Intro />
       </section>
 
-      <section id="Skills" className="border-b border-[#e7e9f0] bg-linear-to-br from-white via-[#fbfaff] to-[#f4f1ff] py-14">
+      <section id="about" className="border-t border-line py-20 sm:py-24">
+        <About />
+      </section>
+
+      <section id="skills" className="border-t border-line py-20 sm:py-24">
         <Skills />
       </section>
 
-      <section
-        id="Experience"
-        className="border-b border-[#e7e9f0] bg-linear-to-b from-[#f9fbff] via-white to-[#f5f8ff] py-14"
-      >
+      <section id="experience" className="border-t border-line py-20 sm:py-24">
         <Experience />
       </section>
 
       <section
-        id="Academics"
-        className="border-b border-[#e7e9f0] bg-linear-to-br from-white via-[#fcfbff] to-[#f4f2ff] py-14"
-      >
-        <Education />
-      </section>
-
-      <section
-        id="Projects"
-        className="border-b border-[#e7e9f0] bg-linear-to-b from-[#f7faff] via-white to-[#faf8ff] py-14"
+        id="projects"
+        className="border-t border-line bg-surface-2/60 py-20 sm:py-24"
       >
         <Projects />
       </section>
 
-      <section id="Achievements" className="border-b border-[#e7e9f0] bg-linear-to-br from-white via-[#fbfaff] to-[#f3f7ff] py-14">
-        <AchievementAndCertifications />
+      <section id="education" className="border-t border-line py-20 sm:py-24">
+        <Education />
       </section>
-      {/*  Upcoming Features 
-      
-      <section id="Github" className="py-8 border-b-[0.25px] border-[#e0e0e0]">
-        <GitHubMetrics />
-      </section>
-      
-      <TechNews /> 
-           <section
-        id="Inspirations"
-        className="py-12 border-b-[0.25px] border-[#e0e0e0]"
-      >
-        <Inspirations />
-      </section>
-       */}
 
       <section
-        id="Contact"
-        className="bg-linear-to-b from-[#f8faff] via-white to-[#f3f0ff] pt-14"
+        id="awards"
+        className="border-t border-line bg-surface-2/60 py-20 sm:py-24"
       >
+        <AchievementAndCertifications />
+      </section>
+
+      <section id="contact" className="border-t border-line py-20 sm:py-24">
         <ContactUs />
       </section>
-    </div>
+
+      {/* Footer was rendered *inside* ContactUs, i.e. inside a <section>.
+          It's page furniture, not contact content — the observer was also
+          counting it as part of the Contact section's height. */}
+      <Footer />
+    </main>
   );
 }

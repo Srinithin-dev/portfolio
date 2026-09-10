@@ -1,16 +1,18 @@
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import UnderDevelopment from "../components/visualizer/UnderDevelopment";
+import PlayGround from "../components/visualizer/PlayGround";
+
 export default function StackVisualizerPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#f8fafc] text-slate-800">
       <header className="border-b border-slate-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
           <Link
-            href="/tools"
+            href="/"
             className="inline-flex items-center gap-2 text-sm font-semibold text-slate-500 transition hover:text-slate-900"
           >
-            <ArrowLeft size={17} /> Back to tools
+            <ArrowLeft size={17} /> Back to portfolio
           </Link>
           <Link href="/" className="font-black tracking-tight">
             &lt;ST /&gt;
@@ -18,32 +20,43 @@ export default function StackVisualizerPage() {
         </div>
       </header>
       <UnderDevelopment />
-      <section className="flex flex-col items-center">
-        <h1 className="mt-6 text-5xl font-black tracking-[-0.05em] text-slate-900 sm:text-6xl">
-          Understanding Stacks
-        </h1>
-        <p className="mt-6 max-w-xl text-lg leading-8 text-slate-500">
-          Data Structure through interactive visualizations and real-world
-          examples.
-        </p>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <Link
-            href="/tools"
-            className="inline-flex items-center gap-2 rounded-xl bg-slate-800 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-700"
-          >
-            Try the Visualizer
-          </Link>
-          <a
-            href="mailto:srinithin@example.com?subject=Stack%20Visualizer%20updates"
-            className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
-          >
-            Start Learning
-          </a>
+      <section className="flex flex-col gap-16 items-center">
+        <div className="flex flex-col gap-8 items-center justify-center text-center">
+          <h1 className="text-5xl font-black tracking-[-0.05em] text-slate-900 sm:text-6xl">
+            Understanding Stacks
+          </h1>
+          <p className="max-w-xl text-lg leading-8 text-slate-500">
+            Data Structure through interactive visualizations and real-world
+            examples.
+          </p>
+
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="#playground"
+              className="inline-flex items-center gap-2 rounded-xl bg-slate-800 px-5 py-3 text-sm font-bold text-white transition hover:bg-slate-700"
+            >
+              Try the Visualizer
+            </Link>
+            <a
+              href="mailto:Srinithin.in@gmail.com?subject=Stack%20Visualizer%20updates"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:bg-slate-50"
+            >
+              Start Learning
+            </a>
+          </div>
         </div>
-        <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
-          Basics
+        <div className="items-center gap-2 justify-center flex flex-col">
+          <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
+            Basics
+          </div>
+          <p className="text-5xl font-black tracking-[-0.05em] text-slate-900 sm:text-6xl">
+            What is a Stack?
+          </p>
+          <p className="max-w-xl text-lg leading-8 text-slate-500">
+            A linear data structure that follows the LIFO principle.
+          </p>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between w-4/5">
           <div className="relative mx-auto w-full max-w-md rounded-3xl border border-slate-200 bg-white p-6 shadow-2xl shadow-slate-200/70">
             <div className="space-y-3 rounded-2xl bg-slate-50 p-5">
               <ul className="list-disc marker:text-violet-500">
@@ -100,16 +113,17 @@ export default function StackVisualizerPage() {
           </div>
         </div>
       </section>
-      <section className="flex flex-col items-center">
+      <section id="playground" className="flex flex-col gap-8 items-center scroll-mt-24">
         <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-4 py-2 text-sm font-bold text-violet-700">
           Interactive
         </div>
-        <h1 className="mt-6 text-5xl font-black tracking-[-0.05em] text-slate-900 sm:text-6xl">
+        <h1 className="text-5xl font-black tracking-[-0.05em] text-slate-900 sm:text-6xl">
           Stack Playground
         </h1>
-        <p className="mt-6 max-w-xl text-lg leading-8 text-slate-500">
+        <p className="max-w-xl text-lg leading-8 text-slate-500">
           Push, pop and reset to watch the stack respond in real time.
         </p>
+        <PlayGround />
       </section>
     </main>
   );

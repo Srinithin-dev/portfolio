@@ -1,101 +1,121 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
+import { EMAIL, LINKEDIN_URL, GITHUB_URL } from "../../lib/profile";
+
+const socials = [
+  { name: "LinkedIn", href: LINKEDIN_URL, image: "/linkedin.png" },
+  { name: "GitHub", href: GITHUB_URL, image: "/github.png" },
+  { name: "Email", href: `mailto:${EMAIL}`, image: "/mail.png" },
+];
+
+/* Breadth first. The previous version led with integrations, which reads as
+   "integration specialist" — a narrower role than the one being applied for.
+   Full-stack is the claim; integrations is the differentiator underneath it. */
+const capabilities = [
+  {
+    label: "Front end",
+    value: "React · Next.js · TypeScript · Redux Toolkit",
+  },
+  { label: "Back end", value: "Node.js · Express · REST APIs · OAuth 2.0" },
+  { label: "Data", value: "MongoDB · Cosmos DB" },
+];
 
 export default function Intro() {
-  const router = useRouter();
-  const socialMedia = [
-    {
-      name: "LinkedIn",
-      href: "https://www.linkedin.com/in/srinithin-thangadurai-1b237a23b/",
-      image: "/linkedin.png",
-    },
-    { name: "Email", href: "mailto:nithinsri53@gmail.com", image: "/mail.png" },
-    {
-      name: "GitHub",
-      href: "https://github.com/Srinithin-dev",
-      image: "/github.png",
-    },
-  ];
-
-  const downloadResume = () => {
-    const link = document.createElement("a");
-    link.href = "/resume.pdf";
-    link.download = "srinithin-resume.pdf";
-    link.click();
-  };
-
   return (
-    <div className="relative isolate overflow-hidden bg-[#f5f6fa] px-5 pb-16 pt-28 text-[#1d2530] sm:px-8 sm:pb-24 sm:pt-32">
-      <div className="absolute -left-40 top-24 -z-10 h-80 w-80 rounded-full bg-violet-300/30 blur-3xl" />
-      <div className="absolute -right-28 top-12 -z-10 h-96 w-96 rounded-full bg-sky-200/50 blur-3xl" />
-      <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-20">
-        <div className="order-2 text-center lg:order-1 lg:text-left">
-          <div className="inline-flex items-center gap-2 rounded-full border border-violet-200 bg-white/80 px-4 py-2 text-sm font-semibold text-violet-700 shadow-sm">
-            <span className="h-2 w-2 rounded-full bg-emerald-500" /> Available
-            for opportunities
+    <div className="relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-36">
+      <div
+        aria-hidden
+        className="absolute -top-40 left-1/2 -z-10 h-[26rem] w-[46rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
+      />
+
+      <div className="shell grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
+        <div className="order-2 lg:order-1">
+          <div className="inline-flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-[13px] font-medium text-ink-2">
+            <span
+              aria-hidden
+              className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+            />
+            Open to full-stack roles
           </div>
-          <h1 className="mt-6 max-w-3xl text-4xl font-bold leading-[1.08] tracking-[-0.045em] sm:text-5xl lg:text-6xl">
-            Building thoughtful{" "}
-            <span className="text-[#af47ff]">web experiences</span> that
-            perform.
+
+          <h1 className="mt-6 text-[2.1rem] font-semibold leading-[1.1] sm:text-5xl lg:text-[3.35rem]">
+            Full-stack developer taking features{" "}
+            <span className="text-accent-text">from UI to database.</span>
           </h1>
-          <p className="mt-6 text-lg font-semibold text-slate-600 sm:text-xl">
-            Hi, I&apos;m Srinithin — Full-Stack Web Developer.
-          </p>
-          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-slate-600 lg:mx-0">
-            I create responsive, scalable web applications with React, Next.js,
-            TypeScript, Node.js, and MongoDB. I care about clean interfaces,
-            reliable systems, and the small details that make products feel
-            effortless.
+
+          <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-ink-2">
+            I&apos;m Srinithin. Four years building web applications — React
+            and Next.js on the front, Node, Express and MongoDB behind them.
+            I&apos;ve shipped a 12-page site with a CMS panel, a procurement
+            module, and a reporting dashboard. The layer I&apos;m unusually
+            good at is where two systems have to agree with each other.
           </p>
 
-          <div className="mt-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-            <button
-              onClick={() => router.push("/#Projects", { scroll: true })}
-              className="inline-flex items-center gap-2 rounded-xl bg-[#1d2530] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-slate-300 transition hover:-translate-y-0.5 hover:bg-[#af47ff]"
+          {/* Says "full-stack" with evidence rather than adjectives, and it
+              echoes the facts strip in the About section so the page has a
+              consistent pattern instead of a one-off hero treatment. */}
+          <dl className="mt-9 grid gap-x-8 gap-y-5 sm:grid-cols-3">
+            {capabilities.map((item) => (
+              <div key={item.label}>
+                <dt className="text-[11.5px] font-semibold uppercase tracking-[0.12em] text-ink-3">
+                  {item.label}
+                </dt>
+                <dd className="mt-1.5 text-[13.5px] leading-relaxed text-ink">
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-2 rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-accent-text"
             >
-              View my work <ArrowRight size={17} />
-            </button>
-            <button
-              onClick={() => router.push("/#Contact", { scroll: true })}
-              className="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-5 py-3 text-sm font-bold text-slate-700 transition hover:border-violet-300 hover:text-violet-700"
+              See my work <ArrowRight size={16} />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 rounded-xl border border-line-strong bg-surface px-5 py-3 text-sm font-semibold text-ink-2 transition hover:border-accent-text hover:text-accent-text"
             >
-              <Mail size={17} /> Get in touch
-            </button>
-            <button
-              onClick={downloadResume}
-              className="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-bold text-slate-600 transition hover:bg-white hover:text-slate-900"
+              <Mail size={16} /> Get in touch
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Srinithin-Thangadurai-Resume.pdf"
+              className="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-ink-3 transition hover:bg-surface-2 hover:text-ink"
             >
-              <Download size={17} /> Resume
-            </button>
+              <Download size={16} /> Resume
+            </a>
           </div>
 
-          <div className="mt-9 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-sm font-medium text-slate-500 lg:justify-start">
-            <span className="inline-flex items-center gap-2">
-              <MapPin size={16} className="text-[#af47ff]" /> Coimbatore, India
+          <div className="mt-9 flex flex-wrap items-center gap-x-5 gap-y-3 text-[13px] text-ink-3">
+            <span className="inline-flex items-center gap-1.5">
+              <MapPin size={15} className="text-accent-text" />
+              Coimbatore, India
             </span>
-            <span className="hidden h-4 w-px bg-slate-300 sm:block" />
-            <span>3+ years building for the web</span>
+            <span className="h-3.5 w-px bg-line-strong" />
+            <span>4 years professional experience</span>
+            <span className="h-3.5 w-px bg-line-strong" />
+            <span>Currently at Fountain Hills Technologies</span>
           </div>
 
-          <div className="mt-6 flex justify-center gap-3 lg:justify-start">
-            {socialMedia.map((media) => (
+          <div className="mt-7 flex gap-2">
+            {socials.map((media) => (
               <Link
                 key={media.name}
                 href={media.href}
                 target="_blank"
+                rel="noopener noreferrer"
                 aria-label={media.name}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-md"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-line bg-surface transition hover:-translate-y-0.5 hover:border-accent-text"
               >
                 <Image
                   src={media.image}
                   alt=""
-                  width={20}
-                  height={20}
+                  width={18}
+                  height={18}
                   className="object-contain"
                 />
               </Link>
@@ -103,27 +123,26 @@ export default function Intro() {
           </div>
         </div>
 
-        <div className="order-1 mx-auto w-full max-w-sm lg:order-2 lg:max-w-md">
-          <div className="relative">
-            <div className="absolute -inset-4 rounded-[2.25rem] bg-linear-to-br from-violet-300/60 via-transparent to-sky-200/70 blur-xl" />
-            <div className="relative rounded-4xl border border-white/80 bg-white p-3 shadow-2xl shadow-slate-300/60">
-              <div className="relative overflow-hidden rounded-[1.45rem] bg-slate-200">
-                <Image
-                  alt="Srinithin Thangadurai"
-                  src="/ada.png"
-                  width={520}
-                  height={430}
-                  priority
-                  className="aspect-[1.08] w-full object-cover object-top"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-linear-to-t from-slate-950/70 to-transparent px-5 pb-5 pt-16 text-white">
-                  <p className="text-sm font-semibold">Full-stack developer</p>
-                  <p className="mt-1 text-xs text-white/75">
-                    React · Next.js · Node.js · TypeScript
-                  </p>
-                </div>
-              </div>
-            </div>
+        {/* The new photo is a transparent-background cutout, so it needs
+            something behind it or it floats. A tinted rounded panel with the
+            subject bottom-aligned makes the chest crop read as deliberate —
+            `object-bottom` is what does that. No dark gradient overlay this
+            time; it was cropping the face on narrow screens. */}
+        <div className="order-1 mx-auto w-full max-w-[320px] lg:order-2 lg:max-w-[400px]">
+          <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-linear-to-b from-accent-wash to-surface-2">
+            <div
+              aria-hidden
+              className="absolute inset-x-8 bottom-0 top-10 rounded-t-full bg-surface/60"
+            />
+            <Image
+              alt="Srinithin Thangadurai"
+              src="/srinithin.png"
+              width={1278}
+              height={1230}
+              priority
+              sizes="(max-width: 1024px) 320px, 400px"
+              className="relative aspect-[1/1.05] w-full object-contain object-bottom"
+            />
           </div>
         </div>
       </div>

@@ -1,74 +1,102 @@
 import AchievementCard from "../AchievementCard";
 
+/* Corrected against the resume. The site previously said:
+     "Smart India Hackathon — 2023 — Participant"
+   The resume says national-level finalist in 2020 AND 2nd place in 2022.
+   "Participant" was underselling the single strongest line on the CV.
+
+   Also: "Nehru College Hackathon … First Place" vs the resume's
+   "Nehru Bio Hackathon — Winner". Same event, two names, two phrasings. */
 const ACHIEVEMENTS = [
   {
-    id: 1,
+    id: "sih",
     title: "Smart India Hackathon",
-    organization: "National Innovation Competition",
-    year: "2023",
+    organization: "Government of India — national competition",
+    year: "2020 & 2022",
+    status: "2nd place · National finalist",
     description:
-      "Selected to compete in India's largest national hackathon, collaborating on innovative software solutions for real-world problems.",
-    status: "Participant",
+      "National finalist in 2020, then placed 2nd in 2022 — India's largest hackathon, building software solutions for problem statements submitted by government ministries.",
     icon: "/sih_Logo.png",
     certificate:
       "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/SIH_Finalist",
-    color: "purple",
   },
   {
-    id: 2,
-    title: "Nehru College Hackathon",
-    organization: "Inter-College Competition",
+    id: "nehru",
+    title: "Nehru Bio Ideathon",
+    organization: "Nehru College — inter-college competition",
     year: "2022",
+    status: "Winner",
     description:
-      "Built an innovative software solution under time pressure and secured First Place among participating teams.",
-    status: "1st Place Winner",
+      "Won first place, designing and building a working solution under a fixed time limit against other college teams.",
     icon: "/bio-Ideathon_logo.png",
     certificate:
       "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Bio-Ideathon%20Certificate",
-    color: "yellow",
   },
   {
-    id: 3,
-    title: "Pumo Technovation",
-    organization: "Software Developer Intern",
-    year: "2022",
-    description:
-      "Completed a software development internship, contributing to web applications using HTML, CSS, JavaScript and Bootstrap.",
-    status: "Completed",
-    icon: "/pumo_Logo.png",
-    certificate:
-      "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Pumo%20Technovation%20Certificate",
-    color: "green",
-  },
-  {
-    id: 4,
+    id: "namaste-js",
     title: "Namaste JavaScript",
-    organization: "Akshay Saini",
+    organization: "NamasteDev — Akshay Saini",
     year: "2023",
-    description:
-      "Successfully completed the JavaScript deep-dive course covering execution context, closures, async JavaScript and advanced concepts.",
     status: "Certified",
+    description:
+      "Deep-dive on execution context, the call stack, closures, hoisting and async JavaScript.",
     icon: "/namasteDev_Logo.png",
     certificate:
       "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/namaste-javascript.webp",
-    color: "blue",
+  },
+  {
+    id: "namaste-react",
+    title: "Namaste React",
+    organization: "NamasteDev — Akshay Saini",
+    year: "2026",
+    status: "Certified",
+    description:
+      "Hooks, reconciliation, custom hooks, code splitting, Redux Toolkit and testing — built CineGPT alongside the course.",
+    icon: "/namasteDev_Logo.png",
+    certificate: "https://namastedev.com/srinithin8910/certificates/namaste-react",
+  },
+  {
+    id: "namaste-node",
+    title: "Namaste Node.js",
+    organization: "NamasteDev — Akshay Saini",
+    year: "2026",
+    status: "Certified",
+    description:
+      "Node internals, the event loop, Express, MongoDB with Mongoose, auth and API design from first principles.",
+    icon: "/namasteDev_Logo.png",
+    certificate: "https://namastedev.com/srinithin8910/certificates/namaste-node",
+  },
+  {
+    id: "pumo",
+    title: "PUMO Technovation Internship",
+    organization: "Software Developer Intern",
+    year: "2022",
+    status: "Completed",
+    description:
+      "Three-month internship building UI components and shipping website improvements with HTML, CSS, JavaScript and Bootstrap.",
+    icon: "/pumo_Logo.png",
+    certificate:
+      "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Pumo%20Technovation%20Certificate",
   },
 ];
+
 export default function AchievementAndCertifications() {
   return (
-    <div className="bg-transparent text-black p-6 flex flex-col items-center gap-6 w-full">
-      <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
-        <span>Recognition</span>
-      </div>
-      <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
-        Achievements & Certifications
-      </div>
-      <p className="text-base sm:text-lg leading-7 text-[#627084] mb-10 text-center max-w-2xl">
-        Recognition earned through competitions, internships and continuous
-        learning.
+    <div className="shell">
+      <p className="eyebrow">Recognition</p>
+      <h2 className="section-title">Awards & certifications</h2>
+      <p className="section-lead">
+        Competitions, an internship, and the courses I actually finished.
       </p>
 
-      <div className="grid gap-8 max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-4">
+      {/* Was `max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-4` — a
+          max-width-first stack, which is the inverse of how Tailwind is
+          meant to be read and breaks at the 640–1024 range. Standard
+          mobile-first ladder instead.
+
+          3 columns, not 4: with six cards a 4-wide grid leaves two empty
+          cells on the second row, which reads as unfinished. */}
+      <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {ACHIEVEMENTS.map((achievement) => (
           <AchievementCard key={achievement.id} achievement={achievement} />
         ))}

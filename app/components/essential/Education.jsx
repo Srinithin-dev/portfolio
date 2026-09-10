@@ -1,69 +1,71 @@
 import Image from "next/image";
+
+const EDUCATION = [
+  {
+    /* Resume spells this "Sri Krishna College of Arts and Science" — matched
+       so the CV and the site don't disagree. */
+    name: "Sri Krishna College of Arts and Science",
+    course: "M.Sc Software Systems",
+    period: "2018 – 2023",
+    result: "CGPA 8.0",
+    description:
+      "Five-year integrated programme covering software development and system design.",
+    image: "/education.png",
+  },
+  {
+    name: "PSG Sarvajana Higher Secondary School",
+    course: "Higher Secondary — Biology & Mathematics",
+    period: "2016 – 2018",
+    description: "Bio-Maths stream.",
+    image: "/school.png",
+  },
+];
+
 export default function Education() {
-  const educationDetails = [
-    {
-      name: "Sri Krishna Arts and Science College",
-      course: "M.Sc Software Systems",
-      period: "2018 – 2023",
-      description:
-        "Graduated with 8.0 CGPA, specializing in software development and system design.",
-      image: "/education.png",
-      alt: "education",
-    },
-    {
-      name: "PSG Sarvajana Higher Secondary School",
-      course: "Higher Secondary – Bio Maths",
-      period: "2016 – 2018",
-      description:
-        "Completed schooling with a focus on Biology and Mathematics.",
-      image: "/school.png",
-      alt: "school",
-    },
-  ];
-
   return (
-    <div className="bg-transparent text-black p-6 flex flex-col items-center gap-6 w-full lg:px-20 px-4">
-      <div className="flex text-sm gap-2 justify-center items-center p-2 px-4 rounded-2xl bg-[#af47ff1a] font-medium text-[#af47ff]">
-        <span>Education</span>
-      </div>
+    <div className="shell">
+      <p className="eyebrow">Education</p>
+      <h2 className="section-title">Academic background</h2>
 
-      <div className="text-3xl sm:text-4xl font-bold leading-tight tracking-tight bg-linear-to-r from-[#1d2530] to-[#af47ff] bg-clip-text text-transparent text-center">
-        Academic Background
-      </div>
-      <div className="flex gap-6 max-md:flex-col">
-        {educationDetails.map((education) => (
-          <div
-            key={education.name}
-            className="bg-white border border-[#dadfe780]/50 hover:border-[#af47ff]/30 rounded-2xl shadow-lg p-6 md:p-8 hover:shadow-xl transition-all flex gap-2 w-full"
-          >
-            <div className="bg-[#af47ff1a] h-fit p-1.5 rounded-lg">
+      <div className="mt-10 grid gap-5 md:grid-cols-2">
+        {EDUCATION.map((item) => (
+          <article key={item.name} className="card flex gap-4 p-6">
+            <div className="grid h-11 w-11 shrink-0 place-items-center rounded-lg border border-line bg-surface-2">
               <Image
-                src={education.image}
-                alt={education.alt}
-                width={35}
-                height={35}
+                src={item.image}
+                alt=""
+                width={24}
+                height={24}
+                className="h-6 w-6 object-contain"
               />
             </div>
-            <div className="flex flex-col gap-1">
-              <div className="font-bold">{education.name}</div>
-              <div className="text-xs text-[#af47ff] font-medium">
-                {education.course}
-              </div>
-              <div className="text-xs text-[#627084] flex gap-2 items-center">
-                <Image
-                  src="/calendar.png"
-                  alt="calendar"
-                  width={24}
-                  height={24}
-                  className="max-lg:hidden"
-                />
-                <div>{education.period}</div>
-              </div>
-              <div className="text-base text-[#627084]">
-                {education.description}
-              </div>
+
+            <div className="min-w-0">
+              <h3 className="text-[15.5px] font-semibold leading-snug text-ink">
+                {item.name}
+              </h3>
+              <p className="mt-1 text-[13.5px] font-medium text-accent-text">
+                {item.course}
+              </p>
+
+              {/* The calendar PNG next to the date was hidden below lg
+                  (`max-lg:hidden`), so the row had a phantom gap on mobile
+                  where an invisible image used to be. Plain text now. */}
+              <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[12.5px] text-ink-3">
+                <span>{item.period}</span>
+                {item.result && (
+                  <>
+                    <span aria-hidden>·</span>
+                    <span>{item.result}</span>
+                  </>
+                )}
+              </p>
+
+              <p className="mt-3 text-[14px] leading-relaxed text-ink-2">
+                {item.description}
+              </p>
             </div>
-          </div>
+          </article>
         ))}
       </div>
     </div>

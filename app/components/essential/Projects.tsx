@@ -7,7 +7,7 @@ type Project = {
   detail?: string;
   stack: string[];
   cover?: string;
-  demoLink?: string;
+  demoLink?: string | string[];
   repoLink?: string;
   internal?: boolean;
   context?: string;
@@ -54,7 +54,10 @@ const WORK: Project[] = [
     blurb:
       "Two published integrations — Parent Child & Grandchild, and ZoomInfo Sales — plus eight more across the Freshworks suite.",
     stack: ["JavaScript", "Freshworks SDK", "REST APIs"],
-    demoLink: "https://www.freshworks.com/apps/",
+    demoLink: [
+      "Parent Child & Grandchild - https://www.freshworks.com/apps/parent_child_grandchild/.",
+      "ZoomInfo Sales - https://www.freshworks.com/apps/zoominfo_salesos/.",
+    ],
     context: "Konnectify",
   },
 ];
@@ -170,14 +173,26 @@ export default function Projects() {
                   <Lock size={12} /> Internal — not publicly available
                 </p>
               ) : (
-                <a
-                  href={project.demoLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent-text hover:underline"
-                >
-                  View on Marketplace <ExternalLink size={13} />
-                </a>
+                <>
+                  <p className="text-[12px] font-semibold leading-snug text-ink">
+                    View on Marketplace
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-1.5 text-[13px] text-ink-2">
+                    {Array.isArray(project.demoLink) &&
+                      project.demoLink.map((link) => (
+                        <a
+                          href={link.split("-")[1]}
+                          key={link.split("-")[0]}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent-text hover:underline"
+                        >
+                          {link.split("-")[0]}
+                          <ExternalLink size={13} />
+                        </a>
+                      ))}
+                  </div>
+                </>
               )}
             </div>
           </article>

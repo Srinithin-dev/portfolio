@@ -13,10 +13,6 @@ type Company = {
   company: string;
   location: string;
   link: string;
-  /* Renamed from `expirences`. Also now always an array — the old shape had
-     either a top-level role OR a nested list, so the component carried two
-     near-identical 40-line render branches that had already drifted apart
-     (one showed the calendar icon, the other didn't). */
   roles: Role[];
 };
 
@@ -57,9 +53,6 @@ const EXPERIENCE: Company[] = [
     roles: [
       {
         role: "Full Stack Developer",
-        /* The site said "Jun 2023 – July 2024" and the resume said
-           "Aug 2023 – July 2024". Using the resume — a recruiter comparing
-           the two will read any mismatch as carelessness. */
         period: "Aug 2023 – July 2024",
         points: [
           "Led a team of four developers building an iPaaS ecosystem with SaaS integrations including Zoho Desk, Monday.com, HubSpot and Cliniko, delivering multiple application integrations in parallel.",
@@ -144,11 +137,6 @@ export default function Experience() {
       <p className="eyebrow">Experience</p>
       <h2 className="section-title">Where I&apos;ve worked</h2>
 
-      {/* Was: two decorative corner brackets, a floating gradient dot, a
-          gradient vertical rule, a drop shadow AND group-hover:scale-125 on
-          the dot — per card. A single hairline rail with one marker reads as
-          a timeline without the noise. And the card no longer claims
-          `cursor-pointer` when nothing is clickable. */}
       <div className="relative mt-12">
         <div
           aria-hidden

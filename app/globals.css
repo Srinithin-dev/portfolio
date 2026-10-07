@@ -113,15 +113,12 @@
     color: var(--ink);
   }
 
-  /* Visible focus for keyboard users, invisible for mouse users. */
   :focus-visible {
     outline: 2px solid var(--accent-text);
     outline-offset: 2px;
     border-radius: 4px;
   }
 
-  /* Respect the OS "reduce motion" setting. Every hover-lift and
-     transition on the site currently ignores it. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -137,9 +134,6 @@
 }
 
 @layer components {
-  /* Section shell — consistent max width and gutters everywhere. Sections
-     were each declaring their own px-4/lg:px-16/lg:px-20, so content edges
-     didn't line up between them. */
   .shell {
     width: 100%;
     max-width: 72rem;
@@ -153,7 +147,6 @@
     }
   }
 
-  /* Section heading, replacing the pill-badge + gradient-text pattern. */
   .eyebrow {
     font-size: 0.75rem;
     font-weight: 600;

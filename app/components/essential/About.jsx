@@ -14,26 +14,22 @@ export default function About() {
       <h2 className="section-title">How I got here, and what I&apos;m after</h2>
 
       <div className="mt-8 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-        {/* First person, specific, and it admits to something. Generic
-            third-person "passionate developer" copy is the fastest way to
-            make a portfolio read as templated. */}
         <div className="max-w-2xl space-y-5 text-[16.5px] leading-relaxed text-ink-2">
           <p>
             I work across the stack. On the front end that&apos;s React and
-            Next.js with TypeScript and Redux Toolkit — responsive rebuilds,
-            SEO work, a blog and CMS panel, a procurement module with dynamic
-            form logic. On the back end it&apos;s Node and Express against
-            MongoDB and Cosmos DB, deployed on Azure App Service. I&apos;m
-            comfortable owning a feature from the component down to the query.
+            Next.js with TypeScript and Redux Toolkit — responsive rebuilds, SEO
+            work, a blog and CMS panel, a procurement module with dynamic form
+            logic. On the back end it&apos;s Node and Express against MongoDB
+            and Cosmos DB, deployed on Azure App Service. I&apos;m comfortable
+            owning a feature from the component down to the query.
           </p>
           <p>
             I started at Konnectify in 2022 shipping Freshworks Marketplace
             apps, and ten of those later I was leading a team of four on an
             iPaaS platform — Zoho Desk, Monday.com, HubSpot, Cliniko. At
-            Fountain Hills I built a reporting dashboard that aggregates
-            metrics from five security platforms and mails clients their
-            monthly report on a schedule, replacing a process that used to eat
-            most of a week.
+            Fountain Hills I built a reporting dashboard that aggregates metrics
+            from five security platforms and mails clients their monthly report
+            on a schedule, replacing a process that used to eat most of a week.
           </p>
           <p>
             That path means I&apos;m unusually comfortable with the seams —
@@ -45,9 +41,9 @@ export default function About() {
           <p>
             Outside work I go back over fundamentals deliberately. I finished
             Namaste JavaScript, React and Node, and CineGPT below came out of
-            those — I wanted somewhere to actually use the patterns rather
-            than just watch them. The DSA visualizers were the same idea:
-            easier to understand a structure when you can watch it move.
+            those — I wanted somewhere to actually use the patterns rather than
+            just watch them. The DSA visualizers were the same idea: easier to
+            understand a structure when you can watch it move.
           </p>
         </div>
 

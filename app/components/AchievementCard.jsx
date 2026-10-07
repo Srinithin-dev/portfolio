@@ -3,15 +3,8 @@ import { ExternalLink } from "lucide-react";
 
 export default function AchievementCard({ achievement }) {
   return (
-    /* `h-full` + `flex-col` + `flex-1` on the description is what keeps the
-       four cards the same height and their buttons on one line. Without it
-       the grid rows stretched to the tallest card but each card's footer
-       floated wherever its own text ended. */
     <article className="card flex h-full flex-col p-6 transition-colors hover:border-line-strong">
       <div className="flex items-start gap-3">
-        {/* Logos were rendering at 125×125 inside a card with ~250px of
-            usable width, so they dominated the card and pushed the title
-            below the fold of the visible area. */}
         <div className="grid h-11 w-11 shrink-0 place-items-center overflow-hidden rounded-lg border border-line bg-surface-2">
           <Image
             src={achievement.icon}

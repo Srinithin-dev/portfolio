@@ -2,8 +2,6 @@ import Image from "next/image";
 
 const EDUCATION = [
   {
-    /* Resume spells this "Sri Krishna College of Arts and Science" — matched
-       so the CV and the site don't disagree. */
     name: "Sri Krishna College of Arts and Science",
     course: "M.Sc Software Systems",
     period: "2018 – 2023",
@@ -48,9 +46,6 @@ export default function Education() {
                 {item.course}
               </p>
 
-              {/* The calendar PNG next to the date was hidden below lg
-                  (`max-lg:hidden`), so the row had a phantom gap on mobile
-                  where an invisible image used to be. Plain text now. */}
               <p className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[12.5px] text-ink-3">
                 <span>{item.period}</span>
                 {item.result && (

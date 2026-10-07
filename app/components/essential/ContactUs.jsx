@@ -1,12 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import FormSubmission from "../FormSubmission";
-import {
-  EMAIL,
-  WHATSAPP_URL,
-  LINKEDIN_URL,
-  MAPS_URL,
-} from "../../lib/profile";
+import { EMAIL, WHATSAPP_URL, LINKEDIN_URL, MAPS_URL } from "../../lib/profile";
 
 const CONTACT_LINKS = [
   {
@@ -44,8 +39,8 @@ export default function ContactUs() {
       <p className="eyebrow">Contact</p>
       <h2 className="section-title">Get in touch</h2>
       <p className="section-lead">
-        Open to full-stack roles and happy to talk through a problem either
-        way. Email is fastest.
+        Open to full-stack roles and happy to talk through a problem either way.
+        Email is fastest.
       </p>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-14">
@@ -56,10 +51,6 @@ export default function ContactUs() {
               href={item.href}
               target={item.external ? "_blank" : undefined}
               rel={item.external ? "noopener noreferrer" : undefined}
-              /* Was a centred 4-across grid of hover:scale-105 tiles. Scaling
-                 a bordered card on hover makes the 1px border visibly
-                 blur — a colour/border change is steadier, and left-aligned
-                 rows are easier to scan than centred ones. */
               className="card flex items-center gap-3.5 p-4 transition-colors hover:border-accent-text"
             >
               <Image
@@ -67,7 +58,7 @@ export default function ContactUs() {
                 alt=""
                 width={22}
                 height={22}
-                className="h-[22px] w-[22px] shrink-0 object-contain"
+                className="h-5.5 w-5.5 shrink-0 object-contain"
               />
               <span className="min-w-0">
                 <span className="block text-[14px] font-semibold text-ink">

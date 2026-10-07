@@ -5,8 +5,6 @@ import { usePathname } from "next/navigation";
 import { Menu, X, Download } from "lucide-react";
 import NavItems from "../NavItems";
 
-/* id must match the <section id> in page.tsx — that's what the
-   IntersectionObserver reports and what the anchor scrolls to. */
 export const SECTIONS = [
   { id: "about", label: "About" },
   { id: "skills", label: "Skills" },
@@ -22,10 +20,6 @@ export default function NavBar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  /* useSearchParams() was being called here purely to console.log it. In the
-     App Router that opts the whole subtree into client-side rendering and
-     needs a Suspense boundary — a real cost for a debug statement. Removed. */
-
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
     onScroll();
@@ -33,7 +27,6 @@ export default function NavBar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Stop the page scrolling behind the open mobile sheet.
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -90,8 +83,6 @@ export default function NavBar() {
         </div>
       </nav>
 
-      {/* Mobile sheet. Was rendered inline in the flow, which pushed the
-          fixed header taller and shifted the page under it. */}
       {open && (
         <div
           id="mobile-nav"

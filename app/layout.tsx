@@ -17,9 +17,6 @@ const geistMono = Geist_Mono({
   display: "swap",
 });
 
-/* Set this to the real deployed origin. Without metadataBase, Next emits
-   relative OG image URLs, which Slack/LinkedIn/WhatsApp can't resolve — so
-   shared links render with no preview card at all. */
 const SITE_URL = "https://srinithin.vercel.app";
 
 export const metadata: Metadata = {
@@ -83,9 +80,6 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    /* The manual <head><link rel="icon" href="/icon.png"> is gone. There is
-       no /public/icon.png, so it 404'd on every page load. app/icon.png
-       already exists and Next wires that up automatically. */
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -102,9 +96,6 @@ export default function RootLayout({
           {children}
         </ActiveSectionProvider>
 
-        {/* react-hot-toast was installed and `toast.success(...)` was being
-            called from the contact form, but <Toaster /> was never mounted —
-            so no toast has ever appeared. */}
         <Toaster
           position="bottom-right"
           toastOptions={{

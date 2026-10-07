@@ -1,11 +1,3 @@
-/**
- * Single source of truth for contact details.
- *
- * Before this, the email appeared as nithinsri53@gmail.com in Intro.jsx and
- * again in ContactUs.jsx, while the resume said Srinithin.in@gmail.com — so
- * the site and the CV disagreed, and fixing it meant editing two files.
- */
-
 export const NAME = "Srinithin Thangadurai";
 export const ROLE = "Full Stack Developer";
 export const LOCATION = "Coimbatore, Tamil Nadu";

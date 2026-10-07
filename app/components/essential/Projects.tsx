@@ -9,8 +9,6 @@ type Project = {
   cover?: string;
   demoLink?: string;
   repoLink?: string;
-  /* Work built inside a company — no public link, and saying so is better
-     than a dead "Live Demo" button. */
   internal?: boolean;
   context?: string;
 };
@@ -30,7 +28,7 @@ const FEATURED: Project = {
     "Tailwind CSS",
   ],
   cover: "/cinegpt.png",
-  demoLink: "https://cine-gpt-srinithin.vercel.app",
+  demoLink: "https://cine-gpt-three.vercel.app",
   repoLink: "https://github.com/Srinithin-dev/netflix-GPT",
 };
 
@@ -79,24 +77,20 @@ export default function Projects() {
       <p className="eyebrow">Projects</p>
       <h2 className="section-title">Things I&apos;ve built</h2>
       <p className="section-lead">
-        One side project I keep extending, and a few pieces of work from the
+        One personal project I keep extending, and a few pieces of work from the
         day job. The company work is closed-source, so those are descriptions
         rather than links.
       </p>
 
-      {/* Featured: two-column so CineGPT gets room to be explained rather
-          than compressed into a 300px card. The old grid was
-          `lg:grid-cols-3` holding a single item, which left two empty
-          columns and made the section look unfinished. */}
-      <article className="card mt-10 overflow-hidden lg:grid lg:grid-cols-[1.05fr_1fr]">
-        <div className="relative aspect-[16/10] w-full border-b border-line bg-surface-2 lg:aspect-auto lg:border-b-0 lg:border-r">
+      <article className="card mt-10 overflow-hidden lg:grid lg:grid-cols-[0.5fr_1fr]">
+        <div className="relative aspect-16/10 w-full border-b border-line bg-surface-2 lg:aspect-auto lg:border-b-0 lg:border-r">
           {FEATURED.cover ? (
             <Image
               src={FEATURED.cover}
               alt={`${FEATURED.title} screenshot`}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-left-top"
+              className="object-center object-top-left"
             />
           ) : (
             <div className="grid h-full place-items-center text-[13px] text-ink-3">
@@ -110,7 +104,7 @@ export default function Projects() {
             <span className="rounded-full bg-accent-wash px-2.5 py-1 text-[11.5px] font-semibold text-accent-text">
               Featured
             </span>
-            <span className="text-[12.5px] text-ink-3">Side project</span>
+            <span className="text-[12.5px] text-ink-3">Personal project</span>
           </div>
 
           <h3 className="mt-4 text-[22px] font-semibold text-ink">
@@ -146,7 +140,7 @@ export default function Projects() {
         </div>
       </article>
 
-      <h3 className="mt-14 border-b border-line pb-2.5 text-[13px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+      <h3 className="mt-14 border-b border-line pb-2.5 text-[13px] font-semibold uppercase tracking-widest text-ink-3">
         Professional work
       </h3>
 
@@ -157,7 +151,7 @@ export default function Projects() {
             className="card flex flex-col p-6 transition-colors hover:border-line-strong"
           >
             {project.context && (
-              <p className="text-[11.5px] font-semibold uppercase tracking-[0.1em] text-ink-3">
+              <p className="text-[11.5px] font-semibold uppercase tracking-widest text-ink-3">
                 {project.context}
               </p>
             )}

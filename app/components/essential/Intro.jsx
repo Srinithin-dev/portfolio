@@ -9,9 +9,6 @@ const socials = [
   { name: "Email", href: `mailto:${EMAIL}`, image: "/mail.png" },
 ];
 
-/* Breadth first. The previous version led with integrations, which reads as
-   "integration specialist" — a narrower role than the one being applied for.
-   Full-stack is the claim; integrations is the differentiator underneath it. */
 const capabilities = [
   {
     label: "Front end",
@@ -26,7 +23,7 @@ export default function Intro() {
     <div className="relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-36">
       <div
         aria-hidden
-        className="absolute -top-40 left-1/2 -z-10 h-[26rem] w-[46rem] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
+        className="absolute -top-40 left-1/2 -z-10 h-104 w-184 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
       />
 
       <div className="shell grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-16">
@@ -45,16 +42,13 @@ export default function Intro() {
           </h1>
 
           <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-ink-2">
-            I&apos;m Srinithin. Four years building web applications — React
-            and Next.js on the front, Node, Express and MongoDB behind them.
+            I&apos;m Srinithin. Four years building web applications — React and
+            Next.js on the front, Node, Express and MongoDB behind them.
             I&apos;ve shipped a 12-page site with a CMS panel, a procurement
-            module, and a reporting dashboard. The layer I&apos;m unusually
-            good at is where two systems have to agree with each other.
+            module, and a reporting dashboard. The layer I&apos;m unusually good
+            at is where two systems have to agree with each other.
           </p>
 
-          {/* Says "full-stack" with evidence rather than adjectives, and it
-              echoes the facts strip in the About section so the page has a
-              consistent pattern instead of a one-off hero treatment. */}
           <dl className="mt-9 grid gap-x-8 gap-y-5 sm:grid-cols-3">
             {capabilities.map((item) => (
               <div key={item.label}>
@@ -123,12 +117,7 @@ export default function Intro() {
           </div>
         </div>
 
-        {/* The new photo is a transparent-background cutout, so it needs
-            something behind it or it floats. A tinted rounded panel with the
-            subject bottom-aligned makes the chest crop read as deliberate —
-            `object-bottom` is what does that. No dark gradient overlay this
-            time; it was cropping the face on narrow screens. */}
-        <div className="order-1 mx-auto w-full max-w-[320px] lg:order-2 lg:max-w-[400px]">
+        <div className="order-1 mx-auto w-full max-w-[320px] lg:order-2 lg:max-w-100">
           <div className="relative overflow-hidden rounded-[1.75rem] border border-line bg-linear-to-b from-accent-wash to-surface-2">
             <div
               aria-hidden

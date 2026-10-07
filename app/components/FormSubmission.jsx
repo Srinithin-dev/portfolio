@@ -8,10 +8,6 @@ const MAX_MESSAGE_LENGTH = 1000;
 const EMPTY = { name: "", email: "", message: "" };
 
 export default function FormSubmission() {
-  /* useId gives stable, unique ids for the label/input/error wiring so the
-     <label htmlFor> actually points at its input. Previously the labels
-     weren't associated with anything — clicking a label didn't focus its
-     field, and screen readers read the inputs as unlabelled. */
   const uid = useId();
 
   const [values, setValues] = useState(EMPTY);

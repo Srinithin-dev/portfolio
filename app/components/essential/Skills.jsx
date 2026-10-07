@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-/* Grouped to match the resume so the two documents agree. `src` is optional —
-   a skill with no logo renders as a text chip instead of a broken image. */
 const GROUPS = [
   {
     name: "Frontend",
@@ -22,18 +20,21 @@ const GROUPS = [
       { label: "Node.js", src: "/node.png" },
       { label: "Express.js", src: "/express.png" },
       { label: "REST APIs", src: "/rest.png" },
-      { label: "OAuth 2.0" },
-      { label: "Webhooks" },
+      { label: "OAuth 2.0", src: "/oauth.png" },
+      { label: "Webhooks", src: "/webhook.png" },
     ],
   },
   {
     name: "Data",
-    items: [{ label: "MongoDB", src: "/mongodb.png" }, { label: "Cosmos DB" }],
+    items: [
+      { label: "MongoDB", src: "/mongodb.png" },
+      { label: "Cosmos DB", src: "/space.png" },
+    ],
   },
   {
     name: "Tooling & Cloud",
     items: [
-      { label: "Azure App Service" },
+      { label: "Azure App Service", src: "/azure.png" },
       { label: "Git", src: "/git.png" },
       { label: "GitHub", src: "/github.png" },
       { label: "Postman", src: "/postman.png" },
@@ -43,18 +44,10 @@ const GROUPS = [
   },
 ];
 
-/* BUG THIS REPLACES:
-     unoptimized={skill.src.split(".")[0] == "gif"}
-   For "/react.gif", split(".")[0] is "/react" — never the string "gif". So
-   the condition was always false, every .gif went through the Next image
-   optimizer, and animated GIFs came out as a single static frame. */
 const isGif = (src = "") => src.toLowerCase().endsWith(".gif");
 
 function SkillChip({ item }) {
   return (
-    /* No cursor-pointer and no hover:scale. These aren't interactive — a
-       pointer cursor on a non-clickable card teaches people to distrust
-       every other cursor on the page. */
     <li className="flex items-center gap-2.5 rounded-xl border border-line bg-surface px-3 py-2.5 transition-colors hover:border-line-strong">
       {item.src ? (
         <Image
@@ -87,9 +80,6 @@ export default function Skills() {
         enough to ship with, not to architect from scratch.
       </p>
 
-      {/* Four labelled columns instead of three full-width bands of 32px
-          icons in 128px boxes. Same information, a third of the height, and
-          the groups can be compared side by side. */}
       <div className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
         {GROUPS.map((group) => (
           <div key={group.name}>

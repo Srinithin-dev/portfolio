@@ -22,14 +22,12 @@ export async function POST(request) {
       subject: `📩 New Portfolio Message from ${body.name}`,
 
       text: `
-New Portfolio Contact Message
+          New Portfolio Contact Message
 
-Name: ${body.name}
-Email: ${body.email}
+          Name: ${body.name}
+          Email: ${body.email}
 
-Message:
-${body.message}
-      `,
+          Message: ${body.message}`,
 
       html: `
       <div style="font-family: Arial, Helvetica, sans-serif; background:#f6f8fb; padding:40px;">

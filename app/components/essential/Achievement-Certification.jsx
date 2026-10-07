@@ -1,12 +1,4 @@
 import AchievementCard from "../AchievementCard";
-
-/* Corrected against the resume. The site previously said:
-     "Smart India Hackathon — 2023 — Participant"
-   The resume says national-level finalist in 2020 AND 2nd place in 2022.
-   "Participant" was underselling the single strongest line on the CV.
-
-   Also: "Nehru College Hackathon … First Place" vs the resume's
-   "Nehru Bio Hackathon — Winner". Same event, two names, two phrasings. */
 const ACHIEVEMENTS = [
   {
     id: "sih",
@@ -53,7 +45,8 @@ const ACHIEVEMENTS = [
     description:
       "Hooks, reconciliation, custom hooks, code splitting, Redux Toolkit and testing — built CineGPT alongside the course.",
     icon: "/namasteDev_Logo.png",
-    certificate: "https://namastedev.com/srinithin8910/certificates/namaste-react",
+    certificate:
+      "https://namastedev.com/srinithin8910/certificates/namaste-react",
   },
   {
     id: "namaste-node",
@@ -64,7 +57,8 @@ const ACHIEVEMENTS = [
     description:
       "Node internals, the event loop, Express, MongoDB with Mongoose, auth and API design from first principles.",
     icon: "/namasteDev_Logo.png",
-    certificate: "https://namastedev.com/srinithin8910/certificates/namaste-node",
+    certificate:
+      "https://namastedev.com/srinithin8910/certificates/namaste-node",
   },
   {
     id: "pumo",
@@ -89,13 +83,6 @@ export default function AchievementAndCertifications() {
         Competitions, an internship, and the courses I actually finished.
       </p>
 
-      {/* Was `max-sm:grid-cols-1 max-lg:grid-cols-2 grid-cols-4` — a
-          max-width-first stack, which is the inverse of how Tailwind is
-          meant to be read and breaks at the 640–1024 range. Standard
-          mobile-first ladder instead.
-
-          3 columns, not 4: with six cards a 4-wide grid leaves two empty
-          cells on the second row, which reads as unfinished. */}
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {ACHIEVEMENTS.map((achievement) => (
           <AchievementCard key={achievement.id} achievement={achievement} />

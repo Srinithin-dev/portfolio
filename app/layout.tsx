@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
+// @ts-expect-error Next.js provides built-in typings for CSS side-effect imports.
 import "./globals.css";
 import NavBar from "./components/essential/Navbar";
 import { ActiveSectionProvider } from "./context/ActiveSectionContext";

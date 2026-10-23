@@ -118,10 +118,12 @@ export async function POST(request) {
       },
     );
   } catch (error) {
+    console.error("sendMail failed:", error);
     return Response.json(
       {
         success: false,
         message: "Unable to send email.",
+        error: error || "Unknown error",
       },
       {
         status: 500,

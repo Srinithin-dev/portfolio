@@ -10,14 +10,14 @@ export async function POST(request) {
       port: 465,
       secure: true,
       auth: {
-        user: process.env.FromEmail,
-        pass: process.env.googleEmailPassword,
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASSWORD,
       },
     });
 
     await transporter.sendMail({
-      from: `"Portfolio Contact Form" <${process.env.FromEmail}>`,
-      to: process.env.FromEmail,
+      from: `"Portfolio Contact Form" <${process.env.SMTP_USER}>`,
+      to: process.env.SMTP_USER,
       replyTo: body.email,
       subject: `📩 New Portfolio Message from ${body.name}`,
 

@@ -93,7 +93,7 @@ export default function Projects() {
               alt={`${FEATURED.title} screenshot`}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-center object-top-left"
+              className="object-center object-cover"
             />
           ) : (
             <div className="grid h-full place-items-center text-[13px] text-ink-3">
@@ -124,7 +124,11 @@ export default function Projects() {
 
           <div className="mt-7 flex flex-wrap gap-2.5">
             <a
-              href={FEATURED.demoLink}
+              href={
+                Array.isArray(FEATURED.demoLink)
+                  ? FEATURED.demoLink[0]
+                  : FEATURED.demoLink
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-[13.5px] font-semibold text-white transition hover:bg-accent-text"

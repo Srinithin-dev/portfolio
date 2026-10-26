@@ -128,7 +128,8 @@ export default function Intro() {
               src="/srinithin.png"
               width={1278}
               height={1230}
-              priority
+              preload={true}
+              fetchPriority="high"
               sizes="(max-width: 1024px) 320px, 400px"
               className="relative aspect-[1/1.05] w-full object-contain object-bottom"
             />

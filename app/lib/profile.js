@@ -10,3 +10,4 @@ export const LINKEDIN_URL =
   "https://www.linkedin.com/in/srinithin-thangadurai-1b237a23b/";
 export const GITHUB_URL = "https://github.com/Srinithin-dev";
 export const MAPS_URL = "https://maps.app.goo.gl/gcsCo4mXR64AKsHE8";
+export const SITE_URL = "https://srinithin.vercel.app";

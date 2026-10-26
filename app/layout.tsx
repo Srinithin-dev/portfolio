@@ -4,6 +4,7 @@ import { Toaster } from "react-hot-toast";
 import "./globals.css";
 import NavBar from "./components/essential/Navbar";
 import { ActiveSectionProvider } from "./context/ActiveSectionContext";
+import { SITE_URL } from "./lib/profile";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,8 +17,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
   display: "swap",
 });
-
-const SITE_URL = "https://srinithin.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

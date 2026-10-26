@@ -50,7 +50,7 @@ export async function POST(request) {
 
           Message: ${body.message}`,
 
-      html: escapeHTML(`
+      html: `
       <div style="font-family: Arial, Helvetica, sans-serif; background:#f6f8fb; padding:40px;">
         <div style="max-width:650px; margin:auto; background:white; border-radius:12px; overflow:hidden; border:1px solid #e5e7eb;">
 
@@ -73,14 +73,14 @@ export async function POST(request) {
             >
               <tr>
                 <td style="font-weight:bold; width:140px;">Name</td>
-                <td>${body.name}</td>
+                <td>${escapeHTML(body.name)}</td>
               </tr>
 
               <tr style="background:#f9fafb;">
                 <td style="font-weight:bold;">Email</td>
                 <td>
-                  <a href="mailto:${body.email}">
-                    ${body.email}
+                  <a href="mailto:${escapeHTML(body.email)}">
+                    ${escapeHTML(body.email)}
                   </a>
                 </td>
               </tr>
@@ -88,7 +88,7 @@ export async function POST(request) {
               <tr>
                 <td style="font-weight:bold;">Message</td>
                 <td style="white-space:pre-line;">
-                  ${body.message}
+                  ${escapeHTML(body.message)}
                 </td>
               </tr>
             </table>
@@ -96,7 +96,7 @@ export async function POST(request) {
             <hr style="margin:30px 0; border:none; border-top:1px solid #e5e7eb;" />
 
             <a
-              href="mailto:${body.email}"
+              href="mailto:${escapeHTML(body.email)}"
               style="
                 display:inline-block;
                 background:#af47ff;
@@ -107,7 +107,7 @@ export async function POST(request) {
                 font-weight:bold;
               "
             >
-              Reply to ${body.name}
+              Reply to ${escapeHTML(body.name)}
             </a>
 
           </div>
@@ -126,7 +126,7 @@ export async function POST(request) {
 
         </div>
       </div>
-      `),
+      `,
     });
 
     return Response.json(
@@ -144,7 +144,6 @@ export async function POST(request) {
       {
         success: false,
         message: "Unable to send email.",
-        error: error || "Unknown error",
       },
       {
         status: 500,

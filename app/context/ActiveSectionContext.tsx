@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useMemo, useState } from "react";
 
 type ActiveSectionContextType = {
   activeSection: string;
@@ -15,10 +15,13 @@ export function ActiveSectionProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [activeSection, setActiveSection] = useState("Home");
-
+  const [activeSection, setActiveSection] = useState("hero");
+  const value = useMemo(
+    () => ({ activeSection, setActiveSection }),
+    [activeSection],
+  );
   return (
-    <ActiveSectionContext.Provider value={{ activeSection, setActiveSection }}>
+    <ActiveSectionContext.Provider value={value}>
       {children}
     </ActiveSectionContext.Provider>
   );

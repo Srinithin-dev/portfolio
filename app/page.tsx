@@ -1,6 +1,3 @@
-"use client";
-
-import { useEffect } from "react";
 import Intro from "./components/essential/Intro";
 import About from "./components/essential/About";
 import Skills from "./components/essential/Skills";
@@ -10,29 +7,11 @@ import Education from "./components/essential/Education";
 import AchievementAndCertifications from "./components/essential/Achievement-Certification";
 import ContactUs from "./components/essential/ContactUs";
 import Footer from "./components/essential/Footer";
-import { useActiveSection } from "./context/ActiveSectionContext";
-
+import SectionObserver from "./components/SectionObserver";
 export default function Home() {
-  const { setActiveSection } = useActiveSection();
-
-  useEffect(() => {
-    const sections = document.querySelectorAll<HTMLElement>("section[id]");
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { threshold: 0.2 },
-    );
-
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, [setActiveSection]);
-
   return (
     <main id="top" className="bg-page">
+      <SectionObserver />
       <section id="hero">
         <Intro />
       </section>

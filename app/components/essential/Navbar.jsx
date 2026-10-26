@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
 import { Menu, X, Download } from "lucide-react";
 import NavItems from "../NavItems";
 
@@ -16,7 +15,6 @@ export const SECTIONS = [
 ];
 
 export default function NavBar() {
-  const pathName = usePathname();
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -33,8 +31,6 @@ export default function NavBar() {
       document.body.style.overflow = "";
     };
   }, [open]);
-
-  if (pathName === "/dsa-visualizer") return null;
 
   return (
     <header

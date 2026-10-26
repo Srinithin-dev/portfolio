@@ -1,9 +1,30 @@
 import nodemailer from "nodemailer";
 
+import contactSchema from "../../lib/contactSchema";
+import escapeHTML from "../../lib/escapeHTML";
+
 export async function POST(request) {
   try {
-    const body = await request.json();
+    let raw;
+    try {
+      raw = await request.json();
+    } catch {
+      return Response.json(
+        { success: false, message: "Invalid JSON." },
+        { status: 400 },
+      );
+    }
 
+    const parsed = contactSchema.safeParse(raw);
+    if (!parsed.success) {
+      return Response.json(
+        { success: false, message: "Invalid input." },
+        { status: 400 },
+      );
+    }
+
+    const body = parsed.data;
+    if (body.website) return Response.json({ success: true }, { status: 200 });
     const transporter = nodemailer.createTransport({
       service: "gmail",
       host: "smtp.gmail.com",
@@ -19,7 +40,7 @@ export async function POST(request) {
       from: `"Portfolio Contact Form" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
       replyTo: body.email,
-      subject: `📩 New Portfolio Message from ${body.name}`,
+      subject: `New Portfolio Message from ${body.name}`,
 
       text: `
           New Portfolio Contact Message
@@ -29,13 +50,13 @@ export async function POST(request) {
 
           Message: ${body.message}`,
 
-      html: `
+      html: escapeHTML(`
       <div style="font-family: Arial, Helvetica, sans-serif; background:#f6f8fb; padding:40px;">
         <div style="max-width:650px; margin:auto; background:white; border-radius:12px; overflow:hidden; border:1px solid #e5e7eb;">
 
           <div style="background:#af47ff; padding:24px;">
             <h2 style="color:white; margin:0;">
-              📩 New Portfolio Contact Message
+              New Portfolio Contact Message
             </h2>
           </div>
 
@@ -105,7 +126,7 @@ export async function POST(request) {
 
         </div>
       </div>
-      `,
+      `),
     });
 
     return Response.json(

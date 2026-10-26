@@ -1,9 +1,30 @@
 import nodemailer from "nodemailer";
 
+import contactSchema from "../../lib/contactSchema";
+import escapeHTML from "../../lib/escapeHTML";
+
 export async function POST(request) {
   try {
-    const body = await request.json();
+    let raw;
+    try {
+      raw = await request.json();
+    } catch {
+      return Response.json(
+        { success: false, message: "Invalid JSON." },
+        { status: 400 },
+      );
+    }
 
+    const parsed = contactSchema.safeParse(raw);
+    if (!parsed.success) {
+      return Response.json(
+        { success: false, message: "Invalid input." },
+        { status: 400 },
+      );
+    }
+
+    const body = parsed.data;
+    if (body.website) return Response.json({ success: true }, { status: 200 });
     const transporter = nodemailer.createTransport({
       service: "gmail",
       host: "smtp.gmail.com",
@@ -19,7 +40,7 @@ export async function POST(request) {
       from: `"Portfolio Contact Form" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_USER,
       replyTo: body.email,
-      subject: `📩 New Portfolio Message from ${body.name}`,
+      subject: `New Portfolio Message from ${body.name}`,
 
       text: `
           New Portfolio Contact Message
@@ -35,7 +56,7 @@ export async function POST(request) {
 
           <div style="background:#af47ff; padding:24px;">
             <h2 style="color:white; margin:0;">
-              📩 New Portfolio Contact Message
+              New Portfolio Contact Message
             </h2>
           </div>
 
@@ -52,14 +73,14 @@ export async function POST(request) {
             >
               <tr>
                 <td style="font-weight:bold; width:140px;">Name</td>
-                <td>${body.name}</td>
+                <td>${escapeHTML(body.name)}</td>
               </tr>
 
               <tr style="background:#f9fafb;">
                 <td style="font-weight:bold;">Email</td>
                 <td>
-                  <a href="mailto:${body.email}">
-                    ${body.email}
+                  <a href="mailto:${escapeHTML(body.email)}">
+                    ${escapeHTML(body.email)}
                   </a>
                 </td>
               </tr>
@@ -67,7 +88,7 @@ export async function POST(request) {
               <tr>
                 <td style="font-weight:bold;">Message</td>
                 <td style="white-space:pre-line;">
-                  ${body.message}
+                  ${escapeHTML(body.message)}
                 </td>
               </tr>
             </table>
@@ -75,7 +96,7 @@ export async function POST(request) {
             <hr style="margin:30px 0; border:none; border-top:1px solid #e5e7eb;" />
 
             <a
-              href="mailto:${body.email}"
+              href="mailto:${escapeHTML(body.email)}"
               style="
                 display:inline-block;
                 background:#af47ff;
@@ -86,7 +107,7 @@ export async function POST(request) {
                 font-weight:bold;
               "
             >
-              Reply to ${body.name}
+              Reply to ${escapeHTML(body.name)}
             </a>
 
           </div>
@@ -123,7 +144,6 @@ export async function POST(request) {
       {
         success: false,
         message: "Unable to send email.",
-        error: error || "Unknown error",
       },
       {
         status: 500,

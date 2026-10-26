@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { Loader2, Send } from "lucide-react";
 
 const MAX_MESSAGE_LENGTH = 1000;
-const EMPTY = { name: "", email: "", message: "" };
+const EMPTY = { name: "", email: "", message: "", website: "" };
 
 export default function FormSubmission() {
   const uid = useId();
@@ -52,6 +52,7 @@ export default function FormSubmission() {
           name: values.name.trim(),
           email: values.email.trim(),
           message: values.message.trim(),
+          website: values.website ?? "",
         }),
       });
 
@@ -135,6 +136,17 @@ export default function FormSubmission() {
             </span>
           )}
         </div>
+        <input
+          name="website"
+          type="text"
+          autoComplete="off"
+          placeholder="you@example.com"
+          value={values.website ?? ""}
+          onChange={setField("website")}
+          aria-hidden="true"
+          tabIndex={-1}
+          className="absolute -left-2499.75"
+        />
       </div>
 
       <div className="mt-5 flex flex-col gap-2">

@@ -140,7 +140,7 @@ export default function Experience() {
       <div className="relative mt-12">
         <div
           aria-hidden
-          className="absolute left-[7px] top-2 hidden h-[calc(100%-1rem)] w-px bg-line sm:block"
+          className="absolute left-1.75 top-2 hidden h-[calc(100%-1rem)] w-px bg-line sm:block"
         />
 
         <div className="flex flex-col gap-10">
@@ -148,7 +148,7 @@ export default function Experience() {
             <article key={company.company} className="relative sm:pl-10">
               <span
                 aria-hidden
-                className="absolute left-0 top-2 hidden h-[15px] w-[15px] rounded-full border-2 border-page bg-accent ring-1 ring-line sm:block"
+                className="absolute left-0 top-2 hidden h-3.75 w-3.75 rounded-full border-2 border-page bg-accent ring-1 ring-line sm:block"
               />
 
               <div className="card p-6 sm:p-7">

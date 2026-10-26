@@ -48,21 +48,12 @@ export const metadata: Metadata = {
     description:
       "Full-stack developer working across React, Next.js, Node.js and MongoDB — from UI to database.",
     locale: "en_IN",
-    images: [
-      {
-        url: "/portfolioBanner.png",
-        width: 1200,
-        height: 630,
-        alt: "Srinithin Thangadurai — Full Stack Developer",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Srinithin Thangadurai — Full Stack Developer",
     description:
       "Full-stack developer working across React, Next.js, Node.js and MongoDB — from UI to database.",
-    images: ["/portfolioBanner.png"],
   },
   robots: { index: true, follow: true },
   verification: {

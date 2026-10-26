@@ -65,6 +65,9 @@ export const metadata: Metadata = {
     images: ["/portfolioBanner.png"],
   },
   robots: { index: true, follow: true },
+  verification: {
+    google: "goCq2Q3WFjEmkFqEMaLhymt9hUnNhvmgWVXt2vMoBzE",
+  },
 };
 
 export const viewport: Viewport = {
@@ -80,6 +83,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <meta name="google-site-verification"></meta>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

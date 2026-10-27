@@ -1,5 +1,7 @@
+import { NO_OF_EXPERIENCE_YEARS } from "@/app/lib/profile";
+
 const facts = [
-  { label: "Experience", value: "4 years" },
+  { label: "Experience", value: `${NO_OF_EXPERIENCE_YEARS} years` },
   { label: "Currently", value: "Fountain Hills Technologies" },
   /* Was "Integrations & internal tools" — too narrow to sit next to a
      full-stack claim in the hero. */

@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { readFile } from "node:fs/promises";
 import { join } from "node:path";
+import { NO_OF_EXPERIENCE_YEARS } from "./lib/profile";
 
 export const alt = "Srinithin Thangadurai — Full Stack Developer";
 export const size = { width: 1200, height: 630 };
@@ -14,81 +15,79 @@ export default async function OpengraphImage() {
   const photoSrc = `data:image/png;base64,${photo.toString("base64")}`;
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        background: "#16181d",
+        color: "#ffffff",
+        borderTop: "12px solid #af47ff",
+      }}
+    >
+      {/* Left: text */}
       <div
         style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
-          background: "#16181d",
-          color: "#ffffff",
-          borderTop: "12px solid #af47ff",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          flex: 1,
+          padding: "64px 0 64px 80px",
         }}
       >
-        {/* Left: text */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            flex: 1,
-            padding: "64px 0 64px 80px",
-          }}
-        >
-          <div style={{ display: "flex", fontSize: 36, color: "#af47ff" }}>
-            {"<ST />"}
-          </div>
-
-          <div style={{ display: "flex", flexDirection: "column" }}>
-            <div
-              style={{
-                fontSize: 72,
-                fontWeight: 700,
-                letterSpacing: -2,
-                lineHeight: 1.05,
-              }}
-            >
-              Srinithin Thangadurai
-            </div>
-            <div style={{ fontSize: 40, marginTop: 16, color: "#d4d4d8" }}>
-              Full Stack Developer · 4 years
-            </div>
-            <div style={{ fontSize: 28, marginTop: 24, color: "#a1a1aa" }}>
-              React · Next.js · Node.js · MongoDB
-            </div>
-          </div>
-
-          <div style={{ display: "flex", fontSize: 28, color: "#af47ff" }}>
-            srinithin-portfolio.vercel.app
-          </div>
+        <div style={{ display: "flex", fontSize: 36, color: "#af47ff" }}>
+          {"<ST />"}
         </div>
 
-        {/* Right: photo on an accent circle */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "center",
-            width: 440,
-            position: "relative",
-          }}
-        >
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              position: "absolute",
-              width: 380,
-              height: 380,
-              borderRadius: 9999,
-              background: "#2a1640",
-              bottom: 40,
-              left: 30,
+              fontSize: 72,
+              fontWeight: 700,
+              letterSpacing: -2,
+              lineHeight: 1.05,
             }}
-          />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={photoSrc} width={430} height={414} alt="" />
+          >
+            Srinithin Thangadurai
+          </div>
+          <div style={{ fontSize: 40, marginTop: 16, color: "#d4d4d8" }}>
+            Full Stack Developer · ${NO_OF_EXPERIENCE_YEARS} years
+          </div>
+          <div style={{ fontSize: 28, marginTop: 24, color: "#a1a1aa" }}>
+            React · Next.js · Node.js · MongoDB
+          </div>
+        </div>
+
+        <div style={{ display: "flex", fontSize: 28, color: "#af47ff" }}>
+          srinithin-portfolio.vercel.app
         </div>
       </div>
-    ),
+
+      {/* Right: photo on an accent circle */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "flex-end",
+          justifyContent: "center",
+          width: 440,
+          position: "relative",
+        }}
+      >
+        <div
+          style={{
+            position: "absolute",
+            width: 380,
+            height: 380,
+            borderRadius: 9999,
+            background: "#2a1640",
+            bottom: 40,
+            left: 30,
+          }}
+        />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={photoSrc} width={430} height={414} alt="" />
+      </div>
+    </div>,
     size,
   );
 }

@@ -1,7 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Download, Mail, MapPin } from "lucide-react";
-import { EMAIL, LINKEDIN_URL, GITHUB_URL } from "../../lib/profile";
+import {
+  EMAIL,
+  LINKEDIN_URL,
+  GITHUB_URL,
+  NO_OF_EXPERIENCE_YEARS,
+} from "../../lib/profile";
 
 const socials = [
   { name: "LinkedIn", href: LINKEDIN_URL, image: "/linkedin.png" },
@@ -90,7 +95,7 @@ export default function Intro() {
               Coimbatore, India
             </span>
             <span className="h-3.5 w-px bg-line-strong" />
-            <span>4 years professional experience</span>
+            <span>{NO_OF_EXPERIENCE_YEARS} years professional experience</span>
             <span className="h-3.5 w-px bg-line-strong" />
             <span>Currently at Fountain Hills Technologies</span>
           </div>

@@ -11,3 +11,4 @@ export const LINKEDIN_URL =
 export const GITHUB_URL = "https://github.com/Srinithin-dev";
 export const MAPS_URL = "https://maps.app.goo.gl/gcsCo4mXR64AKsHE8";
 export const SITE_URL = "https://srinithin-portfolio.vercel.app";
+export const NO_OF_EXPERIENCE_YEARS = new Date().getFullYear() - 2022;

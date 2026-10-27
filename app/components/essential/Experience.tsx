@@ -12,7 +12,7 @@ type Role = {
 type Company = {
   company: string;
   location: string;
-  link: string;
+  link?: string;
   roles: Role[];
 };
 
@@ -27,9 +27,9 @@ const EXPERIENCE: Company[] = [
         period: "Aug 2024 – Present",
         present: true,
         points: [
-          "Revamped the company website across 10–12 pages with Next.js, Tailwind CSS, Cosmos DB and Azure App Service, including a responsive rebuild, SEO work and a blog/CMS panel.",
-          "Built API-driven integrations between Datto RMM, Zoho Desk, Threat Mate, CrowdStrike and Perception Point, automating alert-to-ticket workflows and scheduled data synchronisation.",
-          "Developed a security and support reporting dashboard that aggregates monthly platform metrics and emails client reports automatically — cutting manual reporting effort by roughly 70%.",
+          "Revamped the company website with Next.js, Tailwind CSS, Cosmos DB and Azure App Service, including a responsive rebuild, SEO improvements and a blog/CMS panel.",
+          "Built API-driven integrations between Datto RMM, Zoho Desk, ThreatMate, CrowdStrike and Perception Point, automating alert-to-ticket workflows and scheduled data synchronisation.",
+          "Developed a security and support reporting dashboard that aggregates monthly platform metrics and emails client reports automatically — cutting manual reporting effort by about 70%.",
           "Built the Quote Builder module for a procurement platform in React, Node.js and MongoDB, with dynamic quote fields and quote-generation workflows.",
         ],
         tech: [
@@ -47,8 +47,23 @@ const EXPERIENCE: Company[] = [
     ],
   },
   {
+    company: "Error Makes Clever",
+    location: "Remote",
+    link: "https://www.errormakesclever.com/",
+    roles: [
+      {
+        role: "Full-Stack Mentor (Part-time)",
+        period: "Oct 2026 – Present",
+        present: true,
+        points: [
+          "Mentor learners on an edtech platform in full-stack web development, explaining core concepts and guiding them through hands-on projects.",
+        ],
+      },
+    ],
+  },
+  {
     company: "Konnectify",
-    location: "Gandhipuram, Coimbatore",
+    location: "Lakshmi Mills, Coimbatore",
     link: "https://www.linkedin.com/company/konnectifyco/",
     roles: [
       {
@@ -56,7 +71,7 @@ const EXPERIENCE: Company[] = [
         period: "Aug 2023 – July 2024",
         points: [
           "Led a team of four developers building an iPaaS ecosystem with SaaS integrations including Zoho Desk, Monday.com, HubSpot and Cliniko, delivering multiple application integrations in parallel.",
-          "Built and maintained those integrations with React, Node.js, REST APIs, MongoDB and OAuth 2.0 — triggers, actions and data mapping — working from third-party API docs through testing, troubleshooting and production delivery.",
+          "Built and maintained the integrations with React, Node.js, REST APIs, MongoDB and OAuth 2.0 — triggers, actions and data mapping — working from third-party API docs through testing, troubleshooting and production delivery.",
         ],
         tech: [
           "React.js",
@@ -155,15 +170,21 @@ export default function Experience() {
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>
                     <h3 className="flex items-center gap-1.5 text-[17px] font-semibold text-ink">
-                      <a
-                        href={company.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-accent-text hover:underline"
-                      >
-                        {company.company}
-                      </a>
-                      <ExternalLink size={13} className="text-ink-3" />
+                      {company.link ? (
+                        <>
+                          <a
+                            href={company.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-accent-text hover:underline"
+                          >
+                            {company.company}
+                          </a>
+                          <ExternalLink size={13} className="text-ink-3" />
+                        </>
+                      ) : (
+                        company.company
+                      )}
                     </h3>
                     <p className="mt-1 flex items-center gap-1.5 text-[13px] text-ink-3">
                       <Image

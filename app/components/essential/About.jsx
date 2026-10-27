@@ -1,13 +1,13 @@
-const facts = [
-  { label: "Experience", value: "4 years" },
-  { label: "Currently", value: "Fountain Hills Technologies" },
-  /* Was "Integrations & internal tools" — too narrow to sit next to a
-     full-stack claim in the hero. */
-  { label: "Role", value: "Full-stack (React / Node)" },
-  { label: "Based in", value: "Coimbatore, India" },
-];
+import { getYearsOfExperience } from "@/app/lib/profile";
 
 export default function About() {
+  const years = getYearsOfExperience();
+  const facts = [
+    { label: "Experience", value: `${years} years` },
+    { label: "Currently", value: "Fountain Hills Technologies" },
+    { label: "Role", value: "Full-stack (React / Node)" },
+    { label: "Based in", value: "Coimbatore, India" },
+  ];
   return (
     <div className="shell">
       <p className="eyebrow">About</p>
@@ -16,34 +16,46 @@ export default function About() {
       <div className="mt-8 grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <div className="max-w-2xl space-y-5 text-[16.5px] leading-relaxed text-ink-2">
           <p>
-            I work across the stack. On the front end that&apos;s React and
-            Next.js with TypeScript and Redux Toolkit — responsive rebuilds, SEO
-            work, a blog and CMS panel, a procurement module with dynamic form
-            logic. On the back end it&apos;s Node and Express against MongoDB
-            and Cosmos DB, deployed on Azure App Service. I&apos;m comfortable
-            owning a feature from the component down to the query.
+            I work across the stack and like owning a feature end to end, from
+            the React component to the API and the database query behind it.
+            Most of my work is in React, Next.js and TypeScript on the front
+            end, and Node.js, Express, MongoDB and Cosmos DB on the back end,
+            deployed on Azure App Service.
           </p>
           <p>
-            I started at Konnectify in 2022 shipping Freshworks Marketplace
-            apps, and ten of those later I was leading a team of four on an
-            iPaaS platform — Zoho Desk, Monday.com, HubSpot, Cliniko. At
-            Fountain Hills I built a reporting dashboard that aggregates metrics
-            from five security platforms and mails clients their monthly report
-            on a schedule, replacing a process that used to eat most of a week.
+            I started at Konnectify in 2022, building Freshworks Marketplace
+            apps. After shipping 10+ of them, I went on to lead a team
+            of four on Konnectify&apos;s iPaaS platform, building integrations
+            with Zoho Desk, Monday.com, HubSpot and Cliniko. At Fountain Hills
+            Technologies, I built a reporting dashboard that pulls metrics from
+            five security platforms and emails clients their monthly reports
+            automatically, cutting manual reporting effort by about 70%.
           </p>
           <p>
-            That path means I&apos;m unusually comfortable with the seams —
-            retries, partial syncs, rate limits, the upstream field that
-            silently changed shape. It&apos;s not the only thing I do, but
-            it&apos;s the part most people would rather not, and I&apos;ve
-            learned it&apos;s where most production bugs actually live.
+            Integration work taught me to design for the edge cases: retries,
+            partial syncs, rate limits, and upstream APIs that change without
+            warning. That&apos;s where many production bugs come from, and
+            it&apos;s the part of the job I&apos;ve become most comfortable
+            with.
           </p>
           <p>
-            Outside work I go back over fundamentals deliberately. I finished
-            Namaste JavaScript, React and Node, and CineGPT below came out of
-            those — I wanted somewhere to actually use the patterns rather than
-            just watch them. The DSA visualizers were the same idea: easier to
-            understand a structure when you can watch it move.
+            Outside work, I keep strengthening my fundamentals. I&apos;ve
+            completed Namaste JavaScript, React and Node.js, and built CineGPT
+            (below) to put those patterns into practice, including calling an
+            LLM API to turn plain-language requests into results. Right now
+            I&apos;m going deeper into what happens beneath the abstractions:
+            how a platform like Vercel builds, caches and serves a Next.js app,
+            and how LLMs work inside, from tokens and embeddings to attention
+            and the transformer architecture.
+          </p>
+          <p>
+            I&apos;ve also recently started mentoring at Error Makes Clever, an
+            edtech platform, where I teach full-stack development. Explaining a concept to learners is
+            the best test I&apos;ve found of whether I really understand it.
+          </p>
+          <p>
+            Next, I&apos;m looking for a full-stack role where I can own
+            features end to end and work on systems at a larger scale.
           </p>
         </div>
 

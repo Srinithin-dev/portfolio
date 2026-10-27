@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s | Srinithin Thangadurai",
   },
   description:
-    "Full Stack Developer in Coimbatore. Four years building web applications with React, Next.js, TypeScript, Node.js and MongoDB — currently at Fountain Hills Technologies.",
+    "Full Stack Developer in Coimbatore building web apps since 2022 with React, Next.js, Node.js and MongoDB. Currently at Fountain Hills Technologies.",
   keywords: [
     "Srinithin Thangadurai",
     "Full Stack Developer",

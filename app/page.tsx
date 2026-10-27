@@ -8,6 +8,7 @@ import AchievementAndCertifications from "./components/essential/Achievement-Cer
 import ContactUs from "./components/essential/ContactUs";
 import Footer from "./components/essential/Footer";
 import SectionObserver from "./components/SectionObserver";
+export const revalidate = 86400;
 export default function Home() {
   return (
     <main id="top" className="bg-page">
@@ -40,7 +41,7 @@ export default function Home() {
       </section>
 
       <section
-        id="awards"
+        id="achievements"
         className="border-t border-line bg-surface-2/60 py-20 sm:py-24"
       >
         <AchievementAndCertifications />

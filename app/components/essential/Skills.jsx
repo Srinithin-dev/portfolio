@@ -25,7 +25,7 @@ const GROUPS = [
     ],
   },
   {
-    name: "Data",
+    name: "Database",
     items: [
       { label: "MongoDB", src: "/mongodb.png" },
       { label: "Cosmos DB", src: "/space.png" },
@@ -72,12 +72,12 @@ function SkillChip({ item }) {
 export default function Skills() {
   return (
     <div className="shell">
-      <p className="eyebrow">Stack</p>
+      <p className="eyebrow">Skills</p>
       <h2 className="section-title">What I work with</h2>
       <p className="section-lead">
-        Day-to-day tools on the left of each row. I&apos;m strongest in the
-        React/Node half of this list — the cloud and tooling side I know well
-        enough to ship with, not to architect from scratch.
+        Tools I use most come first in each group. I&apos;m strongest in React
+        and Node.js, and I use the cloud and tooling side confidently in
+        production.
       </p>
 
       <div className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">

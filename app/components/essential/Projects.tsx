@@ -7,17 +7,18 @@ type Project = {
   detail?: string;
   stack: string[];
   cover?: string;
-  demoLink?: string | string[];
+  demoLink?: string;
   repoLink?: string;
+  links?: { label: string; url: string }[];
   internal?: boolean;
   context?: string;
 };
 
 const FEATURED: Project = {
   title: "CineGPT",
-  blurb: "AI-powered movie discovery, for the searches genre filters can't do.",
+  blurb: "AI-powered movie discovery for searches that genre filters can't handle.",
   detail:
-    "A Netflix-style browse experience with a second search mode on top: describe a mood, a genre mashup, or a scene you half-remember, and Gemini resolves it into real titles via TMDB. Firebase auth with protected routes, Redux Toolkit for state, and a multi-language UI (English, Hindi, Tamil).",
+    "A Netflix-style browse experience with a second search mode on top: describe a mood, a genre mashup, or a scene you half-remember, and Gemini resolves it into real titles via TMDB. Firebase Auth with protected routes, Redux Toolkit for state, and a multi-language UI (English, Hindi, Tamil).",
   stack: [
     "React.js",
     "Redux Toolkit",
@@ -36,7 +37,7 @@ const WORK: Project[] = [
   {
     title: "Security & Support Reporting Dashboard",
     blurb:
-      "Aggregates monthly metrics across five security platforms and emails client reports on a schedule.",
+      "Aggregates monthly metrics from five security platforms and emails client reports on a schedule, cutting manual reporting effort by about 70%.",
     stack: ["Next.js", "Node.js", "Cosmos DB", "REST APIs", "Azure"],
     internal: true,
     context: "Fountain Hills Technologies",
@@ -52,11 +53,17 @@ const WORK: Project[] = [
   {
     title: "Freshworks Marketplace Apps",
     blurb:
-      "Two published integrations — Parent Child & Grandchild, and ZoomInfo Sales — plus eight more across the Freshworks suite.",
+      "10+ integrations across the Freshworks suite, including two published Marketplace apps: Parent Child & Grandchild and ZoomInfo Sales.",
     stack: ["JavaScript", "Freshworks SDK", "REST APIs"],
-    demoLink: [
-      "Parent Child & Grandchild - https://www.freshworks.com/apps/parent_child_grandchild/.",
-      "ZoomInfo Sales - https://www.freshworks.com/apps/zoominfo_salesos/.",
+    links: [
+      {
+        label: "Parent Child & Grandchild",
+        url: "https://www.freshworks.com/apps/parent_child_grandchild/",
+      },
+      {
+        label: "ZoomInfo Sales",
+        url: "https://www.freshworks.com/apps/zoominfo_salesos/",
+      },
     ],
     context: "Konnectify",
   },
@@ -80,9 +87,9 @@ export default function Projects() {
       <p className="eyebrow">Projects</p>
       <h2 className="section-title">Things I&apos;ve built</h2>
       <p className="section-lead">
-        One personal project I keep extending, and a few pieces of work from the
-        day job. The company work is closed-source, so those are descriptions
-        rather than links.
+        A personal project I keep extending, plus selected work from my roles.
+        Company projects are closed-source, so they&apos;re described rather
+        than linked.
       </p>
 
       <article className="card mt-10 overflow-hidden lg:grid lg:grid-cols-[0.5fr_1fr]">
@@ -124,11 +131,7 @@ export default function Projects() {
 
           <div className="mt-7 flex flex-wrap gap-2.5">
             <a
-              href={
-                Array.isArray(FEATURED.demoLink)
-                  ? FEATURED.demoLink[0]
-                  : FEATURED.demoLink
-              }
+              href={FEATURED.demoLink}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg bg-ink px-4 py-2.5 text-[13.5px] font-semibold text-white transition hover:bg-accent-text"
@@ -182,16 +185,15 @@ export default function Projects() {
                     View on Marketplace
                   </p>
                   <div className="flex flex-wrap gap-2 mt-1.5 text-[13px] text-ink-2">
-                    {Array.isArray(project.demoLink) &&
-                      project.demoLink.map((link) => (
+                    {project.links?.map((link) => (
                         <a
-                          href={link.split("-")[1]}
-                          key={link.split("-")[0]}
+                          href={link.url}
+                          key={link.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-accent-text hover:underline"
                         >
-                          {link.split("-")[0]}
+                          {link.label}
                           <ExternalLink size={13} />
                         </a>
                       ))}

@@ -39,8 +39,9 @@ export default function ContactUs() {
       <p className="eyebrow">Contact</p>
       <h2 className="section-title">Get in touch</h2>
       <p className="section-lead">
-        Open to full-stack roles and happy to talk through a problem either way.
-        Email is fastest.
+        I&apos;m open to full-stack roles, and happy to talk through a technical
+        problem even if you&apos;re not hiring. Email is the fastest way to
+        reach me.
       </p>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[1fr_1.25fr] lg:gap-14">

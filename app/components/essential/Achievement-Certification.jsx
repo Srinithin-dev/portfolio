@@ -60,28 +60,15 @@ const ACHIEVEMENTS = [
     certificate:
       "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Bio-Ideathon%20Certificate",
   },
-
-  {
-    id: "pumo",
-    title: "PUMO Technovation Internship",
-    organization: "Software Developer Intern",
-    year: "2022",
-    status: "Completed",
-    description:
-      "Three-month internship building UI components and shipping website improvements with HTML, CSS, JavaScript and Bootstrap.",
-    icon: "/pumo_Logo.png",
-    certificate:
-      "https://81sk9hpdjh3qhjxz.public.blob.vercel-storage.com/Pumo%20Technovation%20Certificate",
-  },
 ];
 
 export default function AchievementAndCertifications() {
   return (
     <div className="shell">
-      <p className="eyebrow">Recognition</p>
+      <p className="eyebrow">Achievements</p>
       <h2 className="section-title">Awards & certifications</h2>
       <p className="section-lead">
-        Competitions, an internship, and the courses I actually finished.
+        Hackathon results and the courses I&apos;ve completed.
       </p>
 
       <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

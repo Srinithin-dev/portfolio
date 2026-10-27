@@ -5,7 +5,7 @@ import {
   EMAIL,
   LINKEDIN_URL,
   GITHUB_URL,
-  NO_OF_EXPERIENCE_YEARS,
+  getYearsOfExperience,
 } from "../../lib/profile";
 
 const socials = [
@@ -19,11 +19,17 @@ const capabilities = [
     label: "Front end",
     value: "React · Next.js · TypeScript · Redux Toolkit",
   },
-  { label: "Back end", value: "Node.js · Express · REST APIs · OAuth 2.0" },
-  { label: "Data", value: "MongoDB · Cosmos DB" },
+  { label: "Back end", value: "Node.js · Express · REST APIs · Webhooks" },
+  { label: "Database", value: "MongoDB · Cosmos DB" },
+  {
+    label: "Integrations",
+    value: "OAuth 2.0 · Zoho · HubSpot · Freshworks · CrowdStrike",
+  },
 ];
 
 export default function Intro() {
+  const years = getYearsOfExperience();
+
   return (
     <div className="relative isolate overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-36">
       <div
@@ -47,14 +53,16 @@ export default function Intro() {
           </h1>
 
           <p className="mt-6 max-w-xl text-[17px] leading-relaxed text-ink-2">
-            I&apos;m Srinithin. Four years building web applications — React and
-            Next.js on the front, Node, Express and MongoDB behind them.
-            I&apos;ve shipped a 12-page site with a CMS panel, a procurement
-            module, and a reporting dashboard. The layer I&apos;m unusually good
-            at is where two systems have to agree with each other.
+            I&apos;m Srinithin. For the past {years} years I&apos;ve been
+            building web applications: React and Next.js on the front end,
+            Node.js, Express and MongoDB on the back end. I&apos;ve shipped a
+            company website with a CMS panel, a procurement module, and a
+            reporting dashboard that cut manual reporting by about 70%. I&apos;m
+            strongest where systems meet: third-party integrations, data sync
+            and the APIs between them.
           </p>
 
-          <dl className="mt-9 grid gap-x-8 gap-y-5 sm:grid-cols-3">
+          <dl className="mt-9 grid gap-x-8 gap-y-5 sm:grid-cols-2">
             {capabilities.map((item) => (
               <div key={item.label}>
                 <dt className="text-[11.5px] font-semibold uppercase tracking-[0.12em] text-ink-3">
@@ -72,7 +80,7 @@ export default function Intro() {
               href="#projects"
               className="inline-flex items-center gap-2 rounded-xl bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:bg-accent-text"
             >
-              See my work <ArrowRight size={16} />
+              View projects <ArrowRight size={16} />
             </a>
             <a
               href="#contact"
@@ -85,7 +93,7 @@ export default function Intro() {
               download="Srinithin-Thangadurai-Resume.pdf"
               className="inline-flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-semibold text-ink-3 transition hover:bg-surface-2 hover:text-ink"
             >
-              <Download size={16} /> Resume
+              <Download size={16} /> Download resume
             </a>
           </div>
 
@@ -95,7 +103,7 @@ export default function Intro() {
               Coimbatore, India
             </span>
             <span className="h-3.5 w-px bg-line-strong" />
-            <span>{NO_OF_EXPERIENCE_YEARS} years professional experience</span>
+            <span>{years} years of experience</span>
             <span className="h-3.5 w-px bg-line-strong" />
             <span>Currently at Fountain Hills Technologies</span>
           </div>

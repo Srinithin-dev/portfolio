@@ -3,18 +3,17 @@ import Image from "next/image";
 const EDUCATION = [
   {
     name: "Sri Krishna College of Arts and Science",
-    course: "M.Sc Software Systems",
+    course: "M.Sc. Software Systems (5-year integrated)",
     period: "2018 – 2023",
     result: "CGPA 8.0",
     description:
-      "Five-year integrated programme covering software development and system design.",
+      "Integrated programme covering software development and system design. Represented the college at Smart India Hackathon twice: national finalist in 2020 and 2nd place in 2022.",
     image: "/education.png",
   },
   {
     name: "PSG Sarvajana Higher Secondary School",
     course: "Higher Secondary — Biology & Mathematics",
     period: "2016 – 2018",
-    description: "Bio-Maths stream.",
     image: "/school.png",
   },
 ];
@@ -56,9 +55,11 @@ export default function Education() {
                 )}
               </p>
 
-              <p className="mt-3 text-[14px] leading-relaxed text-ink-2">
-                {item.description}
-              </p>
+              {item.description && (
+                <p className="mt-3 text-[14px] leading-relaxed text-ink-2">
+                  {item.description}
+                </p>
+              )}
             </div>
           </article>
         ))}

@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      # Exact versions from package-lock.json, clean install.
+      - run: npm ci
+
+      # Next.js 16 no longer lints during `next build`, so lint here.
+      - run: npm run lint
+
+      # Also type-checks TypeScript and prerenders every static route
+      # (including /opengraph-image), so a broken OG image fails CI.
+      - run: npm run build

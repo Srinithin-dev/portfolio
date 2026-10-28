@@ -56,6 +56,11 @@ export default function FormSubmission() {
         }),
       });
 
+      if (response.status === 429) {
+        toast.error("Too many messages. Please try again in a few minutes.");
+        return;
+      }
+
       if (!response.ok) throw new Error("Request failed");
 
       toast.success("Message sent. I'll get back to you soon.");

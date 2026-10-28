@@ -25,17 +25,17 @@ flowchart LR
 
 ## Key decisions
 
-| Decision | Why |
-| --- | --- |
-| Page is a **Server Component**; only the navbar, scroll observer and form are client components | Static sections ship no JavaScript and never re-render on scroll. Client JS dropped from 526 kB to 486 kB (uncompressed). |
-| **ISR** (`revalidate = 86400`) on the page and OG image | Years of experience are calculated from the career start date at render time; the page refreshes daily without a redeploy. |
-| Time-dependent values computed **inside components**, not at module level | Module code runs once per server process; ISR re-runs components, not modules. |
-| **Server-side validation** with zod, even though the form validates too | Client validation is UX. Anyone can call the API with curl. |
-| **HTML escaping per value** in the email template | User input is inserted into HTML; escaping the template instead of the values would leave injection open. |
-| **Honeypot** field returning a fake 200 | Catches bots that fill every field, without telling them they were caught. |
-| **Rate limiting at the edge** (Vercel Firewall), not in app code | Serverless instances share no memory, so an in-memory counter doesn't work. The firewall counts before the function runs. |
-| Errors logged on the server, generic message to the client | Nodemailer errors contain SMTP details that shouldn't leave the server. |
-| `SITE_URL` defined once in `app/lib/profile.js` | Canonical URL, sitemap, robots and OG image all depend on it. |
+| Decision                                                                                        | Why                                                                                                                        |
+| ----------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| Page is a **Server Component**; only the navbar, scroll observer and form are client components | Static sections ship no JavaScript and never re-render on scroll. Client JS dropped from 526 kB to 486 kB (uncompressed).  |
+| **ISR** (`revalidate = 86400`) on the page and OG image                                         | Years of experience are calculated from the career start date at render time; the page refreshes daily without a redeploy. |
+| Time-dependent values computed **inside components**, not at module level                       | Module code runs once per server process; ISR re-runs components, not modules.                                             |
+| **Server-side validation** with zod, even though the form validates too                         | Client validation is UX. Anyone can call the API with curl.                                                                |
+| **HTML escaping per value** in the email template                                               | User input is inserted into HTML; escaping the template instead of the values would leave injection open.                  |
+| **Honeypot** field returning a fake 200                                                         | Catches bots that fill every field, without telling them they were caught.                                                 |
+| **Rate limiting at the edge** (Vercel Firewall), not in app code                                | Serverless instances share no memory, so an in-memory counter doesn't work. The firewall counts before the function runs.  |
+| Errors logged on the server, generic message to the client                                      | Nodemailer errors contain SMTP details that shouldn't leave the server.                                                    |
+| `SITE_URL` defined once in `app/lib/profile.js`                                                 | Canonical URL, sitemap, robots and OG image all depend on it.                                                              |
 
 ## SEO
 
@@ -49,13 +49,13 @@ flowchart LR
 
 Measured on a production build (`npm run build && npm start`), cache disabled, no scrolling.
 
-| Change | Before | After |
-| --- | --- | --- |
-| Favicon resized from 1254×1254 to 96×96 | 937 kB (75% of the page) | 5.9 kB |
-| Total transferred on first load | ~1.24 MB | ~0.3 MB |
-| Page as Server Component (JS files) | 11 | 9 |
-| JS transferred / parsed | 162 kB / 526 kB | 149 kB / 486 kB |
-| Unused dependencies and `public/` files | 6 packages, 31 files | 0 |
+| Change                                  | Before                   | After           |
+| --------------------------------------- | ------------------------ | --------------- |
+| Favicon resized from 1254×1254 to 96×96 | 937 kB (75% of the page) | 5.9 kB          |
+| Total transferred on first load         | ~1.24 MB                 | ~0.3 MB         |
+| Page as Server Component (JS files)     | 11                       | 9               |
+| JS transferred / parsed                 | 162 kB / 526 kB          | 149 kB / 486 kB |
+| Unused dependencies and `public/` files | 6 packages, 31 files     | 0               |
 
 The biggest win was found by sorting the Network panel by size, not by guessing.
 
@@ -84,14 +84,14 @@ Requires Node.js 22.
 
 ```bash
 npm install
-cp .env.example .env   # then fill in the values
+cp .env   # then fill in the values
 npm run dev
 ```
 
-| Variable | Purpose |
-| --- | --- |
-| `SMTP_USER` | Gmail address the contact form sends from and to |
-| `SMTP_PASSWORD` | Gmail app password (not the account password) |
+| Variable        | Purpose                                          |
+| --------------- | ------------------------------------------------ |
+| `SMTP_USER`     | Gmail address the contact form sends from and to |
+| `SMTP_PASSWORD` | Gmail app password (not the account password)    |
 
 Scripts: `npm run dev`, `npm run build`, `npm start`, `npm run lint`.
 
